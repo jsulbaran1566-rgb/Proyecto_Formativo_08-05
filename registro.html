@@ -2,35 +2,61 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="estilo.css">
     <title>Registro - AgroDirecto</title>
 </head>
 <body>
+
     <nav id="main-nav">
         <a href="index.html"><strong>AGRODIRECTO</strong></a>
-        <a href="index.html">Volver al Inicio</a>
+        <div class="nav-links">
+            <a href="index.html">Volver al Inicio</a>
+        </div>
     </nav>
 
-    <main class="contenedor-formulario">
+    <main class="contenedor-formulario" style="max-width: 480px;">
         <h2>Crear Cuenta</h2>
-        <form>
-            <label>Nombre Completo / Razón Social:</label>
-            <br>
-            <input type="text" class="input-formulario">
-            <br>
-            <label>Correo Electrónico:</label>
-            <br>
-            <input type="email" class="input-formulario">
-            <br>
-            <label>Seleccione su rol:</label>
-            <br>
-            <select class="input-formulario">
-                <option value="productor">Productor (Gestionar fincas y lotes)</option>
-                <option value="comprador">Comprador (Restaurante/Hotel)</option>
-            </select>
-            <br>
-            <button type="submit" class="btn-accion">Registrarse</button>
+        <p>Únase a la plataforma de comercio agrícola directo.</p>
+
+        <form action="panel.html">
+            <div class="form-grupo">
+                <label for="nombre">Nombre Completo / Razón Social</label>
+                <input type="text" id="nombre" class="input-formulario" placeholder="Ej: Finca El Paraíso">
+            </div>
+            <div class="form-grupo">
+                <label for="correo">Correo Electrónico</label>
+                <input type="email" id="correo" class="input-formulario" placeholder="correo@empresa.com">
+            </div>
+            <div class="form-grupo">
+                <label for="telefono">Teléfono / WhatsApp</label>
+                <input type="tel" id="telefono" class="input-formulario" placeholder="+57 300 000 0000">
+            </div>
+            <div class="form-grupo">
+                <label for="rol">Seleccione su rol</label>
+                <select id="rol" class="input-formulario">
+                    <option value="">-- Seleccione --</option>
+                    <option value="productor">Productor (Gestionar fincas y lotes)</option>
+                    <option value="comprador">Comprador (Restaurante / Hotel / Distribuidor)</option>
+                </select>
+            </div>
+            <div class="form-grupo">
+                <label for="clave">Contraseña</label>
+                <input type="password" id="clave" class="input-formulario" placeholder="Mínimo 8 caracteres">
+            </div>
+            <div class="form-accion">
+                <button type="submit" class="btn-accion">Crear mi Cuenta</button>
+            </div>
         </form>
+
+        <div class="form-pie">
+            ¿Ya tiene cuenta? <a href="login.html">Inicie sesión aquí</a>
+        </div>
     </main>
+
+    <footer id="footer-principal">
+        <p><strong>AgroDirecto</strong> &mdash; Del campo a su negocio, sin rodeos. &copy; 2025</p>
+    </footer>
+
 </body>
 </html>

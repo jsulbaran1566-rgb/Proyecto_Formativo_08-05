@@ -2,37 +2,80 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="estilo.css">
     <title>AgroDirecto - Inicio</title>
 </head>
 <body>
+
     <nav id="main-nav">
         <a href="index.html"><strong>AGRODIRECTO</strong></a>
-        <a href="index.html">Inicio</a>
-        <a href="nosotros.html">Nosotros</a>
-        <a href="login.html">Acceso</a>
+        <div class="nav-links">
+            <a href="index.html">Inicio</a>
+            <a href="nosotros.html">Nosotros</a>
+            <a href="contacto.html">Contacto</a>
+            <a href="login.html">Acceso</a>
+        </div>
     </nav>
 
     <header id="seccion-hero">
         <h1>Cosecha Anticipada para su Negocio</h1>
-        <p>Asegure precios estables comprando directamente al productor agrícola.</p>
+        <p>Asegure precios estables comprando directamente al productor agrícola. Sin intermediarios, con trazabilidad completa.</p>
         <a href="registro.html" class="btn-accion">Crear Perfil</a>
     </header>
 
     <main class="contenedor-principal">
-        <h2>¿Cómo funciona?</h2>
-        <div class="card-info">
-            <h3>1. Explore Lotes</h3>
-            <p>Filtre por categoría de cultivo y fecha estimada de cosecha.</p>
+
+        <div class="seccion-titulo">
+            <h2>¿Cómo funciona?</h2>
+            <p>Un proceso simple para conectar el campo con su negocio</p>
         </div>
-        <div class="card-info">
-            <h3>2. Reserve Cupos</h3>
-            <p>Aparte su producto antes de la recolección oficial.</p>
+
+        <div class="grid-cards">
+            <div class="card-info">
+                <h3>1. Explore Lotes</h3>
+                <p>Filtre por categoría de cultivo y fecha estimada de cosecha. Encuentre el productor ideal para su negocio.</p>
+            </div>
+            <div class="card-info">
+                <h3>2. Reserve Cupos</h3>
+                <p>Aparte su producto antes de la recolección oficial con precio pactado y condiciones claras.</p>
+            </div>
+            <div class="card-info">
+                <h3>3. Trazabilidad</h3>
+                <p>Siga el ciclo vital de su pedido: siembra, crecimiento y cosecha en tiempo real.</p>
+            </div>
+            <div class="card-info">
+                <h3>4. Conexión Directa</h3>
+                <p>Sin intermediarios. El margen que antes se perdía ahora beneficia al productor y a su negocio.</p>
+            </div>
         </div>
-        <div class="card-info">
-            <h3>3. Trazabilidad</h3>
-            <p>Siga el ciclo vital: siembra, crecimiento y cosecha.</p>
+
+        <div class="seccion-titulo mt-32">
+            <h2>¿Para quién es AgroDirecto?</h2>
         </div>
+
+        <div class="grid-cards" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
+            <div class="card-info" style="border-top-color: #795548;">
+                <h3>Para Productores</h3>
+                <p>Venda su cosecha antes de cosecharla. Planifique sus finanzas y obtenga el precio justo por su trabajo.</p>
+                <div class="mt-16">
+                    <a href="registro.html" class="btn-accion btn-secundario">Registrarse como productor</a>
+                </div>
+            </div>
+            <div class="card-info">
+                <h3>Para Compradores</h3>
+                <p>Restaurantes, hoteles y distribuidores: acceda a producto fresco con origen certificado.</p>
+                <div class="mt-16">
+                    <a href="registro.html" class="btn-accion">Registrarse como comprador</a>
+                </div>
+            </div>
+        </div>
+
     </main>
+
+    <footer id="footer-principal">
+        <p><strong>AgroDirecto</strong> &mdash; Del campo a su negocio, sin rodeos. &copy; 2025</p>
+    </footer>
+
 </body>
 </html>

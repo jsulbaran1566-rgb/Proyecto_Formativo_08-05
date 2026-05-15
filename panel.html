@@ -2,29 +2,136 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="estilo.css">
-    <title>Panel de Gestión - AgroDirecto</title>
+    <title>Panel Productor - AgroDirecto</title>
 </head>
 <body>
+
     <nav id="main-nav">
-        <a href="#"><strong>Panel General</strong></a>
-        <a href="index.html" class="btn-accion btn-salir">Cerrar Sesión</a>
+        <a href="index.html"><strong>AGRODIRECTO</strong></a>
+        <div class="nav-links">
+            <span style="color: rgba(255,255,255,0.6); font-size: 0.85rem;">Panel Productor</span>
+            <a href="index.html" class="btn-accion btn-salir" style="padding: 7px 14px; font-size: 0.85rem;">Cerrar Sesión</a>
+        </div>
     </nav>
 
-    <main class="contenedor-principal">
-        <h2>Gestión Operativa</h2>
-        <div class="card-info">
-            <h3>Mis Cultivos</h3>
-            <p>Registre nuevos lotes indicando cantidad (kg) y fecha de siembra.</p>
+    <!-- BOX MODEL 8: sidebar fijo + contenido flexible -->
+    <div class="panel-layout">
+
+        <aside class="panel-sidebar">
+            <div class="sidebar-perfil">
+                <div class="sidebar-avatar">🌾</div>
+                <h4>Finca El Paraíso</h4>
+                <span>Productor</span>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="#" class="activo">📊 Resumen</a>
+                <a href="#">🌱 Mis Cultivos</a>
+                <a href="#">📋 Trazabilidad</a>
+                <a href="#">💰 Ventas y Pagos</a>
+                <a href="#">📈 Reportes</a>
+                <a href="#">⚙️ Mi Perfil</a>
+                <a href="contacto.html">💬 Soporte</a>
+            </nav>
+        </aside>
+
+        <div class="panel-contenido">
+
+            <div class="panel-encabezado">
+                <div>
+                    <h2>Bienvenido, Finca El Paraíso</h2>
+                    <p>Resumen de su operación · Mayo 2025</p>
+                </div>
+                <a href="#" class="btn-accion">+ Nuevo Lote</a>
+            </div>
+
+            <div class="stats-row">
+                <div class="stat-card">
+                    <div class="stat-valor">4</div>
+                    <div class="stat-label">Cultivos Activos</div>
+                </div>
+                <div class="stat-card" style="border-left-color: #795548;">
+                    <div class="stat-valor">1.200</div>
+                    <div class="stat-label">Kg Reservados</div>
+                </div>
+                <div class="stat-card" style="border-left-color: #f57c00;">
+                    <div class="stat-valor">$4,8M</div>
+                    <div class="stat-label">Ingresos Proyectados</div>
+                </div>
+                <div class="stat-card" style="border-left-color: #1565c0;">
+                    <div class="stat-valor">3</div>
+                    <div class="stat-label">Compradores Activos</div>
+                </div>
+            </div>
+
+            <div class="grid-cards">
+                <div class="card-info">
+                    <h3>Mis Cultivos</h3>
+                    <p>Registre nuevos lotes indicando cantidad (kg), variedad y fecha de siembra.</p>
+                    <div class="mt-16">
+                        <a href="#" class="btn-accion btn-secundario">Ver cultivos</a>
+                    </div>
+                </div>
+                <div class="card-info">
+                    <h3>Trazabilidad</h3>
+                    <p>Actualice el estado de su cosecha para notificar automáticamente al comprador.</p>
+                    <div class="mt-16">
+                        <a href="#" class="btn-accion btn-secundario">Actualizar estados</a>
+                    </div>
+                </div>
+                <div class="card-info">
+                    <h3>Reportes</h3>
+                    <p>Visualice ingresos proyectados y total de kilogramos reservados por período.</p>
+                    <div class="mt-16">
+                        <a href="#" class="btn-accion btn-secundario">Ver reportes</a>
+                    </div>
+                </div>
+                <div class="card-info">
+                    <h3>Pagos</h3>
+                    <p>Consulte pagos pendientes e historial de transferencias por cosecha entregada.</p>
+                    <div class="mt-16">
+                        <a href="#" class="btn-accion btn-secundario">Ver pagos</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-32">
+                <h3 style="color: var(--verde-oscuro); margin-bottom: 4px;">Lotes Recientes</h3>
+                <table class="tabla-panel">
+                    <thead>
+                        <tr>
+                            <th>Cultivo</th>
+                            <th>Kg Totales</th>
+                            <th>Kg Reservados</th>
+                            <th>Estado</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Espinaca</td>
+                            <td>500 kg</td>
+                            <td>380 kg</td>
+                            <td><span class="badge badge-verde">Crecimiento</span></td>
+                        </tr>
+                        <tr>
+                            <td>Zanahoria</td>
+                            <td>300 kg</td>
+                            <td>300 kg</td>
+                            <td><span class="badge badge-amarillo">Lista para cosechar</span></td>
+                        </tr>
+                        <tr>
+                            <td>Maíz dulce</td>
+                            <td>400 kg</td>
+                            <td>120 kg</td>
+                            <td><span class="badge badge-azul">Siembra</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
         </div>
-        <div class="card-info">
-            <h3>Trazabilidad</h3>
-            <p>Actualice el estado de su cosecha para notificar al comprador.</p>
-        </div>
-        <div class="card-info">
-            <h3>Reportes</h3>
-            <p>Visualice ingresos proyectados y total de kilogramos reservados.</p>
-        </div>
-    </main>
+    </div>
+
 </body>
 </html>

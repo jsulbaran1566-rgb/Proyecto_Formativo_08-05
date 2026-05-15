@@ -2,29 +2,105 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="estilo.css">
     <title>Contacto - AgroDirecto</title>
 </head>
 <body>
+
     <nav id="main-nav">
         <a href="index.html"><strong>AGRODIRECTO</strong></a>
-        <a href="index.html">Volver al Inicio</a>
+        <div class="nav-links">
+            <a href="index.html">Inicio</a>
+            <a href="nosotros.html">Nosotros</a>
+            <a href="contacto.html">Contacto</a>
+            <a href="login.html">Acceso</a>
+        </div>
     </nav>
 
     <section id="seccion-hero">
         <h1>Centro de Soporte</h1>
-        <p>Estamos para ayudar a tecnificar su proceso de comercialización.</p>
+        <p>Estamos para ayudar a tecnificar su proceso de comercialización. Contáctenos por el canal que prefiera.</p>
     </section>
 
     <main class="contenedor-principal">
-        <div class="card-info card-completa">
-            <h3>Canales Oficiales</h3>
-            <p><strong>WhatsApp:</strong> +57 300 000 0000</p>
-            <p><strong>Email:</strong> soporte@agrodirecto.com</p>
-            <p><strong>Ubicación:</strong> Sedes regionales de atención.</p>
-            <br>
-            <a href="#" class="btn-accion">Abrir Chat de WhatsApp</a>
+
+        <div class="seccion-titulo">
+            <h2>Canales Oficiales</h2>
+            <p>Elija la forma más cómoda de comunicarse con nosotros</p>
         </div>
+
+        <!-- BOX MODEL 7: grid de contacto -->
+        <div class="contacto-grid">
+            <div class="contacto-item">
+                <span class="contacto-icono">💬</span>
+                <div>
+                    <h4>WhatsApp</h4>
+                    <p><a href="https://wa.me/573000000000">+57 300 000 0000</a></p>
+                    <p>Lunes a Viernes · 8 am – 6 pm</p>
+                </div>
+            </div>
+            <div class="contacto-item">
+                <span class="contacto-icono">📧</span>
+                <div>
+                    <h4>Correo Electrónico</h4>
+                    <p><a href="mailto:soporte@agrodirecto.com">soporte@agrodirecto.com</a></p>
+                    <p>Respuesta en menos de 24 horas</p>
+                </div>
+            </div>
+            <div class="contacto-item">
+                <span class="contacto-icono">📍</span>
+                <div>
+                    <h4>Ubicación</h4>
+                    <p>Sedes regionales en Medellín, Bogotá y Cali</p>
+                </div>
+            </div>
+            <div class="contacto-item">
+                <span class="contacto-icono">📞</span>
+                <div>
+                    <h4>Línea Telefónica</h4>
+                    <p><a href="tel:+576014000000">601 400 0000</a></p>
+                    <p>Atención nacional</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="seccion-titulo mt-32">
+            <h2>Envíenos un Mensaje</h2>
+        </div>
+
+        <!-- card-completa centra el formulario -->
+        <div class="card-info card-completa">
+            <form>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+                    <div class="form-grupo">
+                        <label>Nombre</label>
+                        <input type="text" class="input-formulario" placeholder="Su nombre">
+                    </div>
+                    <div class="form-grupo">
+                        <label>Teléfono</label>
+                        <input type="tel" class="input-formulario" placeholder="+57 300 000 0000">
+                    </div>
+                </div>
+                <div class="form-grupo">
+                    <label>Correo Electrónico</label>
+                    <input type="email" class="input-formulario" placeholder="correo@empresa.com">
+                </div>
+                <div class="form-grupo">
+                    <label>Mensaje</label>
+                    <textarea class="input-formulario" rows="4" placeholder="Cuéntenos cómo podemos ayudarle..." style="resize: vertical; font-family: Arial, sans-serif;"></textarea>
+                </div>
+                <button type="submit" class="btn-accion">Enviar Mensaje</button>
+                &nbsp;
+                <a href="https://wa.me/573000000000" class="btn-accion" style="background-color: #25D366;">💬 Abrir WhatsApp</a>
+            </form>
+        </div>
+
     </main>
+
+    <footer id="footer-principal">
+        <p><strong>AgroDirecto</strong> &mdash; Del campo a su negocio, sin rodeos. &copy; 2025</p>
+    </footer>
+
 </body>
 </html>
