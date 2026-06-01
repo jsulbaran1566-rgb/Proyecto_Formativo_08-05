@@ -1,31 +1,116 @@
 <!DOCTYPE html>
 <html lang="es">
-<head> 
+<head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="estilo.css">
     <title>Nosotros - AgroDirecto</title>
 </head>
 <body>
-    <nav id="main-nav">
+
+    <!-- NAV STICKY (position: sticky; top: 0; z-index: 1000) -->
+    <nav id="navegacion-principal">
         <a href="index.html"><strong>AGRODIRECTO</strong></a>
-        <a href="index.html">Volver al Inicio</a>
+        <div class="enlaces-nav">
+            <a href="index.html">Inicio</a>
+            <a href="nosotros.html" class="nav-activo">Nosotros</a>
+            <a href="contacto.html">Contacto</a>
+            <a href="login.html">Acceso</a>
+        </div>
     </nav>
 
+    <!-- HERO (position: relative) con overlays decorativos (position: absolute via ::before/::after) -->
     <section id="seccion-hero">
+        <span class="badge-hero">✦ El Equipo</span>
         <h1>Sobre AgroDirecto</h1>
-        <p>Un equipo enfocado en profesionalizar la relación campo-ciudad.</p>
-        <p><strong>Integrantes del grupo: </strong>Jesus Sulbaran, Valentina Realpe, Danna Mencon, Valeria Delgado y Sofia Botache</p>
+        <p>Un equipo enfocado en profesionalizar la relacion campo-ciudad.</p>
+        <p><strong>Integrantes:</strong> Jesus Sulbaran, Valentina Realpe, Danna Mencon, Valeria Delgado y Sofia Botache</p>
     </section>
 
     <main class="contenedor-principal">
-        <div class="card-info">
-            <h3>El Problema</h3>
-            <p>La intermediación reduce el margen del productor hasta en un 70%.</p>
+
+        <div class="titulo-seccion">
+            <h2>El Contexto</h2>
+            <p>Entendemos el problema desde adentro</p>
         </div>
-        <div class="card-info">
-            <h3>Nuestra Solución</h3>
-            <p>Una plataforma formal B2B que asegura ventas futuras y elimina intermediarios.</p>
+
+        <div class="cuadricula-tarjetas">
+            <div class="tarjeta-info tarjeta-borde-rojo tarjeta-flex-300">
+                <h3>El Problema</h3>
+                <p>La intermediacion reduce el margen del productor hasta en un <strong>70%</strong>. El agricultor recibe una fraccion del precio final mientras que los intermediarios capturan la mayor parte del valor.</p>
+            </div>
+            <div class="tarjeta-info tarjeta-flex-300">
+                <h3>Nuestra Solucion</h3>
+                <p>Una plataforma formal <strong>B2B</strong> que asegura ventas futuras y elimina intermediarios, conectando directamente al productor con restaurantes, hoteles y distribuidores.</p>
+            </div>
         </div>
+
+        <div class="titulo-seccion mt-32">
+            <h2>Mision, Vision y Valores</h2>
+        </div>
+
+        <div class="cuadricula-tarjetas">
+            <div class="tarjeta-info">
+                <h3>🌱 Mision</h3>
+                <p>Democratizar el comercio agricola formal en Colombia, dandole al productor herramientas para negociar con igualdad de condiciones.</p>
+            </div>
+            <div class="tarjeta-info">
+                <h3>🚀 Vision</h3>
+                <p>Ser la plataforma de referencia para la comercializacion anticipada de cosechas en Latinoamerica hacia 2030.</p>
+            </div>
+            <div class="tarjeta-info">
+                <h3>⚖️ Valores</h3>
+                <p>Transparencia, trazabilidad, equidad y tecnologia al servicio del campo. Creemos en el comercio justo como motor del desarrollo rural.</p>
+            </div>
+        </div>
+
+        <div class="titulo-seccion mt-32">
+            <h2>El Equipo</h2>
+            <p>Las personas detras del proyecto</p>
+        </div>
+
+        <div class="cuadricula-tarjetas">
+            <div class="tarjeta-info texto-centro tarjeta-flex-180">
+                <h3>Jesus Sulbaran</h3>
+                <p>Desarrollo y Arquitectura</p>
+            </div>
+            <div class="tarjeta-info texto-centro tarjeta-flex-180">
+                <h3>Valentina Realpe</h3>
+                <p>Diseno y UX</p>
+            </div>
+            <div class="tarjeta-info texto-centro tarjeta-flex-180">
+                <h3>Danna Mencon</h3>
+                <p>Producto y Negocio</p>
+            </div>
+            <div class="tarjeta-info texto-centro tarjeta-flex-180">
+                <h3>Valeria Delgado</h3>
+                <p>Investigacion y Datos</p>
+            </div>
+            <div class="tarjeta-info texto-centro tarjeta-flex-180">
+                <h3>Sofia Botache</h3>
+                <p>Relaciones con Productores</p>
+            </div>
+        </div>
+
     </main>
+
+    <!-- BOTÓN VOLVER ARRIBA (position: fixed) -->
+    <a href="#" id="boton-top" title="Volver arriba">▲</a>
+
+    <footer id="pie-pagina-principal">
+        <p><strong>AgroDirecto</strong> - Del campo a su negocio, sin rodeos. 2025</p>
+    </footer>
+
+    <script>
+        const botonTop = document.getElementById('boton-top');
+        window.addEventListener('scroll', () => {
+            botonTop.classList.toggle('visible', window.scrollY > 200);
+        });
+        botonTop.addEventListener('click', e => {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    </script>
+
 </body>
 </html>

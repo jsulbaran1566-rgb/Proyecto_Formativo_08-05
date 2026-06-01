@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="estilo.css">
+    <title>Usuarios - AgroDirecto</title>
+</head>
+<body>
+
+    <!-- NAV STICKY (position: sticky; top: 0; z-index: 1000) -->
+    <nav id="navegacion-principal">
+        <a href="index.html"><strong>AGRODIRECTO</strong></a>
+        <div class="enlaces-nav">
+            <span class="rol-nav">Administracion</span>
+            <div class="campana-wrapper con-tooltip">
+                <span style="font-size:1.2rem; color:white; cursor:pointer;">🔔</span>
+                <span class="campana-badge">1</span>
+                <span class="tooltip-texto">1 notificacion nueva</span>
+            </div>
+            <a href="index.html" class="boton-accion boton-salir">Cerrar Sesion</a>
+        </div>
+    </nav>
+
+    <div class="diseno-panel">
+
+        <!-- BARRA LATERAL STICKY (position: sticky; top: var(--nav-height)) -->
+        <aside class="barra-lateral">
+            <div class="perfil-barra">
+                <!-- Avatar con indicador online (::after = position: absolute) -->
+                <div class="avatar-barra">🛡️</div>
+                <h4>Administrador</h4>
+                <span>Admin</span>
+            </div>
+            <nav class="nav-barra">
+                <a href="panel.html">📊 Resumen</a>
+                <a href="usuarios.html" class="activo">👥 Usuarios</a>
+                <a href="roles.html">🔐 Roles</a>
+                <a href="proveedores.html">🚚 Proveedores</a>
+                <a href="#">🌱 Cultivos</a>
+                <a href="#">📈 Reportes</a>
+                <a href="#">⚙️ Configuracion</a>
+                <a href="contacto.html">💬 Soporte</a>
+            </nav>
+        </aside>
+
+        <div class="contenido-panel">
+
+            <div class="encabezado-panel">
+                <div>
+                    <h2>Gestion de Usuarios</h2>
+                    <p>Administre los usuarios registrados en la plataforma</p>
+                </div>
+                <a href="#" class="boton-accion">+ Nuevo Usuario</a>
+            </div>
+
+            <!-- Estadísticas con ícono decorativo (position: absolute en ::before) -->
+            <div class="fila-estadisticas">
+                <div class="tarjeta-estadistica" data-icono="👥">
+                    <div class="valor-estadistica">128</div>
+                    <div class="etiqueta-estadistica">Usuarios Totales</div>
+                </div>
+                <div class="tarjeta-estadistica estadistica-verde" data-icono="✅">
+                    <div class="valor-estadistica">112</div>
+                    <div class="etiqueta-estadistica">Activos</div>
+                </div>
+                <div class="tarjeta-estadistica estadistica-marron" data-icono="🌿">
+                    <div class="valor-estadistica">74</div>
+                    <div class="etiqueta-estadistica">Productores</div>
+                </div>
+                <div class="tarjeta-estadistica estadistica-azul" data-icono="🏪">
+                    <div class="valor-estadistica">54</div>
+                    <div class="etiqueta-estadistica">Compradores</div>
+                </div>
+                <div class="tarjeta-estadistica estadistica-rojo" data-icono="⛔">
+                    <div class="valor-estadistica">16</div>
+                    <div class="etiqueta-estadistica">Inactivos</div>
+                </div>
+            </div>
+
+            <!-- Barra de búsqueda y filtro -->
+            <div class="barra-busqueda">
+                <input type="text" class="campo-formulario" placeholder="🔍 Buscar por nombre o correo...">
+                <select class="campo-formulario" style="max-width:180px;">
+                    <option value="">Todos los roles</option>
+                    <option value="productor">Productor</option>
+                    <option value="comprador">Comprador</option>
+                    <option value="admin">Administrador</option>
+                </select>
+                <select class="campo-formulario" style="max-width:160px;">
+                    <option value="">Todos los estados</option>
+                    <option value="activo">Activo</option>
+                    <option value="inactivo">Inactivo</option>
+                </select>
+                <button class="boton-accion">Filtrar</button>
+            </div>
+
+            <!-- Tabla de usuarios -->
+            <table class="tabla-panel">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre / Razon Social</th>
+                        <th>Correo</th>
+                        <th>Rol</th>
+                        <th>Estado</th>
+                        <th>Registro</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>#001</td>
+                        <td>Finca El Paraiso</td>
+                        <td>paraiso@finca.com</td>
+                        <td><span class="chip chip-productor">🌿 Productor</span></td>
+                        <td><span class="etiqueta etiqueta-verde">Activo</span></td>
+                        <td>12 Ene 2025</td>
+                        <td>
+                            <div style="display:flex;gap:6px;flex-wrap:wrap;">
+                                <a href="#" class="boton-accion" style="padding:4px 10px;font-size:0.78rem;">Editar</a>
+                                <a href="#" class="boton-accion boton-secundario" style="padding:4px 10px;font-size:0.78rem;">Ver</a>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>#002</td>
+                        <td>Restaurante La Mesa</td>
+                        <td>lamesa@rest.com</td>
+                        <td><span class="chip chip-comprador">🏪 Comprador</span></td>
+                        <td><span class="etiqueta etiqueta-verde">Activo</span></td>
+                        <td>18 Ene 2025</td>
+                        <td>
+                            <div style="display:flex;gap:6px;flex-wrap:wrap;">
+                                <a href="#" class="boton-accion" style="padding:4px 10px;font-size:0.78rem;">Editar</a>
+                                <a href="#" class="boton-accion boton-secundario" style="padding:4px 10px;font-size:0.78rem;">Ver</a>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>#003</td>
+                        <td>Agro Santa Marta</td>
+                        <td>agro@santamarta.com</td>
+                        <td><span class="chip chip-productor">🌿 Productor</span></td>
+                        <td><span class="etiqueta etiqueta-verde">Activo</span></td>
+                        <td>3 Feb 2025</td>
+                        <td>
+                            <div style="display:flex;gap:6px;flex-wrap:wrap;">
+                                <a href="#" class="boton-accion" style="padding:4px 10px;font-size:0.78rem;">Editar</a>
+                                <a href="#" class="boton-accion boton-secundario" style="padding:4px 10px;font-size:0.78rem;">Ver</a>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>#004</td>
+                        <td>Hotel Campestre Villa Real</td>
+                        <td>compras@villareal.com</td>
+                        <td><span class="chip chip-comprador">🏪 Comprador</span></td>
+                        <td><span class="etiqueta etiqueta-amarillo">Pendiente</span></td>
+                        <td>15 Mar 2025</td>
+                        <td>
+                            <div style="display:flex;gap:6px;flex-wrap:wrap;">
+                                <a href="#" class="boton-accion" style="padding:4px 10px;font-size:0.78rem;">Editar</a>
+                                <a href="#" class="boton-accion boton-secundario" style="padding:4px 10px;font-size:0.78rem;">Ver</a>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>#005</td>
+                        <td>Finca Los Andes</td>
+                        <td>losandes@finca.com</td>
+                        <td><span class="chip chip-productor">🌿 Productor</span></td>
+                        <td><span class="etiqueta etiqueta-rojo">Inactivo</span></td>
+                        <td>20 Mar 2025</td>
+                        <td>
+                            <div style="display:flex;gap:6px;flex-wrap:wrap;">
+                                <a href="#" class="boton-accion" style="padding:4px 10px;font-size:0.78rem;">Editar</a>
+                                <a href="#" class="boton-accion boton-secundario" style="padding:4px 10px;font-size:0.78rem;">Ver</a>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>#006</td>
+                        <td>Admin Sistema</td>
+                        <td>admin@agrodirecto.com</td>
+                        <td><span class="chip chip-admin">🛡️ Admin</span></td>
+                        <td><span class="etiqueta etiqueta-verde">Activo</span></td>
+                        <td>1 Ene 2025</td>
+                        <td>
+                            <div style="display:flex;gap:6px;flex-wrap:wrap;">
+                                <a href="#" class="boton-accion" style="padding:4px 10px;font-size:0.78rem;">Editar</a>
+                                <a href="#" class="boton-accion boton-secundario" style="padding:4px 10px;font-size:0.78rem;">Ver</a>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- Paginacion -->
+            <div style="display:flex;justify-content:center;gap:8px;margin-top:20px;flex-wrap:wrap;">
+                <a href="#" class="boton-accion boton-secundario" style="padding:6px 14px;font-size:0.82rem;">← Anterior</a>
+                <a href="#" class="boton-accion" style="padding:6px 14px;font-size:0.82rem;">1</a>
+                <a href="#" class="boton-accion boton-secundario" style="padding:6px 14px;font-size:0.82rem;">2</a>
+                <a href="#" class="boton-accion boton-secundario" style="padding:6px 14px;font-size:0.82rem;">3</a>
+                <a href="#" class="boton-accion boton-secundario" style="padding:6px 14px;font-size:0.82rem;">Siguiente →</a>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- BOTÓN VOLVER ARRIBA (position: fixed) -->
+    <a href="#" id="boton-top" title="Volver arriba">▲</a>
+
+    <script>
+        const botonTop = document.getElementById('boton-top');
+        window.addEventListener('scroll', () => {
+            botonTop.classList.toggle('visible', window.scrollY > 200);
+        });
+        botonTop.addEventListener('click', e => {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    </script>
+
+</body>
+</html>

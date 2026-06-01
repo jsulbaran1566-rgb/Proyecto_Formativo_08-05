@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="estilo.css">
+    <title>Proveedores - AgroDirecto</title>
+</head>
+<body>
+
+    <!-- NAV STICKY (position: sticky; top: 0; z-index: 1000) -->
+    <nav id="navegacion-principal">
+        <a href="index.html"><strong>AGRODIRECTO</strong></a>
+        <div class="enlaces-nav">
+            <span class="rol-nav">Administracion</span>
+            <a href="index.html" class="boton-accion boton-salir">Cerrar Sesion</a>
+        </div>
+    </nav>
+
+    <div class="diseno-panel">
+
+        <!-- BARRA LATERAL STICKY (position: sticky; top: var(--nav-height)) -->
+        <aside class="barra-lateral">
+            <div class="perfil-barra">
+                <div class="avatar-barra">🛡️</div>
+                <h4>Administrador</h4>
+                <span>Admin</span>
+            </div>
+            <nav class="nav-barra">
+                <a href="panel.html">📊 Resumen</a>
+                <a href="usuarios.html">👥 Usuarios</a>
+                <a href="roles.html">🔐 Roles</a>
+                <a href="proveedores.html" class="activo">🚚 Proveedores</a>
+                <a href="#">🌱 Cultivos</a>
+                <a href="#">📈 Reportes</a>
+                <a href="#">⚙️ Configuracion</a>
+                <a href="contacto.html">💬 Soporte</a>
+            </nav>
+        </aside>
+
+        <div class="contenido-panel">
+
+            <div class="encabezado-panel">
+                <div>
+                    <h2>Gestion de Proveedores</h2>
+                    <p>Administre los proveedores de insumos, logistica y servicios agricolas</p>
+                </div>
+                <a href="#" class="boton-accion">+ Nuevo Proveedor</a>
+            </div>
+
+            <!-- Estadísticas con ícono decorativo (position: absolute en ::before) -->
+            <div class="fila-estadisticas">
+                <div class="tarjeta-estadistica" data-icono="🚚">
+                    <div class="valor-estadistica">38</div>
+                    <div class="etiqueta-estadistica">Proveedores Totales</div>
+                </div>
+                <div class="tarjeta-estadistica estadistica-verde" data-icono="✅">
+                    <div class="valor-estadistica">31</div>
+                    <div class="etiqueta-estadistica">Activos</div>
+                </div>
+                <div class="tarjeta-estadistica estadistica-naranja" data-icono="🌱">
+                    <div class="valor-estadistica">14</div>
+                    <div class="etiqueta-estadistica">Insumos Agricolas</div>
+                </div>
+                <div class="tarjeta-estadistica estadistica-azul" data-icono="🏭">
+                    <div class="valor-estadistica">12</div>
+                    <div class="etiqueta-estadistica">Logistica</div>
+                </div>
+                <div class="tarjeta-estadistica estadistica-marron" data-icono="🛠️">
+                    <div class="valor-estadistica">12</div>
+                    <div class="etiqueta-estadistica">Servicios</div>
+                </div>
+            </div>
+
+            <!-- Tarjetas destacadas de proveedores -->
+            <div class="titulo-seccion-panel mb-8 mt-24">Proveedores Destacados</div>
+
+            <div class="cuadricula-tarjetas mt-16">
+                <div class="tarjeta-info tarjeta-borde-marron tarjeta-flex-300 con-tooltip">
+                    <span class="tooltip-texto">Ver perfil completo</span>
+                    <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+                        <h3>🌿 AgroInsumos S.A.</h3>
+                        <span class="etiqueta etiqueta-verde">Activo</span>
+                    </div>
+                    <p>Proveedor certificado de semillas, abonos organicos y fertilizantes. Distribucion nacional con entrega en finca.</p>
+                    <div style="margin-top:8px;display:flex;flex-wrap:wrap;gap:5px;">
+                        <span class="chip">Semillas</span>
+                        <span class="chip">Fertilizantes</span>
+                        <span class="chip">Organico</span>
+                    </div>
+                    <p style="margin-top:10px;font-size:0.82rem;color:#777;">📍 Bogota, Colombia &nbsp;|&nbsp; ⭐ 4.8/5</p>
+                    <div style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap;">
+                        <a href="#" class="boton-accion" style="padding:6px 14px;font-size:0.82rem;">Contactar</a>
+                        <a href="#" class="boton-accion boton-secundario" style="padding:6px 14px;font-size:0.82rem;">Ver perfil</a>
+                    </div>
+                </div>
+
+                <div class="tarjeta-info tarjeta-borde-azul tarjeta-flex-300 con-tooltip">
+                    <span class="tooltip-texto">Ver perfil completo</span>
+                    <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+                        <h3>🚛 LogiCampo Ltda.</h3>
+                        <span class="etiqueta etiqueta-verde">Activo</span>
+                    </div>
+                    <p>Empresa de transporte refrigerado especializada en productos perecederos. Cobertura en Cundinamarca, Boyaca y Antioquia.</p>
+                    <div style="margin-top:8px;display:flex;flex-wrap:wrap;gap:5px;">
+                        <span class="chip">Transporte</span>
+                        <span class="chip">Refrigerado</span>
+                        <span class="chip">Perecederos</span>
+                    </div>
+                    <p style="margin-top:10px;font-size:0.82rem;color:#777;">📍 Medellin, Colombia &nbsp;|&nbsp; ⭐ 4.6/5</p>
+                    <div style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap;">
+                        <a href="#" class="boton-accion" style="padding:6px 14px;font-size:0.82rem;">Contactar</a>
+                        <a href="#" class="boton-accion boton-secundario" style="padding:6px 14px;font-size:0.82rem;">Ver perfil</a>
+                    </div>
+                </div>
+
+                <div class="tarjeta-info tarjeta-borde-naranja tarjeta-flex-300 con-tooltip">
+                    <span class="tooltip-texto">Ver perfil completo</span>
+                    <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+                        <h3>☀️ TechRiego S.A.S.</h3>
+                        <span class="etiqueta etiqueta-verde">Activo</span>
+                    </div>
+                    <p>Instalacion y mantenimiento de sistemas de riego por goteo y aspersion. Monitoreo IoT de humedad en tiempo real.</p>
+                    <div style="margin-top:8px;display:flex;flex-wrap:wrap;gap:5px;">
+                        <span class="chip">Riego</span>
+                        <span class="chip">IoT</span>
+                        <span class="chip">Tecnologia</span>
+                    </div>
+                    <p style="margin-top:10px;font-size:0.82rem;color:#777;">📍 Cali, Colombia &nbsp;|&nbsp; ⭐ 4.9/5</p>
+                    <div style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap;">
+                        <a href="#" class="boton-accion" style="padding:6px 14px;font-size:0.82rem;">Contactar</a>
+                        <a href="#" class="boton-accion boton-secundario" style="padding:6px 14px;font-size:0.82rem;">Ver perfil</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tabla completa de proveedores -->
+            <div class="mt-32">
+                <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:10px;">
+                    <h3 class="titulo-seccion-panel">Todos los Proveedores</h3>
+                    <div class="barra-busqueda" style="margin-bottom:0;">
+                        <input type="text" class="campo-formulario" placeholder="🔍 Buscar proveedor..." style="max-width:220px;">
+                        <select class="campo-formulario" style="max-width:160px;">
+                            <option value="">Todas las categorias</option>
+                            <option>Insumos Agricolas</option>
+                            <option>Logistica</option>
+                            <option>Tecnologia</option>
+                            <option>Financiero</option>
+                        </select>
+                        <button class="boton-accion">Filtrar</button>
+                    </div>
+                </div>
+
+                <table class="tabla-panel">
+                    <thead>
+                        <tr>
+                            <th>Proveedor</th>
+                            <th>Categoria</th>
+                            <th>Ciudad</th>
+                            <th>Contacto</th>
+                            <th>Calificacion</th>
+                            <th>Estado</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>AgroInsumos S.A.</strong></td>
+                            <td>Insumos Agricolas</td>
+                            <td>Bogota</td>
+                            <td>info@agroinsumos.com</td>
+                            <td>⭐ 4.8</td>
+                            <td><span class="etiqueta etiqueta-verde">Activo</span></td>
+                            <td><a href="#" class="boton-accion" style="padding:4px 10px;font-size:0.78rem;">Gestionar</a></td>
+                        </tr>
+                        <tr>
+                            <td><strong>LogiCampo Ltda.</strong></td>
+                            <td>Logistica</td>
+                            <td>Medellin</td>
+                            <td>ops@logicampo.com</td>
+                            <td>⭐ 4.6</td>
+                            <td><span class="etiqueta etiqueta-verde">Activo</span></td>
+                            <td><a href="#" class="boton-accion" style="padding:4px 10px;font-size:0.78rem;">Gestionar</a></td>
+                        </tr>
+                        <tr>
+                            <td><strong>TechRiego S.A.S.</strong></td>
+                            <td>Tecnologia</td>
+                            <td>Cali</td>
+                            <td>ventas@techriego.com</td>
+                            <td>⭐ 4.9</td>
+                            <td><span class="etiqueta etiqueta-verde">Activo</span></td>
+                            <td><a href="#" class="boton-accion" style="padding:4px 10px;font-size:0.78rem;">Gestionar</a></td>
+                        </tr>
+                        <tr>
+                            <td><strong>BioProtect Colombia</strong></td>
+                            <td>Insumos Agricolas</td>
+                            <td>Manizales</td>
+                            <td>bio@protect.com</td>
+                            <td>⭐ 4.3</td>
+                            <td><span class="etiqueta etiqueta-verde">Activo</span></td>
+                            <td><a href="#" class="boton-accion" style="padding:4px 10px;font-size:0.78rem;">Gestionar</a></td>
+                        </tr>
+                        <tr>
+                            <td><strong>CreditoAgro</strong></td>
+                            <td>Financiero</td>
+                            <td>Bogota</td>
+                            <td>credito@creditoagro.com</td>
+                            <td>⭐ 4.1</td>
+                            <td><span class="etiqueta etiqueta-amarillo">En revision</span></td>
+                            <td><a href="#" class="boton-accion" style="padding:4px 10px;font-size:0.78rem;">Gestionar</a></td>
+                        </tr>
+                        <tr>
+                            <td><strong>FrioTransporte S.A.</strong></td>
+                            <td>Logistica</td>
+                            <td>Barranquilla</td>
+                            <td>flota@friotransporte.com</td>
+                            <td>⭐ 3.9</td>
+                            <td><span class="etiqueta etiqueta-rojo">Inactivo</span></td>
+                            <td><a href="#" class="boton-accion" style="padding:4px 10px;font-size:0.78rem;">Gestionar</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- BOTÓN VOLVER ARRIBA (position: fixed) -->
+    <a href="#" id="boton-top" title="Volver arriba">▲</a>
+
+    <script>
+        const botonTop = document.getElementById('boton-top');
+        window.addEventListener('scroll', () => {
+            botonTop.classList.toggle('visible', window.scrollY > 200);
+        });
+        botonTop.addEventListener('click', e => {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    </script>
+
+</body>
+</html>

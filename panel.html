@@ -1,30 +1,163 @@
 <!DOCTYPE html>
 <html lang="es">
-<head> 
+<head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="estilo.css">
-    <title>Panel de Gestión - AgroDirecto</title>
+    <title>Panel Productor - AgroDirecto</title>
 </head>
 <body>
-    <nav id="main-nav">
-        <a href="#"><strong>Panel General</strong></a>
-        <a href="index.html" class="btn-accion btn-salir">Cerrar Sesión</a>
+
+    <!-- NAV STICKY (position: sticky; top: 0; z-index: 1000) -->
+    <nav id="navegacion-principal">
+        <a href="index.html"><strong>AGRODIRECTO</strong></a>
+        <div class="enlaces-nav">
+            <span class="rol-nav">Panel Productor</span>
+            <!-- Campana con badge de notificaciones (position: relative + absolute) -->
+            <div class="campana-wrapper con-tooltip">
+                <span style="font-size:1.2rem; color:white; cursor:pointer;">🔔</span>
+                <span class="campana-badge">3</span>
+                <span class="tooltip-texto">3 notificaciones nuevas</span>
+            </div>
+            <a href="index.html" class="boton-accion boton-salir">Cerrar Sesion</a>
+        </div>
     </nav>
- 
-    <main class="contenedor-principal">
-        <h2>Gestión Operativa</h2>
-        <div class="card-info">
-            <h3>Mis Cultivos</h3>
-            <p>Registre nuevos lotes indicando cantidad (kg) y fecha de siembra.</p>
+
+    <div class="diseno-panel">
+
+        <!-- BARRA LATERAL STICKY (position: sticky; top: var(--nav-height)) -->
+        <aside class="barra-lateral">
+            <div class="perfil-barra">
+                <!-- Avatar con punto "en linea" (position: relative + ::after absolute) -->
+                <div class="avatar-barra">🌿</div>
+                <h4>Finca El Paraiso</h4>
+                <span>Productor</span>
+            </div>
+            <nav class="nav-barra">
+                <a href="#" class="activo">📊 Resumen</a>
+                <a href="#">🌱 Mis Cultivos</a>
+                <a href="#">📍 Trazabilidad</a>
+                <a href="#">💰 Ventas y Pagos</a>
+                <a href="#">📈 Reportes</a>
+                <a href="usuarios.html">👥 Usuarios</a>
+                <a href="roles.html">🔐 Roles</a>
+                <a href="proveedores.html">🚚 Proveedores</a>
+                <a href="#">⚙️ Mi Perfil</a>
+                <a href="contacto.html">💬 Soporte</a>
+            </nav>
+        </aside>
+
+        <div class="contenido-panel">
+
+            <div class="encabezado-panel">
+                <div>
+                    <h2>Bienvenido, Finca El Paraiso</h2>
+                    <p>Resumen de su operacion - Mayo 2025</p>
+                </div>
+                <a href="#" class="boton-accion">+ Nuevo Lote</a>
+            </div>
+
+            <!-- Tarjetas de estadística (position: relative con ::before decorativo absoluto) -->
+            <div class="fila-estadisticas">
+                <div class="tarjeta-estadistica" data-icono="🌱">
+                    <div class="valor-estadistica">4</div>
+                    <div class="etiqueta-estadistica">Cultivos Activos</div>
+                </div>
+                <div class="tarjeta-estadistica estadistica-marron" data-icono="⚖️">
+                    <div class="valor-estadistica">1.200</div>
+                    <div class="etiqueta-estadistica">Kg Reservados</div>
+                </div>
+                <div class="tarjeta-estadistica estadistica-naranja" data-icono="💰">
+                    <div class="valor-estadistica">$4,8M</div>
+                    <div class="etiqueta-estadistica">Ingresos Proyectados</div>
+                </div>
+                <div class="tarjeta-estadistica estadistica-azul" data-icono="🏪">
+                    <div class="valor-estadistica">3</div>
+                    <div class="etiqueta-estadistica">Compradores Activos</div>
+                </div>
+            </div>
+
+            <div class="cuadricula-tarjetas">
+                <div class="tarjeta-info">
+                    <h3>🌱 Mis Cultivos</h3>
+                    <p>Registre nuevos lotes indicando cantidad (kg), variedad y fecha de siembra.</p>
+                    <div class="mt-16">
+                        <a href="#" class="boton-accion boton-secundario">Ver cultivos</a>
+                    </div>
+                </div>
+                <div class="tarjeta-info">
+                    <h3>📍 Trazabilidad</h3>
+                    <p>Actualice el estado de su cosecha para notificar automaticamente al comprador.</p>
+                    <div class="mt-16">
+                        <a href="#" class="boton-accion boton-secundario">Actualizar estados</a>
+                    </div>
+                </div>
+                <div class="tarjeta-info">
+                    <h3>📈 Reportes</h3>
+                    <p>Visualice ingresos proyectados y total de kilogramos reservados por periodo.</p>
+                    <div class="mt-16">
+                        <a href="#" class="boton-accion boton-secundario">Ver reportes</a>
+                    </div>
+                </div>
+                <div class="tarjeta-info">
+                    <h3>💳 Pagos</h3>
+                    <p>Consulte pagos pendientes e historial de transferencias por cosecha entregada.</p>
+                    <div class="mt-16">
+                        <a href="#" class="boton-accion boton-secundario">Ver pagos</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-32">
+                <h3 class="titulo-seccion-panel">Lotes Recientes</h3>
+                <table class="tabla-panel">
+                    <thead>
+                        <tr>
+                            <th>Cultivo</th>
+                            <th>Kg Totales</th>
+                            <th>Kg Reservados</th>
+                            <th>Estado</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Espinaca</td>
+                            <td>500 kg</td>
+                            <td>380 kg</td>
+                            <td><span class="etiqueta etiqueta-verde">Crecimiento</span></td>
+                        </tr>
+                        <tr>
+                            <td>Zanahoria</td>
+                            <td>300 kg</td>
+                            <td>300 kg</td>
+                            <td><span class="etiqueta etiqueta-amarillo">Lista para cosechar</span></td>
+                        </tr>
+                        <tr>
+                            <td>Maiz dulce</td>
+                            <td>400 kg</td>
+                            <td>120 kg</td>
+                            <td><span class="etiqueta etiqueta-azul">Siembra</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
         </div>
-        <div class="card-info">
-            <h3>Trazabilidad</h3>
-            <p>Actualice el estado de su cosecha para notificar al comprador.</p>
-        </div>
-        <div class="card-info">
-            <h3>Reportes</h3>
-            <p>Visualice ingresos proyectados y total de kilogramos reservados.</p>
-        </div>
-    </main>
+    </div>
+
+    <!-- BOTÓN VOLVER ARRIBA (position: fixed) -->
+    <a href="#" id="boton-top" title="Volver arriba">▲</a>
+
+    <script>
+        const botonTop = document.getElementById('boton-top');
+        window.addEventListener('scroll', () => {
+            botonTop.classList.toggle('visible', window.scrollY > 200);
+        });
+        botonTop.addEventListener('click', e => {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    </script>
+
 </body>
 </html>

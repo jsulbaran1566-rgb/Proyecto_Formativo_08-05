@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="estilo.css">
+    <title>Roles - AgroDirecto</title>
+</head>
+<body>
+
+    <!-- NAV STICKY (position: sticky; top: 0; z-index: 1000) -->
+    <nav id="navegacion-principal">
+        <a href="index.html"><strong>AGRODIRECTO</strong></a>
+        <div class="enlaces-nav">
+            <span class="rol-nav">Administracion</span>
+            <a href="index.html" class="boton-accion boton-salir">Cerrar Sesion</a>
+        </div>
+    </nav>
+
+    <div class="diseno-panel">
+
+        <!-- BARRA LATERAL STICKY (position: sticky; top: var(--nav-height)) -->
+        <aside class="barra-lateral">
+            <div class="perfil-barra">
+                <div class="avatar-barra">🛡️</div>
+                <h4>Administrador</h4>
+                <span>Admin</span>
+            </div>
+            <nav class="nav-barra">
+                <a href="panel.html">📊 Resumen</a>
+                <a href="usuarios.html">👥 Usuarios</a>
+                <a href="roles.html" class="activo">🔐 Roles</a>
+                <a href="proveedores.html">🚚 Proveedores</a>
+                <a href="#">🌱 Cultivos</a>
+                <a href="#">📈 Reportes</a>
+                <a href="#">⚙️ Configuracion</a>
+                <a href="contacto.html">💬 Soporte</a>
+            </nav>
+        </aside>
+
+        <div class="contenido-panel">
+
+            <div class="encabezado-panel">
+                <div>
+                    <h2>Gestion de Roles</h2>
+                    <p>Defina permisos y niveles de acceso en la plataforma</p>
+                </div>
+                <a href="#" class="boton-accion">+ Nuevo Rol</a>
+            </div>
+
+            <!-- Estadísticas de roles (tarjetas con ícono decorativo position: absolute) -->
+            <div class="fila-estadisticas">
+                <div class="tarjeta-estadistica" data-icono="🔐">
+                    <div class="valor-estadistica">4</div>
+                    <div class="etiqueta-estadistica">Roles Definidos</div>
+                </div>
+                <div class="tarjeta-estadistica estadistica-rojo" data-icono="🛡️">
+                    <div class="valor-estadistica">2</div>
+                    <div class="etiqueta-estadistica">Administradores</div>
+                </div>
+                <div class="tarjeta-estadistica estadistica-marron" data-icono="🌿">
+                    <div class="valor-estadistica">74</div>
+                    <div class="etiqueta-estadistica">Productores</div>
+                </div>
+                <div class="tarjeta-estadistica estadistica-azul" data-icono="🏪">
+                    <div class="valor-estadistica">54</div>
+                    <div class="etiqueta-estadistica">Compradores</div>
+                </div>
+            </div>
+
+            <!-- Tarjetas de roles (position: relative; con ::before/::after decorativos) -->
+            <div class="titulo-seccion-panel mb-8">Roles del Sistema</div>
+
+            <div class="cuadricula-tarjetas mt-16">
+
+                <!-- ROL ADMINISTRADOR -->
+                <div class="tarjeta-info tarjeta-borde-rojo tarjeta-flex-300">
+                    <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+                        <h3>🛡️ Administrador</h3>
+                        <span class="chip chip-admin">Admin</span>
+                    </div>
+                    <p>Acceso total al sistema. Puede crear, editar y eliminar usuarios, roles, cultivos y proveedores. Gestiona configuraciones globales.</p>
+                    <div style="margin-top:12px;">
+                        <p style="font-weight:600;font-size:0.82rem;color:var(--verde-oscuro);margin-bottom:6px;">Permisos:</p>
+                        <div style="display:flex;flex-wrap:wrap;gap:5px;">
+                            <span class="etiqueta etiqueta-verde">Ver todo</span>
+                            <span class="etiqueta etiqueta-verde">Crear usuarios</span>
+                            <span class="etiqueta etiqueta-verde">Editar roles</span>
+                            <span class="etiqueta etiqueta-verde">Eliminar registros</span>
+                            <span class="etiqueta etiqueta-verde">Configurar sistema</span>
+                        </div>
+                    </div>
+                    <div style="display:flex;gap:8px;margin-top:14px;flex-wrap:wrap;">
+                        <a href="#" class="boton-accion" style="padding:6px 14px;font-size:0.82rem;">Editar Rol</a>
+                        <span style="font-size:0.8rem;color:#888;align-self:center;">2 usuarios asignados</span>
+                    </div>
+                </div>
+
+                <!-- ROL PRODUCTOR -->
+                <div class="tarjeta-info tarjeta-borde-marron tarjeta-flex-300">
+                    <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+                        <h3>🌿 Productor</h3>
+                        <span class="chip chip-productor">Productor</span>
+                    </div>
+                    <p>Gestiona sus fincas, cultivos y lotes. Puede actualizar el estado de trazabilidad y ver reportes de sus propios datos.</p>
+                    <div style="margin-top:12px;">
+                        <p style="font-weight:600;font-size:0.82rem;color:var(--verde-oscuro);margin-bottom:6px;">Permisos:</p>
+                        <div style="display:flex;flex-wrap:wrap;gap:5px;">
+                            <span class="etiqueta etiqueta-verde">Crear cultivos</span>
+                            <span class="etiqueta etiqueta-verde">Actualizar trazabilidad</span>
+                            <span class="etiqueta etiqueta-verde">Ver sus reservas</span>
+                            <span class="etiqueta etiqueta-verde">Ver sus pagos</span>
+                            <span class="etiqueta etiqueta-gris">Sin acceso admin</span>
+                        </div>
+                    </div>
+                    <div style="display:flex;gap:8px;margin-top:14px;flex-wrap:wrap;">
+                        <a href="#" class="boton-accion" style="padding:6px 14px;font-size:0.82rem;">Editar Rol</a>
+                        <span style="font-size:0.8rem;color:#888;align-self:center;">74 usuarios asignados</span>
+                    </div>
+                </div>
+
+                <!-- ROL COMPRADOR -->
+                <div class="tarjeta-info tarjeta-borde-azul tarjeta-flex-300">
+                    <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+                        <h3>🏪 Comprador</h3>
+                        <span class="chip chip-comprador">Comprador</span>
+                    </div>
+                    <p>Explora lotes disponibles, realiza reservas, consulta entregas y gestiona sus facturas y pagos.</p>
+                    <div style="margin-top:12px;">
+                        <p style="font-weight:600;font-size:0.82rem;color:var(--verde-oscuro);margin-bottom:6px;">Permisos:</p>
+                        <div style="display:flex;flex-wrap:wrap;gap:5px;">
+                            <span class="etiqueta etiqueta-azul">Explorar lotes</span>
+                            <span class="etiqueta etiqueta-azul">Crear reservas</span>
+                            <span class="etiqueta etiqueta-azul">Ver entregas</span>
+                            <span class="etiqueta etiqueta-azul">Descargar facturas</span>
+                            <span class="etiqueta etiqueta-gris">Sin acceso admin</span>
+                        </div>
+                    </div>
+                    <div style="display:flex;gap:8px;margin-top:14px;flex-wrap:wrap;">
+                        <a href="#" class="boton-accion" style="padding:6px 14px;font-size:0.82rem;">Editar Rol</a>
+                        <span style="font-size:0.8rem;color:#888;align-self:center;">54 usuarios asignados</span>
+                    </div>
+                </div>
+
+                <!-- ROL INVITADO -->
+                <div class="tarjeta-info tarjeta-flex-300">
+                    <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+                        <h3>👁️ Invitado</h3>
+                        <span class="chip chip-inactivo">Invitado</span>
+                    </div>
+                    <p>Acceso de solo lectura al catalogo publico. No puede realizar reservas ni acceder a datos privados de productores.</p>
+                    <div style="margin-top:12px;">
+                        <p style="font-weight:600;font-size:0.82rem;color:var(--verde-oscuro);margin-bottom:6px;">Permisos:</p>
+                        <div style="display:flex;flex-wrap:wrap;gap:5px;">
+                            <span class="etiqueta etiqueta-gris">Ver catalogo publico</span>
+                            <span class="etiqueta etiqueta-rojo">Sin reservas</span>
+                            <span class="etiqueta etiqueta-rojo">Sin pagos</span>
+                            <span class="etiqueta etiqueta-rojo">Sin trazabilidad</span>
+                        </div>
+                    </div>
+                    <div style="display:flex;gap:8px;margin-top:14px;flex-wrap:wrap;">
+                        <a href="#" class="boton-accion" style="padding:6px 14px;font-size:0.82rem;">Editar Rol</a>
+                        <span style="font-size:0.8rem;color:#888;align-self:center;">0 usuarios asignados</span>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Tabla resumen de permisos -->
+            <div class="mt-32">
+                <h3 class="titulo-seccion-panel">Matriz de Permisos</h3>
+                <table class="tabla-panel">
+                    <thead>
+                        <tr>
+                            <th>Modulo</th>
+                            <th>Administrador</th>
+                            <th>Productor</th>
+                            <th>Comprador</th>
+                            <th>Invitado</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Cultivos / Lotes</td>
+                            <td><span class="etiqueta etiqueta-verde">Total</span></td>
+                            <td><span class="etiqueta etiqueta-verde">Propios</span></td>
+                            <td><span class="etiqueta etiqueta-azul">Solo ver</span></td>
+                            <td><span class="etiqueta etiqueta-gris">Publico</span></td>
+                        </tr>
+                        <tr>
+                            <td>Reservas</td>
+                            <td><span class="etiqueta etiqueta-verde">Total</span></td>
+                            <td><span class="etiqueta etiqueta-azul">Solo ver</span></td>
+                            <td><span class="etiqueta etiqueta-verde">Crear/Ver</span></td>
+                            <td><span class="etiqueta etiqueta-rojo">Sin acceso</span></td>
+                        </tr>
+                        <tr>
+                            <td>Usuarios</td>
+                            <td><span class="etiqueta etiqueta-verde">Total</span></td>
+                            <td><span class="etiqueta etiqueta-azul">Propio perfil</span></td>
+                            <td><span class="etiqueta etiqueta-azul">Propio perfil</span></td>
+                            <td><span class="etiqueta etiqueta-rojo">Sin acceso</span></td>
+                        </tr>
+                        <tr>
+                            <td>Pagos / Facturas</td>
+                            <td><span class="etiqueta etiqueta-verde">Total</span></td>
+                            <td><span class="etiqueta etiqueta-azul">Propios</span></td>
+                            <td><span class="etiqueta etiqueta-azul">Propios</span></td>
+                            <td><span class="etiqueta etiqueta-rojo">Sin acceso</span></td>
+                        </tr>
+                        <tr>
+                            <td>Proveedores</td>
+                            <td><span class="etiqueta etiqueta-verde">Total</span></td>
+                            <td><span class="etiqueta etiqueta-rojo">Sin acceso</span></td>
+                            <td><span class="etiqueta etiqueta-rojo">Sin acceso</span></td>
+                            <td><span class="etiqueta etiqueta-rojo">Sin acceso</span></td>
+                        </tr>
+                        <tr>
+                            <td>Configuracion</td>
+                            <td><span class="etiqueta etiqueta-verde">Total</span></td>
+                            <td><span class="etiqueta etiqueta-rojo">Sin acceso</span></td>
+                            <td><span class="etiqueta etiqueta-rojo">Sin acceso</span></td>
+                            <td><span class="etiqueta etiqueta-rojo">Sin acceso</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- BOTÓN VOLVER ARRIBA (position: fixed) -->
+    <a href="#" id="boton-top" title="Volver arriba">▲</a>
+
+    <script>
+        const botonTop = document.getElementById('boton-top');
+        window.addEventListener('scroll', () => {
+            botonTop.classList.toggle('visible', window.scrollY > 200);
+        });
+        botonTop.addEventListener('click', e => {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    </script>
+
+</body>
+</html>
