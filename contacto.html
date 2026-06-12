@@ -115,16 +115,36 @@
         <p><strong>AgroDirecto</strong> - Del campo a su negocio, sin rodeos. 2025</p>
     </footer>
 
-    <script>
-        const botonTop = document.getElementById('boton-top');
-        window.addEventListener('scroll', () => {
-            botonTop.classList.toggle('visible', window.scrollY > 200);
-        });
-        botonTop.addEventListener('click', e => {
-            e.preventDefault();
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-    </script>
+<script>
+    document.getElementById("contactoForm").addEventListener("submit", (e) => {
+        e.preventDefault();
+
+        const nombre  = document.getElementById("contactNombre").value.trim();
+        const correo  = document.getElementById("contactCorreo").value.trim();
+        const mensaje = document.getElementById("contactMensaje").value.trim();
+
+        // Validación básica de correo
+        const regexCorreo = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!regexCorreo.test(correo)) {
+            alert("Por favor ingresa un correo electrónico válido.");
+            return;
+        }
+
+        if (!nombre || !mensaje) {
+            alert("Todos los campos son obligatorios.");
+            return;
+        }
+
+        // Mostrar mensaje de éxito (sin enviar a la API)
+        const confirmacion = document.getElementById("confirmacionContacto");
+        if (confirmacion) {
+            confirmacion.textContent = `¡Gracias, ${nombre}! Tu mensaje fue enviado correctamente.`;
+            confirmacion.style.display = "block";
+        }
+
+        document.getElementById("contactoForm").reset();
+    });
+</script>
 
 </body>
 </html>
