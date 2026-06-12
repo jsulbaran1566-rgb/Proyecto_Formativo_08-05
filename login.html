@@ -53,5 +53,48 @@
         <p><strong>AgroDirecto</strong> - Del campo a su negocio, sin rodeos. 2025</p>
     </footer>
 
+
+<!-- =====================================================
+     SCRIPT PARA: login.html
+     Valida credenciales contra GET /usuarios
+     y redirige según el rol del usuario.
+     ===================================================== -->
+<script>
+    const API_USUARIOS = "http://127.0.0.1:8000/usuarios";
+
+    document.getElementById("loginForm").addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        const id  = parseInt(document.getElementById("loginId").value);
+        const rol = document.getElementById("loginRol").value;
+
+        try {
+            const respuesta = await fetch(API_USUARIOS);
+            const usuarios  = await respuesta.json();
+
+            const usuario = usuarios.find(u => u.id === id && u.rol === rol);
+
+            if (usuario) {
+                // Guardar sesión básica en sessionStorage
+                sessionStorage.setItem("usuario_id",     usuario.id);
+                sessionStorage.setItem("usuario_nombre", usuario.nombre);
+                sessionStorage.setItem("usuario_rol",    usuario.rol);
+
+                // Redirigir según rol
+                if (rol === "Administrador" || rol === "Productor") {
+                    window.location.href = "panel.html";
+                } else if (rol === "Comprador") {
+                    window.location.href = "panel_cliente.html";
+                }
+            } else {
+                alert("ID o rol incorrecto. Verifica tus datos.");
+            }
+        } catch (error) {
+            console.error("Error al iniciar sesión:", error);
+            alert("No se pudo conectar con el servidor.");
+        }
+    });
+</script>
+
 </body>
 </html>
