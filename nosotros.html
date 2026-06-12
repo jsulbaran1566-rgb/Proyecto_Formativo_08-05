@@ -109,16 +109,27 @@
         <p><strong>AgroDirecto</strong> - Del campo a su negocio, sin rodeos. 2025</p>
     </footer>
 
-    <script>
-        const botonTop = document.getElementById('boton-top');
-        window.addEventListener('scroll', () => {
-            botonTop.classList.toggle('visible', window.scrollY > 200);
+<script>
+    // Mostrar nombre del usuario en sesión si existe
+    const nombreSesion = sessionStorage.getItem("usuario_nombre");
+    const rolSesion    = sessionStorage.getItem("usuario_rol");
+
+    const spanSesion = document.getElementById("sesionActiva");
+    if (spanSesion) {
+        spanSesion.textContent = nombreSesion
+            ? `Sesión: ${nombreSesion} (${rolSesion})`
+            : "No has iniciado sesión";
+    }
+
+    // Botón de cerrar sesión en el navbar (si existe)
+    const btnLogout = document.getElementById("btnLogout");
+    if (btnLogout) {
+        btnLogout.addEventListener("click", () => {
+            sessionStorage.clear();
+            window.location.href = "login.html";
         });
-        botonTop.addEventListener('click', e => {
-            e.preventDefault();
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-    </script>
+    }
+</script>
 
 </body>
 </html>
