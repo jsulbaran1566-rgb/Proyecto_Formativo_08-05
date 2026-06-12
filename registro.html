@@ -68,5 +68,47 @@
         <p><strong>AgroDirecto</strong> - Del campo a su negocio, sin rodeos. 2025</p>
     </footer>
 
+<!-- =====================================================
+     SCRIPT PARA: registro.html
+     Ruta usada:
+       POST /usuarios?id=&nombre=&rol=
+     Inputs requeridos: "regId", "regNombre", "regRol"
+     ===================================================== -->
+<script>
+    const API_USUARIOS   = "http://127.0.0.1:8000/usuarios";
+    const ROLES_VALIDOS  = ["Productor", "Comprador", "Administrador"];
+
+    document.getElementById("registroForm").addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        const id     = document.getElementById("regId").value;
+        const nombre = document.getElementById("regNombre").value.trim();
+        const rol    = document.getElementById("regRol").value;
+
+        if (!ROLES_VALIDOS.includes(rol)) {
+            alert("Rol inválido. Elige: Productor, Comprador o Administrador.");
+            return;
+        }
+
+        try {
+            const respuesta = await fetch(
+                `${API_USUARIOS}?id=${id}&nombre=${encodeURIComponent(nombre)}&rol=${encodeURIComponent(rol)}`,
+                { method: "POST" }
+            );
+
+            if (respuesta.ok) {
+                alert("Usuario registrado correctamente. Ahora puedes iniciar sesión.");
+                window.location.href = "login.html";
+            } else {
+                const err = await respuesta.json();
+                alert("Error: " + (err.detail || err.error));
+            }
+        } catch (error) {
+            console.error("Error en registro:", error);
+            alert("No se pudo conectar con el servidor.");
+        }
+    });
+</script>
+
 </body>
 </html>
