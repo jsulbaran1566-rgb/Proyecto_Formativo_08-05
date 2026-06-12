@@ -181,16 +181,119 @@
     <!-- BOTÓN VOLVER ARRIBA (position: fixed) -->
     <a href="#" id="boton-top" title="Volver arriba">▲</a>
 
-    <script>
-        const botonTop = document.getElementById('boton-top');
-        window.addEventListener('scroll', () => {
-            botonTop.classList.toggle('visible', window.scrollY > 200);
+<!-- =====================================================
+     SCRIPT PARA: panel_cliente.html
+     Panel exclusivo del rol Comprador.
+     Permite: ver lotes disponibles y crear reservas.
+     Rutas usadas:
+       GET  /lotes
+       GET  /reservas
+       POST /reservas/{id}/comprador/{comprador}?producto=&cantidad=
+     ===================================================== -->
+<script>
+    const BASE = "http://127.0.0.1:8000";
+
+    // ── Verificar sesión ─────────────────────────────────────
+    const nombreCliente = sessionStorage.getItem("usuario_nombre");
+    const rolCliente    = sessionStorage.getItem("usuario_rol");
+
+    if (!nombreCliente || rolCliente !== "Comprador") {
+        window.location.href = "login.html";
+    }
+
+    const spanNombre = document.getElementById("clienteNombre");
+    if (spanNombre) spanNombre.textContent = nombreCliente;
+
+    // ── Cerrar sesión ────────────────────────────────────────
+    const btnLogout = document.getElementById("btnLogout");
+    if (btnLogout) {
+        btnLogout.addEventListener("click", () => {
+            sessionStorage.clear();
+            window.location.href = "login.html";
         });
-        botonTop.addEventListener('click', e => {
-            e.preventDefault();
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-    </script>
+    }
+
+    // ── Ver lotes disponibles ────────────────────────────────
+    async function cargarLotesDisponibles() {
+        try {
+            const res   = await fetch(`${BASE}/lotes`);
+            const lotes = await res.json();
+            const tabla = document.getElementById("tablaLotesCliente");
+            if (!tabla) return;
+            tabla.innerHTML = "";
+            lotes.forEach(l => {
+                tabla.innerHTML += `
+                    <tr>
+                        <td>${l.producto}</td>
+                        <td>${l.cantidad}</td>
+                        <td>${l.categoria}</td>
+                    </tr>`;
+            });
+        } catch (err) { console.error("Error cargando lotes:", err); }
+    }
+
+    // ── Ver mis reservas ─────────────────────────────────────
+    async function cargarMisReservas() {
+        try {
+            const res     = await fetch(`${BASE}/reservas`);
+            const todas   = await res.json();
+            // Filtrar solo las del cliente en sesión
+            const misReservas = todas.filter(r =>
+                r.comprador.toLowerCase() === nombreCliente.toLowerCase()
+            );
+            const tabla = document.getElementById("tablaMisReservas");
+            if (!tabla) return;
+            tabla.innerHTML = "";
+            if (misReservas.length === 0) {
+                tabla.innerHTML = `<tr><td colspan="4">No tienes reservas aún.</td></tr>`;
+                return;
+            }
+            misReservas.forEach(r => {
+                tabla.innerHTML += `
+                    <tr>
+                        <td>${r.id}</td>
+                        <td>${r.producto}</td>
+                        <td>${r.cantidad}</td>
+                        <td>${r.fecha}</td>
+                    </tr>`;
+            });
+        } catch (err) { console.error("Error cargando reservas:", err); }
+    }
+
+    // ── Crear reserva ────────────────────────────────────────
+    // Inputs requeridos: "resId", "resProducto", "resCantidad"
+    document.getElementById("reservaClienteForm").addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        const id       = document.getElementById("resId").value;
+        const producto = document.getElementById("resProducto").value.trim();
+        const cantidad = document.getElementById("resCantidad").value;
+
+        try {
+            const respuesta = await fetch(
+                `${BASE}/reservas/${id}/comprador/${encodeURIComponent(nombreCliente)}?producto=${encodeURIComponent(producto)}&cantidad=${cantidad}`,
+                { method: "POST" }
+            );
+
+            if (respuesta.ok) {
+                alert("Reserva creada correctamente.");
+                document.getElementById("reservaClienteForm").reset();
+                cargarLotesDisponibles();
+                cargarMisReservas();
+            } else {
+                const err = await respuesta.json();
+                alert("Error: " + (err.detail || err.error));
+            }
+        } catch (error) {
+            console.error("Error creando reserva:", error);
+        }
+    });
+
+    // Cargar al abrir
+    cargarLotesDisponibles();
+    cargarMisReservas();
+</script>
+
 
 </body>
 </html>
