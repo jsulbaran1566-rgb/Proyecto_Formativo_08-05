@@ -240,16 +240,79 @@
     <!-- BOTÓN VOLVER ARRIBA (position: fixed) -->
     <a href="#" id="boton-top" title="Volver arriba">▲</a>
 
-    <script>
-        const botonTop = document.getElementById('boton-top');
-        window.addEventListener('scroll', () => {
-            botonTop.classList.toggle('visible', window.scrollY > 200);
-        });
-        botonTop.addEventListener('click', e => {
-            e.preventDefault();
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-    </script>
+<!-- =====================================================
+     SCRIPT PARA: roles.html
+     Muestra los usuarios agrupados por rol.
+     Permite filtrar por rol usando GET /usuarios
+     y buscar un usuario específico por id+rol con
+     GET /usuarios/{id}/rol/{rol}
+     ===================================================== -->
+<script>
+    const API_USUARIOS  = "http://127.0.0.1:8000/usuarios";
+    const ROLES_VALIDOS = ["Productor", "Comprador", "Administrador"];
+
+    // ── LISTAR todos agrupados por rol ───────────────────────
+    async function cargarPorRol() {
+        try {
+            const res      = await fetch(API_USUARIOS);
+            const usuarios = await res.json();
+
+            ROLES_VALIDOS.forEach(rol => {
+                const tabla = document.getElementById(`tabla${rol}`);
+                if (!tabla) return;
+                tabla.innerHTML = "";
+                const filtrados = usuarios.filter(u => u.rol === rol);
+
+                if (filtrados.length === 0) {
+                    tabla.innerHTML = `<tr><td colspan="2">Sin usuarios en este rol.</td></tr>`;
+                    return;
+                }
+                filtrados.forEach(u => {
+                    tabla.innerHTML += `
+                        <tr>
+                            <td>${u.id}</td>
+                            <td>${u.nombre}</td>
+                        </tr>`;
+                });
+            });
+        } catch (err) { console.error("Error cargando usuarios por rol:", err); }
+    }
+
+    // ── BUSCAR usuario por ID y Rol ──────────────────────────
+    // Inputs requeridos: "buscarId", "buscarRol"
+    // Resultado se muestra en elemento con id "resultadoBusqueda"
+    document.getElementById("buscarRolForm").addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        const id  = document.getElementById("buscarId").value;
+        const rol = document.getElementById("buscarRol").value;
+
+        if (!ROLES_VALIDOS.includes(rol)) {
+            alert("Rol inválido.");
+            return;
+        }
+
+        try {
+            const res  = await fetch(`${API_USUARIOS}/${id}/rol/${encodeURIComponent(rol)}?activo=true`);
+            const data = await res.json();
+            const div  = document.getElementById("resultadoBusqueda");
+            if (!div) return;
+
+            if (res.ok && data.usuarios && data.usuarios.length > 0) {
+                div.innerHTML = data.usuarios.map(u => `
+                    <p><strong>ID:</strong> ${u.id} —
+                       <strong>Nombre:</strong> ${u.nombre} —
+                       <strong>Rol:</strong> ${u.rol}</p>
+                `).join("");
+            } else {
+                div.innerHTML = "<p>No se encontró ningún usuario con esos datos.</p>";
+            }
+        } catch (err) { console.error("Error buscando usuario:", err); }
+    });
+
+    cargarPorRol();
+</script>
+
 
 </body>
 </html>
