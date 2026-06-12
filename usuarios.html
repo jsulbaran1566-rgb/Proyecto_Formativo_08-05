@@ -219,16 +219,108 @@
     <!-- BOTÓN VOLVER ARRIBA (position: fixed) -->
     <a href="#" id="boton-top" title="Volver arriba">▲</a>
 
-    <script>
-        const botonTop = document.getElementById('boton-top');
-        window.addEventListener('scroll', () => {
-            botonTop.classList.toggle('visible', window.scrollY > 200);
-        });
-        botonTop.addEventListener('click', e => {
-            e.preventDefault();
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-    </script>
+<!-- =====================================================
+     SCRIPT PARA: usuarios.html
+     Rutas usadas:
+       GET /usuarios
+       POST /usuarios?id=&nombre=&rol=
+       PUT  /usuarios/{id}/rol/{nuevo_rol}?nombre=&activo=
+     Inputs crear:  "uid", "uNombre", "uRol"
+     Inputs editar: "editUid", "editUNombre", "editURol"
+     ===================================================== -->
+<script>
+    const API_USUARIOS  = "http://127.0.0.1:8000/usuarios";
+    const ROLES_VALIDOS = ["Productor", "Comprador", "Administrador"];
+
+    // ── LISTAR ──────────────────────────────────────────────
+    async function cargarUsuarios() {
+        try {
+            const res      = await fetch(API_USUARIOS);
+            const usuarios = await res.json();
+            const tabla    = document.getElementById("tablaUsuarios");
+            tabla.innerHTML = "";
+
+            usuarios.forEach(u => {
+                tabla.innerHTML += `
+                    <tr>
+                        <td>${u.id}</td>
+                        <td>${u.nombre}</td>
+                        <td>${u.rol}</td>
+                        <td>
+                            <button onclick="prepararEdicion(${u.id}, '${u.nombre}', '${u.rol}')">
+                                Editar
+                            </button>
+                        </td>
+                    </tr>`;
+            });
+        } catch (err) { console.error("Error cargando usuarios:", err); }
+    }
+
+    // ── CREAR ───────────────────────────────────────────────
+    document.getElementById("usuarioForm").addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        const id     = document.getElementById("uid").value;
+        const nombre = document.getElementById("uNombre").value.trim();
+        const rol    = document.getElementById("uRol").value;
+
+        if (!ROLES_VALIDOS.includes(rol)) {
+            alert("Rol inválido. Usa: Productor, Comprador o Administrador.");
+            return;
+        }
+
+        try {
+            const res = await fetch(
+                `${API_USUARIOS}?id=${id}&nombre=${encodeURIComponent(nombre)}&rol=${encodeURIComponent(rol)}`,
+                { method: "POST" }
+            );
+            if (res.ok) {
+                document.getElementById("usuarioForm").reset();
+                cargarUsuarios();
+            } else {
+                const err = await res.json();
+                alert("Error: " + (err.detail || err.error));
+            }
+        } catch (err) { console.error("Error creando usuario:", err); }
+    });
+
+    // ── EDITAR ──────────────────────────────────────────────
+    function prepararEdicion(id, nombre, rol) {
+        document.getElementById("editUid").value    = id;
+        document.getElementById("editUNombre").value = nombre;
+        document.getElementById("editURol").value   = rol;
+    }
+
+    document.getElementById("editUsuarioForm").addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        const id        = document.getElementById("editUid").value;
+        const nombre    = document.getElementById("editUNombre").value.trim();
+        const nuevoRol  = document.getElementById("editURol").value;
+
+        if (!ROLES_VALIDOS.includes(nuevoRol)) {
+            alert("Rol inválido.");
+            return;
+        }
+
+        try {
+            const res = await fetch(
+                `${API_USUARIOS}/${id}/rol/${encodeURIComponent(nuevoRol)}?nombre=${encodeURIComponent(nombre)}&activo=true`,
+                { method: "PUT" }
+            );
+            if (res.ok) {
+                document.getElementById("editUsuarioForm").reset();
+                cargarUsuarios();
+            } else {
+                const err = await res.json();
+                alert("Error: " + (err.detail || err.error));
+            }
+        } catch (err) { console.error("Error editando usuario:", err); }
+    });
+
+    cargarUsuarios();
+</script>
+
 
 </body>
 </html>
