@@ -91,17 +91,68 @@
         <p><strong>AgroDirecto</strong> - Del campo a su negocio, sin rodeos. 2025</p>
     </footer>
 
-    <script>
-        // Mostrar/ocultar botón "volver arriba" según scroll
-        const botonTop = document.getElementById('boton-top');
-        window.addEventListener('scroll', () => {
-            botonTop.classList.toggle('visible', window.scrollY > 200);
-        });
-        botonTop.addEventListener('click', e => {
-            e.preventDefault();
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-    </script>
+<!-- =====================================================
+     SCRIPT PARA: index.html
+     Página principal / landing.
+     Muestra estadísticas generales del mercado:
+     total de lotes, categorías y compradores.
+     Rutas usadas:
+       GET /lotes
+       GET /categorias
+       GET /compradores
+     ===================================================== -->
+<script>
+    const BASE = "http://127.0.0.1:8000";
+
+    // ── Mostrar conteos en tarjetas de estadísticas ──────────
+    // Elementos opcionales: "totalLotes", "totalCategorias", "totalCompradores"
+    async function cargarEstadisticas() {
+        try {
+            const [resLotes, resCat, resComp] = await Promise.all([
+                fetch(`${BASE}/lotes`),
+                fetch(`${BASE}/categorias`),
+                fetch(`${BASE}/compradores`)
+            ]);
+
+            const lotes      = await resLotes.json();
+            const categorias = await resCat.json();
+            const compradores = await resComp.json();
+
+            const elLotes = document.getElementById("totalLotes");
+            const elCat   = document.getElementById("totalCategorias");
+            const elComp  = document.getElementById("totalCompradores");
+
+            if (elLotes) elLotes.textContent = lotes.length;
+            if (elCat)   elCat.textContent   = categorias.length;
+            if (elComp)  elComp.textContent  = compradores.length;
+
+        } catch (err) {
+            console.error("Error cargando estadísticas:", err);
+        }
+    }
+
+    // ── Redirigir al panel según sesión activa ───────────────
+    function verificarSesion() {
+        const rol = sessionStorage.getItem("usuario_rol");
+        const btnPanel = document.getElementById("btnIrPanel");
+        if (!btnPanel) return;
+
+        if (rol === "Administrador" || rol === "Productor") {
+            btnPanel.href = "panel.html";
+            btnPanel.textContent = "Ir al Panel";
+        } else if (rol === "Comprador") {
+            btnPanel.href = "panel_cliente.html";
+            btnPanel.textContent = "Ir a Mi Panel";
+        } else {
+            btnPanel.href = "login.html";
+            btnPanel.textContent = "Iniciar Sesión";
+        }
+    }
+
+    cargarEstadisticas();
+    verificarSesion();
+</script>
+
 
 </body>
 </html>
