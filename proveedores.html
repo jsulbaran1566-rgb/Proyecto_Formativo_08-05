@@ -236,16 +236,86 @@
     <!-- BOTÓN VOLVER ARRIBA (position: fixed) -->
     <a href="#" id="boton-top" title="Volver arriba">▲</a>
 
-    <script>
-        const botonTop = document.getElementById('boton-top');
-        window.addEventListener('scroll', () => {
-            botonTop.classList.toggle('visible', window.scrollY > 200);
-        });
-        botonTop.addEventListener('click', e => {
-            e.preventDefault();
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-    </script>
+<!-- =====================================================
+     SCRIPT PARA: proveedores.html
+     (Compradores en la API)
+     Rutas usadas:
+       GET    /compradores
+       POST   /compradores?id=&nombre=&ciudad=
+       DELETE /compradores/{id}/ciudad/{ciudad}?confirmar=true
+     Inputs crear: "provId", "provNombre", "provCiudad"
+     ===================================================== -->
+<script>
+    const API_COMPRADORES = "http://127.0.0.1:8000/compradores";
+
+    // ── LISTAR ──────────────────────────────────────────────
+    async function cargarProveedores() {
+        try {
+            const res         = await fetch(API_COMPRADORES);
+            const compradores = await res.json();
+            const tabla       = document.getElementById("tablaProveedores");
+            tabla.innerHTML   = "";
+
+            compradores.forEach(c => {
+                tabla.innerHTML += `
+                    <tr>
+                        <td>${c.id}</td>
+                        <td>${c.nombre}</td>
+                        <td>${c.ciudad}</td>
+                        <td>
+                            <button onclick="eliminarProveedor(${c.id}, '${c.ciudad}')">
+                                Eliminar
+                            </button>
+                        </td>
+                    </tr>`;
+            });
+        } catch (err) { console.error("Error cargando proveedores:", err); }
+    }
+
+    // ── CREAR ───────────────────────────────────────────────
+    document.getElementById("proveedorForm").addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        const id     = document.getElementById("provId").value;
+        const nombre = document.getElementById("provNombre").value.trim();
+        const ciudad = document.getElementById("provCiudad").value.trim();
+
+        try {
+            const res = await fetch(
+                `${API_COMPRADORES}?id=${id}&nombre=${encodeURIComponent(nombre)}&ciudad=${encodeURIComponent(ciudad)}`,
+                { method: "POST" }
+            );
+            if (res.ok) {
+                document.getElementById("proveedorForm").reset();
+                cargarProveedores();
+            } else {
+                const err = await res.json();
+                alert("Error: " + (err.detail || err.error));
+            }
+        } catch (err) { console.error("Error creando proveedor:", err); }
+    });
+
+    // ── ELIMINAR ────────────────────────────────────────────
+    async function eliminarProveedor(id, ciudad) {
+        const ok = confirm(`¿Eliminar al proveedor con ID ${id}?`);
+        if (!ok) return;
+
+        try {
+            const res = await fetch(
+                `${API_COMPRADORES}/${id}/ciudad/${encodeURIComponent(ciudad)}?confirmar=true&notificar=false`,
+                { method: "DELETE" }
+            );
+            if (res.ok) {
+                cargarProveedores();
+            } else {
+                const err = await res.json();
+                alert("Error: " + (err.detail || err.error));
+            }
+        } catch (err) { console.error("Error eliminando proveedor:", err); }
+    }
+
+    cargarProveedores();
+</script>
 
 </body>
 </html>
