@@ -46,6 +46,10 @@ body {
     position: relative;
 }
 
+h1, h2{
+    font-family: 'Amaranth';
+}
+
 /* ================================================
    NAVEGACION — STICKY + POSICIONAMIENTO FIXED
    POSICIONAMIENTO 1: position sticky para el nav
