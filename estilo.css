@@ -35,7 +35,7 @@
    CUERPO — FLEXBOX columna principal
    ================================================ */
 body {
-    font-family: 'Ubuntu';
+    font-family: 'Arvo';
     background-color: #f4f6f2;
     color: var(--gris-texto);
     line-height: 1.6;
