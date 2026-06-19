@@ -4,309 +4,285 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="estilo.css">
-    <title>Proveedores - AgroDirecto</title>
+    <link rel="stylesheet" href="imagenes.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Arvo:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
-</head>
-<body>
 
-    <!-- NAV STICKY (position: sticky; top: 0; z-index: 1000) -->
-    <nav id="navegacion-principal">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amaranth:ital,wght@0,400;0,700;1,400;1,700&family=Arvo:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+
+    <title>Proveedores - AgroDirecto</title>
+</head>
+<body class="pagina-admin">
+
+    <nav id="nav-principal">
         <a href="index.html"><strong>AGRODIRECTO</strong></a>
-        <div class="enlaces-nav">
-            <span class="rol-nav">Administracion</span>
-            <a href="index.html" class="boton-accion boton-salir">Cerrar Sesion</a>
+        <div class="links-nav">
+            <span class="texto-rol-nav">Administracion</span>
+            <a href="index.html" class="btn-verde btn-salir">Cerrar Sesion</a>
         </div>
     </nav>
 
-    <div class="diseno-panel">
-
-        <!-- BARRA LATERAL STICKY (position: sticky; top: var(--nav-height)) -->
-        <aside class="barra-lateral">
-            <div class="perfil-barra">
-                <div class="avatar-barra">🛡️</div>
-                <h4>Administrador</h4>
-                <span>Admin</span>
+    <div class="layout-panel">
+        <aside class="sidebar">
+            <div class="perfil-sidebar">
+                <div class="avatar-usuario">🛡️</div>
+                <h4 id="nombre-admin">Administrador</h4>
+                <span><span class="badge-rol badge-admin">Admin</span></span>
             </div>
-            <nav class="nav-barra">
-                <a href="panel.html">📊 Resumen</a>
+            <nav class="nav-sidebar">
+                <a href="panel_admin.html">📊 Resumen</a>
                 <a href="usuarios.html">👥 Usuarios</a>
                 <a href="roles.html">🔐 Roles</a>
                 <a href="proveedores.html" class="activo">🚚 Proveedores</a>
-                <a href="#">🌱 Cultivos</a>
-                <a href="#">📈 Reportes</a>
-                <a href="#">⚙️ Configuracion</a>
+                <a href="lotes.html">🌱 Lotes</a>
+                <a href="historial.html">📋 Historial</a>
+                <a href="registro.html">📝 Nuevo Registro</a>
                 <a href="contacto.html">💬 Soporte</a>
             </nav>
         </aside>
 
-        <div class="contenido-panel">
+        <div class="zona-contenido">
+            <div class="banner-panel banner-proveedores">
+                <span>🚚 Red logistica que conecta el campo con su negocio</span>
+            </div>
 
-            <div class="encabezado-panel">
+            <div class="cabecera-panel">
                 <div>
-                    <h2>Gestion de Proveedores</h2>
-                    <p>Administre los proveedores de insumos, logistica y servicios agricolas</p>
+                    <h2>Gestion de Proveedores <span class="badge-rol badge-admin">ADMIN</span></h2>
+                    <p>Proveedores logisticos e insumos vinculados a la plataforma</p>
                 </div>
-                <a href="#" class="boton-accion">+ Nuevo Proveedor</a>
+                <button class="btn-verde" onclick="abrirModal()">+ Nuevo Proveedor</button>
             </div>
 
-            <!-- Estadísticas con ícono decorativo (position: absolute en ::before) -->
-            <div class="fila-estadisticas">
-                <div class="tarjeta-estadistica" data-icono="🚚">
-                    <div class="valor-estadistica">38</div>
-                    <div class="etiqueta-estadistica">Proveedores Totales</div>
+            <div class="fila-stats">
+                <div class="stat-tarjeta" data-icono="🚚">
+                    <div class="stat-numero" id="stat-total">—</div>
+                    <div class="stat-etiqueta">Total Proveedores</div>
                 </div>
-                <div class="tarjeta-estadistica estadistica-verde" data-icono="✅">
-                    <div class="valor-estadistica">31</div>
-                    <div class="etiqueta-estadistica">Activos</div>
+                <div class="stat-tarjeta stat-azul" data-icono="📦">
+                    <div class="stat-numero" id="stat-logistica">—</div>
+                    <div class="stat-etiqueta">Logistica</div>
                 </div>
-                <div class="tarjeta-estadistica estadistica-naranja" data-icono="🌱">
-                    <div class="valor-estadistica">14</div>
-                    <div class="etiqueta-estadistica">Insumos Agricolas</div>
+                <div class="stat-tarjeta stat-marron" data-icono="🌿">
+                    <div class="stat-numero" id="stat-insumos">—</div>
+                    <div class="stat-etiqueta">Insumos</div>
                 </div>
-                <div class="tarjeta-estadistica estadistica-azul" data-icono="🏭">
-                    <div class="valor-estadistica">12</div>
-                    <div class="etiqueta-estadistica">Logistica</div>
-                </div>
-                <div class="tarjeta-estadistica estadistica-marron" data-icono="🛠️">
-                    <div class="valor-estadistica">12</div>
-                    <div class="etiqueta-estadistica">Servicios</div>
+                <div class="stat-tarjeta stat-naranja" data-icono="✅">
+                    <div class="stat-numero" id="stat-activos">—</div>
+                    <div class="stat-etiqueta">Activos</div>
                 </div>
             </div>
 
-            <!-- Tarjetas destacadas de proveedores -->
-            <div class="titulo-seccion-panel mb-8 mt-24">Proveedores Destacados</div>
-
-            <div class="cuadricula-tarjetas mt-16">
-                <div class="tarjeta-info tarjeta-borde-marron tarjeta-flex-300 con-tooltip">
-                    <span class="tooltip-texto">Ver perfil completo</span>
-                    <div style="display:flex;justify-content:space-between;align-items:flex-start;">
-                        <h3>🌿 AgroInsumos S.A.</h3>
-                        <span class="etiqueta etiqueta-verde">Activo</span>
-                    </div>
-                    <p>Proveedor certificado de semillas, abonos organicos y fertilizantes. Distribucion nacional con entrega en finca.</p>
-                    <div style="margin-top:8px;display:flex;flex-wrap:wrap;gap:5px;">
-                        <span class="chip">Semillas</span>
-                        <span class="chip">Fertilizantes</span>
-                        <span class="chip">Organico</span>
-                    </div>
-                    <p style="margin-top:10px;font-size:0.82rem;color:#777;">📍 Bogota, Colombia &nbsp;|&nbsp; ⭐ 4.8/5</p>
-                    <div style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap;">
-                        <a href="#" class="boton-accion" style="padding:6px 14px;font-size:0.82rem;">Contactar</a>
-                        <a href="#" class="boton-accion boton-secundario" style="padding:6px 14px;font-size:0.82rem;">Ver perfil</a>
-                    </div>
-                </div>
-
-                <div class="tarjeta-info tarjeta-borde-azul tarjeta-flex-300 con-tooltip">
-                    <span class="tooltip-texto">Ver perfil completo</span>
-                    <div style="display:flex;justify-content:space-between;align-items:flex-start;">
-                        <h3>🚛 LogiCampo Ltda.</h3>
-                        <span class="etiqueta etiqueta-verde">Activo</span>
-                    </div>
-                    <p>Empresa de transporte refrigerado especializada en productos perecederos. Cobertura en Cundinamarca, Boyaca y Antioquia.</p>
-                    <div style="margin-top:8px;display:flex;flex-wrap:wrap;gap:5px;">
-                        <span class="chip">Transporte</span>
-                        <span class="chip">Refrigerado</span>
-                        <span class="chip">Perecederos</span>
-                    </div>
-                    <p style="margin-top:10px;font-size:0.82rem;color:#777;">📍 Medellin, Colombia &nbsp;|&nbsp; ⭐ 4.6/5</p>
-                    <div style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap;">
-                        <a href="#" class="boton-accion" style="padding:6px 14px;font-size:0.82rem;">Contactar</a>
-                        <a href="#" class="boton-accion boton-secundario" style="padding:6px 14px;font-size:0.82rem;">Ver perfil</a>
-                    </div>
-                </div>
-
-                <div class="tarjeta-info tarjeta-borde-naranja tarjeta-flex-300 con-tooltip">
-                    <span class="tooltip-texto">Ver perfil completo</span>
-                    <div style="display:flex;justify-content:space-between;align-items:flex-start;">
-                        <h3>☀️ TechRiego S.A.S.</h3>
-                        <span class="etiqueta etiqueta-verde">Activo</span>
-                    </div>
-                    <p>Instalacion y mantenimiento de sistemas de riego por goteo y aspersion. Monitoreo IoT de humedad en tiempo real.</p>
-                    <div style="margin-top:8px;display:flex;flex-wrap:wrap;gap:5px;">
-                        <span class="chip">Riego</span>
-                        <span class="chip">IoT</span>
-                        <span class="chip">Tecnologia</span>
-                    </div>
-                    <p style="margin-top:10px;font-size:0.82rem;color:#777;">📍 Cali, Colombia &nbsp;|&nbsp; ⭐ 4.9/5</p>
-                    <div style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap;">
-                        <a href="#" class="boton-accion" style="padding:6px 14px;font-size:0.82rem;">Contactar</a>
-                        <a href="#" class="boton-accion boton-secundario" style="padding:6px 14px;font-size:0.82rem;">Ver perfil</a>
-                    </div>
-                </div>
+            <div class="barra-filtro margen-top-24">
+                <input type="text" id="filtro-proveedor" class="campo-input" placeholder="Buscar por nombre o ciudad...">
+                <select id="filtro-tipo" class="campo-input" style="max-width:180px;">
+                    <option value="">Todos los tipos</option>
+                    <option>Logistica</option>
+                    <option>Insumos</option>
+                    <option>Empaque</option>
+                    <option>Refrigeracion</option>
+                </select>
+                <button class="btn-verde btn-borde" onclick="filtrar()">Filtrar</button>
+                <button class="btn-verde btn-borde" onclick="limpiarFiltro()">Limpiar</button>
             </div>
 
-            <!-- Tabla completa de proveedores -->
-            <div class="mt-32">
-                <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:10px;">
-                    <h3 class="titulo-seccion-panel">Todos los Proveedores</h3>
-                    <div class="barra-busqueda" style="margin-bottom:0;">
-                        <input type="text" class="campo-formulario" placeholder="🔍 Buscar proveedor..." style="max-width:220px;">
-                        <select class="campo-formulario" style="max-width:160px;">
-                            <option value="">Todas las categorias</option>
-                            <option>Insumos Agricolas</option>
-                            <option>Logistica</option>
-                            <option>Tecnologia</option>
-                            <option>Financiero</option>
-                        </select>
-                        <button class="boton-accion">Filtrar</button>
-                    </div>
-                </div>
+            <div id="alerta-proveedores" class="alerta"></div>
 
-                <table class="tabla-panel">
-                    <thead>
-                        <tr>
-                            <th>Proveedor</th>
-                            <th>Categoria</th>
-                            <th>Ciudad</th>
-                            <th>Contacto</th>
-                            <th>Calificacion</th>
-                            <th>Estado</th>
-                            <th>Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><strong>AgroInsumos S.A.</strong></td>
-                            <td>Insumos Agricolas</td>
-                            <td>Bogota</td>
-                            <td>info@agroinsumos.com</td>
-                            <td>⭐ 4.8</td>
-                            <td><span class="etiqueta etiqueta-verde">Activo</span></td>
-                            <td><a href="#" class="boton-accion" style="padding:4px 10px;font-size:0.78rem;">Gestionar</a></td>
-                        </tr>
-                        <tr>
-                            <td><strong>LogiCampo Ltda.</strong></td>
-                            <td>Logistica</td>
-                            <td>Medellin</td>
-                            <td>ops@logicampo.com</td>
-                            <td>⭐ 4.6</td>
-                            <td><span class="etiqueta etiqueta-verde">Activo</span></td>
-                            <td><a href="#" class="boton-accion" style="padding:4px 10px;font-size:0.78rem;">Gestionar</a></td>
-                        </tr>
-                        <tr>
-                            <td><strong>TechRiego S.A.S.</strong></td>
-                            <td>Tecnologia</td>
-                            <td>Cali</td>
-                            <td>ventas@techriego.com</td>
-                            <td>⭐ 4.9</td>
-                            <td><span class="etiqueta etiqueta-verde">Activo</span></td>
-                            <td><a href="#" class="boton-accion" style="padding:4px 10px;font-size:0.78rem;">Gestionar</a></td>
-                        </tr>
-                        <tr>
-                            <td><strong>BioProtect Colombia</strong></td>
-                            <td>Insumos Agricolas</td>
-                            <td>Manizales</td>
-                            <td>bio@protect.com</td>
-                            <td>⭐ 4.3</td>
-                            <td><span class="etiqueta etiqueta-verde">Activo</span></td>
-                            <td><a href="#" class="boton-accion" style="padding:4px 10px;font-size:0.78rem;">Gestionar</a></td>
-                        </tr>
-                        <tr>
-                            <td><strong>CreditoAgro</strong></td>
-                            <td>Financiero</td>
-                            <td>Bogota</td>
-                            <td>credito@creditoagro.com</td>
-                            <td>⭐ 4.1</td>
-                            <td><span class="etiqueta etiqueta-amarillo">En revision</span></td>
-                            <td><a href="#" class="boton-accion" style="padding:4px 10px;font-size:0.78rem;">Gestionar</a></td>
-                        </tr>
-                        <tr>
-                            <td><strong>FrioTransporte S.A.</strong></td>
-                            <td>Logistica</td>
-                            <td>Barranquilla</td>
-                            <td>flota@friotransporte.com</td>
-                            <td>⭐ 3.9</td>
-                            <td><span class="etiqueta etiqueta-rojo">Inactivo</span></td>
-                            <td><a href="#" class="boton-accion" style="padding:4px 10px;font-size:0.78rem;">Gestionar</a></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
+            <table class="tabla-datos">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Tipo</th>
+                        <th>Ciudad</th>
+                        <th>Contacto</th>
+                        <th>Estado</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="tabla-proveedores">
+                    <tr><td colspan="7" style="text-align:center;color:#aaa;padding:20px;">Cargando...</td></tr>
+                </tbody>
+            </table>
         </div>
     </div>
 
-    <!-- BOTÓN VOLVER ARRIBA (position: fixed) -->
-    <a href="#" id="boton-top" title="Volver arriba">▲</a>
+    <a href="#" id="btn-volver-arriba" title="Volver arriba">▲</a>
 
-<!-- =====================================================
-     SCRIPT PARA: proveedores.html
-     (Compradores en la API)
-     Rutas usadas:
-       GET    /compradores
-       POST   /compradores?id=&nombre=&ciudad=
-       DELETE /compradores/{id}/ciudad/{ciudad}?confirmar=true
-     Inputs crear: "provId", "provNombre", "provCiudad"
-     ===================================================== -->
+    <!-- MODAL PROVEEDOR -->
+    <div class="fondo-modal" id="modal-proveedor">
+        <div class="caja-modal">
+            <button class="btn-cerrar-modal" onclick="cerrarModal()">✕</button>
+            <p class="titulo-modal" id="titulo-modal-proveedor">Nuevo Proveedor</p>
+            <input type="hidden" id="proveedor-id">
+            <div class="fila-campos">
+                <div class="campo-grupo">
+                    <label>Nombre / Razon Social</label>
+                    <input type="text" id="prov-nombre" class="campo-input" placeholder="Ej: TransCarga SAS">
+                </div>
+                <div class="campo-grupo">
+                    <label>Tipo de Servicio</label>
+                    <select id="prov-tipo" class="campo-input">
+                        <option>Logistica</option>
+                        <option>Insumos</option>
+                        <option>Empaque</option>
+                        <option>Refrigeracion</option>
+                    </select>
+                </div>
+            </div>
+            <div class="fila-campos">
+                <div class="campo-grupo">
+                    <label>Ciudad</label>
+                    <input type="text" id="prov-ciudad" class="campo-input" placeholder="Medellin">
+                </div>
+                <div class="campo-grupo">
+                    <label>Telefono de Contacto</label>
+                    <input type="tel" id="prov-telefono" class="campo-input" placeholder="+57 300 000 0000">
+                </div>
+            </div>
+            <div class="campo-grupo">
+                <label>Correo de Contacto</label>
+                <input type="email" id="prov-correo" class="campo-input" placeholder="contacto@empresa.com">
+            </div>
+            <div class="campo-grupo">
+                <label>Estado</label>
+                <select id="prov-estado" class="campo-input">
+                    <option value="Activo">Activo</option>
+                    <option value="Inactivo">Inactivo</option>
+                </select>
+            </div>
+            <div class="fila-botones">
+                <button class="btn-verde" onclick="guardarProveedor()">Guardar</button>
+                <button class="btn-verde btn-borde" onclick="cerrarModal()">Cancelar</button>
+            </div>
+            <div id="alerta-modal-proveedor" class="alerta"></div>
+        </div>
+    </div>
+
+    <script src="datos.js"></script>
+
 <script>
-    const API_COMPRADORES = "http://127.0.0.1:8000/compradores";
+    let todosProveedores = [];
 
-    // ── LISTAR ──────────────────────────────────────────────
-    async function cargarProveedores() {
-        try {
-            const res         = await fetch(API_COMPRADORES);
-            const compradores = await res.json();
-            const tabla       = document.getElementById("tablaProveedores");
-            tabla.innerHTML   = "";
+    document.getElementById('nombre-admin').textContent =
+        sessionStorage.getItem('usuario_nombre') || 'Administrador';
 
-            compradores.forEach(c => {
-                tabla.innerHTML += `
-                    <tr>
-                        <td>${c.id}</td>
-                        <td>${c.nombre}</td>
-                        <td>${c.ciudad}</td>
-                        <td>
-                            <button onclick="eliminarProveedor(${c.id}, '${c.ciudad}')">
-                                Eliminar
-                            </button>
-                        </td>
-                    </tr>`;
-            });
-        } catch (err) { console.error("Error cargando proveedores:", err); }
-    }
-
-    // ── CREAR ───────────────────────────────────────────────
-    document.getElementById("proveedorForm").addEventListener("submit", async (e) => {
-        e.preventDefault();
-
-        const id     = document.getElementById("provId").value;
-        const nombre = document.getElementById("provNombre").value.trim();
-        const ciudad = document.getElementById("provCiudad").value.trim();
-
-        try {
-            const res = await fetch(
-                `${API_COMPRADORES}?id=${id}&nombre=${encodeURIComponent(nombre)}&ciudad=${encodeURIComponent(ciudad)}`,
-                { method: "POST" }
-            );
-            if (res.ok) {
-                document.getElementById("proveedorForm").reset();
-                cargarProveedores();
-            } else {
-                const err = await res.json();
-                alert("Error: " + (err.detail || err.error));
-            }
-        } catch (err) { console.error("Error creando proveedor:", err); }
+    window.addEventListener('scroll', () => {
+        document.getElementById('btn-volver-arriba')
+            .classList.toggle('visible', window.scrollY > 200);
     });
 
-    // ── ELIMINAR ────────────────────────────────────────────
-    async function eliminarProveedor(id, ciudad) {
-        const ok = confirm(`¿Eliminar al proveedor con ID ${id}?`);
-        if (!ok) return;
+    function cargarProveedores() {
+        todosProveedores = [...DB.proveedores];
+        document.getElementById('stat-total').textContent    = todosProveedores.length;
+        document.getElementById('stat-logistica').textContent= todosProveedores.filter(p => p.tipo === 'Logistica').length;
+        document.getElementById('stat-insumos').textContent  = todosProveedores.filter(p => p.tipo === 'Insumos').length;
+        document.getElementById('stat-activos').textContent  = todosProveedores.filter(p => p.estado === 'Activo').length;
+        renderTabla(todosProveedores);
+    }
 
-        try {
-            const res = await fetch(
-                `${API_COMPRADORES}/${id}/ciudad/${encodeURIComponent(ciudad)}?confirmar=true&notificar=false`,
-                { method: "DELETE" }
-            );
-            if (res.ok) {
-                cargarProveedores();
-            } else {
-                const err = await res.json();
-                alert("Error: " + (err.detail || err.error));
-            }
-        } catch (err) { console.error("Error eliminando proveedor:", err); }
+    function renderTabla(lista) {
+        const tb = document.getElementById('tabla-proveedores');
+        tb.innerHTML = lista.length ? lista.map(p => `
+            <tr>
+                <td>${p.id}</td>
+                <td>${p.nombre}</td>
+                <td>${p.tipo}</td>
+                <td>${p.ciudad || '—'}</td>
+                <td>${p.telefono || p.correo || '—'}</td>
+                <td><span class="etiqueta ${p.estado === 'Activo' ? 'etiqueta-verde' : 'etiqueta-gris'}">${p.estado}</span></td>
+                <td><div class="acciones-tabla">
+                    <button class="btn-tabla btn-editar"   onclick="editarProveedor(${p.id})">Editar</button>
+                    <button class="btn-tabla btn-eliminar" onclick="eliminarProveedor(${p.id})">Eliminar</button>
+                </div></td>
+            </tr>`).join('') :
+            '<tr><td colspan="7" style="text-align:center;color:#aaa;padding:20px;">Sin proveedores</td></tr>';
+    }
+
+    function filtrar() {
+        const q    = document.getElementById('filtro-proveedor').value.toLowerCase();
+        const tipo = document.getElementById('filtro-tipo').value;
+        renderTabla(DB.proveedores.filter(p =>
+            (!q || p.nombre.toLowerCase().includes(q) || (p.ciudad||'').toLowerCase().includes(q)) &&
+            (!tipo || p.tipo === tipo)
+        ));
+    }
+
+    function limpiarFiltro() {
+        document.getElementById('filtro-proveedor').value = '';
+        document.getElementById('filtro-tipo').value = '';
+        renderTabla(DB.proveedores);
+    }
+
+    function abrirModal(id = null) {
+        document.getElementById('proveedor-id').value = id || '';
+        document.getElementById('titulo-modal-proveedor').textContent = id ? 'Editar Proveedor' : 'Nuevo Proveedor';
+        if (!id) {
+            ['prov-nombre','prov-ciudad','prov-telefono','prov-correo'].forEach(i =>
+                document.getElementById(i).value = '');
+            document.getElementById('prov-tipo').value   = 'Logistica';
+            document.getElementById('prov-estado').value = 'Activo';
+        }
+        document.getElementById('alerta-modal-proveedor').className = 'alerta';
+        document.getElementById('modal-proveedor').classList.add('abierto');
+    }
+
+    function cerrarModal() {
+        document.getElementById('modal-proveedor').classList.remove('abierto');
+    }
+
+    function editarProveedor(id) {
+        const p = DB.proveedores.find(x => x.id === id);
+        if (!p) return;
+        document.getElementById('prov-nombre').value   = p.nombre;
+        document.getElementById('prov-tipo').value     = p.tipo;
+        document.getElementById('prov-ciudad').value   = p.ciudad || '';
+        document.getElementById('prov-telefono').value = p.telefono || '';
+        document.getElementById('prov-correo').value   = p.correo || '';
+        document.getElementById('prov-estado').value   = p.estado;
+        abrirModal(id);
+    }
+
+    function guardarProveedor() {
+        const alerta = document.getElementById('alerta-modal-proveedor');
+        const id     = parseInt(document.getElementById('proveedor-id').value);
+        const datos  = {
+            nombre:   document.getElementById('prov-nombre').value.trim(),
+            tipo:     document.getElementById('prov-tipo').value,
+            ciudad:   document.getElementById('prov-ciudad').value.trim(),
+            telefono: document.getElementById('prov-telefono').value.trim(),
+            correo:   document.getElementById('prov-correo').value.trim(),
+            estado:   document.getElementById('prov-estado').value
+        };
+        if (!datos.nombre) {
+            alerta.textContent = 'El nombre es obligatorio.';
+            alerta.className = 'alerta alerta-error visible';
+            return;
+        }
+        if (id) {
+            const idx = DB.proveedores.findIndex(p => p.id === id);
+            DB.proveedores[idx] = { ...DB.proveedores[idx], ...datos };
+        } else {
+            datos.id = DB.siguienteId('proveedores');
+            DB.proveedores.push(datos);
+        }
+        alerta.textContent = id ? 'Proveedor actualizado.' : 'Proveedor creado.';
+        alerta.className = 'alerta alerta-ok visible';
+        setTimeout(() => { cerrarModal(); cargarProveedores(); }, 900);
+    }
+
+    function eliminarProveedor(id) {
+        const alerta = document.getElementById('alerta-proveedores');
+        if (!confirm('¿Eliminar este proveedor?')) return;
+        const idx = DB.proveedores.findIndex(p => p.id === id);
+        if (idx !== -1) DB.proveedores.splice(idx, 1);
+        alerta.textContent = 'Proveedor eliminado.';
+        alerta.className = 'alerta alerta-ok visible';
+        cargarProveedores();
+        setTimeout(() => alerta.className = 'alerta', 3000);
     }
 
     cargarProveedores();

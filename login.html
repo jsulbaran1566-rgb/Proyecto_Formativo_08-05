@@ -4,92 +4,105 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="estilo.css">
-    <title>Acceso - AgroDirecto</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Arvo:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amaranth:ital,wght@0,400;0,700;1,400;1,700&family=Arvo:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+
+    <title>Acceso - AgroDirecto</title>
 </head>
 <body>
-
-    <!-- NAV STICKY (position: sticky; top: 0; z-index: 1000) -->
-    <nav id="navegacion-principal">
+ 
+    <!-- NAV: position sticky -->
+    <nav id="nav-principal">
         <a href="index.html"><strong>AGRODIRECTO</strong></a>
-        <div class="enlaces-nav">
-            <a href="index.html">Volver al Inicio</a>
+        <div class="links-nav">
+            <a href="index.html">← Volver al Inicio</a>
         </div>
     </nav>
-
-    <!-- Formulario: .contenedor-formulario tiene position: relative
-         con ::before como barra de color (position: absolute) -->
-    <main class="contenedor-formulario">
-        <h2>Iniciar Sesion</h2>
-        <p>Ingrese sus credenciales para gestionar sus cultivos o reservas.</p>
-
-        <form action="panel.html">
-            <div class="grupo-formulario">
-                <label for="correo">Correo Electronico</label>
-                <input type="email" id="correo" class="campo-formulario" placeholder="ejemplo@correo.com">
+ 
+    <!-- Pantalla de login: flex centrado vertical y horizontal -->
+    <main class="pantalla-login">
+        <div class="caja-formulario con-foto-superior">
+            <img src="https://images.unsplash.com/photo-1464226184884-fa280b87c399?auto=format&fit=crop&w=700&q=80" alt="Surcos de cultivo en el campo" class="foto-formulario">
+            <h2>Iniciar Sesion</h2>
+            <p>Ingrese sus credenciales para gestionar sus cultivos o reservas.</p>
+ 
+ 
+            <form id="form-login">
+                <div class="campo-grupo">
+                    <label for="campo-correo">Correo Electronico</label>
+                    <input type="email" id="campo-correo" class="campo-input"
+                           placeholder="ejemplo@correo.com" required>
+                </div>
+                <div class="campo-grupo">
+                    <label for="campo-clave">Contrasena</label>
+                    <input type="password" id="campo-clave" class="campo-input"
+                           placeholder="Minimo 6 caracteres" required>
+                </div>
+                <div class="accion-formulario">
+                    <button type="submit" id="btn-ingresar" class="btn-verde">Ingresar</button>
+                </div>
+            </form>
+ 
+            <div class="pie-form">
+                No tiene cuenta? <a href="registro.html">Registrese aqui</a>
             </div>
-            <div class="grupo-formulario">
-                <label for="clave">Contrasena</label>
-                <input type="password" id="clave" class="campo-formulario" placeholder="Contrasena">
-            </div>
-            <div class="accion-formulario">
-                <button type="submit" class="boton-accion">Ingresar</button>
-            </div>
-        </form>
-
-        <div class="pie-formulario">
-            No tiene cuenta? <a href="registro.html">Registrese aqui</a>
         </div>
     </main>
-
-    <footer id="pie-pagina-principal">
-        <p><strong>AgroDirecto</strong> - Del campo a su negocio, sin rodeos. 2025</p>
+ 
+    <footer id="pie-pagina">
+        <p><strong>AgroDirecto</strong> — Del campo a su negocio, sin rodeos. 2025</p>
     </footer>
+ 
+    <script src="datos.js"></script>
 
-
-<!-- =====================================================
-     SCRIPT PARA: login.html
-     Valida credenciales contra GET /usuarios
-     y redirige según el rol del usuario.
-     ===================================================== -->
 <script>
-    const API_USUARIOS = "http://127.0.0.1:8000/usuarios";
-
-    document.getElementById("loginForm").addEventListener("submit", async (e) => {
+    document.getElementById('form-login').addEventListener('submit', (e) => {
         e.preventDefault();
+        const alerta = document.getElementById('alerta-login');
+        const btn    = document.getElementById('btn-ingresar');
+        const correo = document.getElementById('campo-correo').value.trim();
+        const clave  = document.getElementById('campo-clave').value;
 
-        const id  = parseInt(document.getElementById("loginId").value);
-        const rol = document.getElementById("loginRol").value;
+        // Busca el usuario en la DB local
+        const usuario = DB.usuarios.find(u =>
+            u.correo === correo && u.clave === clave && u.estado === 'Activo'
+        );
 
-        try {
-            const respuesta = await fetch(API_USUARIOS);
-            const usuarios  = await respuesta.json();
-
-            const usuario = usuarios.find(u => u.id === id && u.rol === rol);
-
-            if (usuario) {
-                // Guardar sesión básica en sessionStorage
-                sessionStorage.setItem("usuario_id",     usuario.id);
-                sessionStorage.setItem("usuario_nombre", usuario.nombre);
-                sessionStorage.setItem("usuario_rol",    usuario.rol);
-
-                // Redirigir según rol
-                if (rol === "Administrador" || rol === "Productor") {
-                    window.location.href = "panel.html";
-                } else if (rol === "Comprador") {
-                    window.location.href = "panel_cliente.html";
-                }
+        if (!usuario) {
+            // El div de alerta no existia en el HTML original, lo creamos si hace falta
+            if (!alerta) {
+                const div = document.createElement('div');
+                div.id = 'alerta-login';
+                div.className = 'alerta alerta-error visible';
+                div.textContent = 'Correo o contrasena incorrectos, o cuenta inactiva.';
+                document.getElementById('form-login').prepend(div);
             } else {
-                alert("ID o rol incorrecto. Verifica tus datos.");
+                alerta.textContent = 'Correo o contrasena incorrectos, o cuenta inactiva.';
+                alerta.className = 'alerta alerta-error visible';
             }
-        } catch (error) {
-            console.error("Error al iniciar sesión:", error);
-            alert("No se pudo conectar con el servidor.");
+            return;
         }
+
+        // Guarda sesion minima
+        sessionStorage.setItem('usuario_id',     usuario.id);
+        sessionStorage.setItem('usuario_nombre', usuario.nombre);
+        sessionStorage.setItem('usuario_rol',    usuario.rol);
+
+        // Redirige segun rol
+        if (usuario.rol === 'Administrador') location.href = 'panel_admin.html';
+        else if (usuario.rol === 'Productor')  location.href = 'panel_productor.html';
+        else                                   location.href = 'panel_comprador.html';
     });
 </script>
+ 
 
+<!--Admin: admin@agrodirecto.com / admin123
+Productor: finca.paraiso@campo.com / prod123
+Comprador: compras@laplaza.com / comp123-->
 </body>
 </html>

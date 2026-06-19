@@ -4,26 +4,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="estilo.css">
-    <title>Contacto - AgroDirecto</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Arvo:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amaranth:ital,wght@0,400;0,700;1,400;1,700&family=Arvo:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+
+    <title>Contacto - AgroDirecto</title>
 </head>
 <body>
 
-    <!-- NAV STICKY (position: sticky; top: 0; z-index: 1000) -->
-    <nav id="navegacion-principal">
+    <!-- NAV: position sticky -->
+    <nav id="nav-principal">
         <a href="index.html"><strong>AGRODIRECTO</strong></a>
-        <div class="enlaces-nav">
+        <div class="links-nav">
             <a href="index.html">Inicio</a>
             <a href="nosotros.html">Nosotros</a>
-            <a href="contacto.html" class="nav-activo">Contacto</a>
+            <a href="contacto.html" class="link-activo">Contacto</a>
             <a href="login.html">Acceso</a>
         </div>
     </nav>
 
-    <!-- HERO (position: relative) con overlays decorativos (::before, ::after = position: absolute) -->
-    <section id="seccion-hero">
+    <!-- HERO con imagen de fondo: position relative con ::before / ::after absolute -->
+    <section id="seccion-hero" class="hero-con-imagen hero-contacto-img">
         <span class="badge-hero">✦ Soporte 24/7</span>
         <h1>Centro de Soporte</h1>
         <p>Estamos para ayudar a tecnificar su proceso de comercializacion. Contactenos por el canal que prefiera.</p>
@@ -36,14 +41,14 @@
             <p>Elija la forma mas comoda de comunicarse con nosotros</p>
         </div>
 
-        <!-- Tarjetas de contacto (position: relative; con hover effects) -->
+        <!-- Tarjetas de contacto: position relative con hover -->
         <div class="cuadricula-contacto">
             <div class="elemento-contacto">
                 <span class="icono-contacto">💬</span>
                 <div>
                     <h4>WhatsApp</h4>
                     <p><a href="https://wa.me/573000000000">+57 300 000 0000</a></p>
-                    <p>Lunes a Viernes - 8 am a 6 pm</p>
+                    <p>Lunes a Viernes · 8 am a 6 pm</p>
                 </div>
             </div>
             <div class="elemento-contacto">
@@ -71,77 +76,106 @@
             </div>
         </div>
 
+        <!-- Galeria de imagenes: nuestras sedes -->
+        <div class="titulo-seccion mt-32">
+            <h2>Del Campo a su Mesa</h2>
+            <p>Conozca un poco mas sobre donde y como trabajamos</p>
+        </div>
+
+        <div class="galeria-contacto">
+            <figure class="foto-contacto">
+                <img src="https://www.mustela.es/cdn/shop/articles/beneficios-aguacate-para-la-piel_1e3d617e-e200-4893-9cdc-5f6ed6131e37.jpg?v=1744788322" alt="Aguacates frescos">
+                <figcaption>Aguacates</figcaption>
+            </figure>
+            <figure class="foto-contacto">
+                <img src="https://images.unsplash.com/photo-1597362925123-77861d3fbac7?auto=format&fit=crop&w=600&q=80" alt="Verduras frescas variadas">
+                <figcaption>Verduras Frescas</figcaption>
+            </figure>
+            <figure class="foto-contacto">
+                <img src="https://images.unsplash.com/photo-1610832958506-aa56368176cf?auto=format&fit=crop&w=600&q=80" alt="Frutas frescas variadas">
+                <figcaption>Frutas</figcaption>
+            </figure>
+            <figure class="foto-contacto">
+                <img src="https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?auto=format&fit=crop&w=600&q=80" alt="Distintos tipos de granos y cereales">
+                <figcaption>Granos y Cereales</figcaption>
+            </figure>
+        </div>
+
         <div class="titulo-seccion mt-32">
             <h2>Envienos un Mensaje</h2>
         </div>
 
-        <!-- Formulario de contacto (tarjeta con position: relative y ::before como acento) -->
-        <div class="tarjeta-info tarjeta-completa">
-            <form>
+        <!-- Formulario: tarjeta con position relative y ::before como acento -->
+        <div class="contenedor-formulario tarjeta-completa">
+            <form id="contactoForm">
                 <div class="fila-formulario">
-                    <div class="grupo-formulario">
-                        <label>Nombre</label>
-                        <input type="text" class="campo-formulario" placeholder="Su nombre">
+                    <div class="campo-grupo">
+                        <label for="contactNombre">Nombre</label>
+                        <input type="text" id="contactNombre" class="campo-input" placeholder="Su nombre completo" required>
                     </div>
-                    <div class="grupo-formulario">
-                        <label>Telefono</label>
-                        <input type="tel" class="campo-formulario" placeholder="+57 300 000 0000">
+                    <div class="campo-grupo">
+                        <label for="contactTelefono">Telefono</label>
+                        <input type="tel" id="contactTelefono" class="campo-input" placeholder="+57 300 000 0000">
                     </div>
                 </div>
-                <div class="grupo-formulario">
-                    <label>Correo Electronico</label>
-                    <input type="email" class="campo-formulario" placeholder="correo@empresa.com">
+                <div class="campo-grupo">
+                    <label for="contactCorreo">Correo Electronico</label>
+                    <input type="email" id="contactCorreo" class="campo-input" placeholder="correo@empresa.com" required>
                 </div>
-                <div class="grupo-formulario">
-                    <label>Mensaje</label>
-                    <textarea class="campo-formulario textarea-formulario" rows="4" placeholder="Cuentenos como podemos ayudarle..."></textarea>
+                <div class="campo-grupo">
+                    <label for="contactMensaje">Mensaje</label>
+                    <textarea id="contactMensaje" class="campo-input campo-textarea" rows="4" placeholder="Cuentenos como podemos ayudarle..." required></textarea>
                 </div>
+
+                <div id="confirmacionContacto" class="etiqueta etiqueta-verde" style="display:none; margin-bottom:12px; padding:10px 14px;"></div>
+                <div id="errorContacto" class="etiqueta etiqueta-rojo" style="display:none; margin-bottom:12px; padding:10px 14px;"></div>
+
                 <div class="acciones-formulario">
-                    <button type="submit" class="boton-accion">Enviar Mensaje</button>
-                    <a href="https://wa.me/573000000000" class="boton-accion boton-whatsapp">💬 Abrir WhatsApp</a>
+                    <button type="submit" id="btnEnviar" class="btn-verde">Enviar Mensaje</button>
+                    <a href="https://wa.me/573000000000" class="btn-verde boton-whatsapp" target="_blank" rel="noopener">💬 Abrir WhatsApp</a>
                 </div>
             </form>
         </div>
 
     </main>
 
-    <!-- BOTÓN VOLVER ARRIBA (position: fixed) -->
-    <a href="#" id="boton-top" title="Volver arriba">▲</a>
+    <!-- BOTON VOLVER ARRIBA: position fixed -->
+    <a href="#" id="btn-volver-arriba" title="Volver arriba">▲</a>
 
-    <footer id="pie-pagina-principal">
-        <p><strong>AgroDirecto</strong> - Del campo a su negocio, sin rodeos. 2025</p>
+    <footer id="pie-pagina">
+        <p><strong>AgroDirecto</strong> — Del campo a su negocio, sin rodeos. 2025</p>
     </footer>
 
-<script>
-    document.getElementById("contactoForm").addEventListener("submit", (e) => {
-        e.preventDefault();
+    <script src="datos.js"></script>
 
-        const nombre  = document.getElementById("contactNombre").value.trim();
-        const correo  = document.getElementById("contactCorreo").value.trim();
-        const mensaje = document.getElementById("contactMensaje").value.trim();
+    <script>
+        // Mostrar boton volver arriba al hacer scroll
+        window.addEventListener('scroll', function () {
+            const btn = document.getElementById('btn-volver-arriba');
+            if (window.scrollY > 300) {
+                btn.classList.add('visible');
+            } else {
+                btn.classList.remove('visible');
+            }
+        });
 
-        // Validación básica de correo
-        const regexCorreo = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!regexCorreo.test(correo)) {
-            alert("Por favor ingresa un correo electrónico válido.");
-            return;
-        }
+        document.getElementById('btn-volver-arriba').addEventListener('click', function (e) {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
 
-        if (!nombre || !mensaje) {
-            alert("Todos los campos son obligatorios.");
-            return;
-        }
+        // Validacion simple del formulario de contacto
+        document.getElementById('contactoForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const ok = document.getElementById('confirmacionContacto');
+            const err = document.getElementById('errorContacto');
+            err.style.display = 'none';
 
-        // Mostrar mensaje de éxito (sin enviar a la API)
-        const confirmacion = document.getElementById("confirmacionContacto");
-        if (confirmacion) {
-            confirmacion.textContent = `¡Gracias, ${nombre}! Tu mensaje fue enviado correctamente.`;
-            confirmacion.style.display = "block";
-        }
-
-        document.getElementById("contactoForm").reset();
-    });
-</script>
+            ok.textContent = 'Mensaje enviado correctamente. Le responderemos pronto.';
+            ok.style.display = 'block';
+            this.reset();
+        });
+    </script>
 
 </body>
 </html>

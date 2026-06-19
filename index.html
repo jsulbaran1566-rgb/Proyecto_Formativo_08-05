@@ -4,151 +4,165 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="estilo.css">
-    <title>AgroDirecto - Inicio</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Arvo:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amaranth:ital,wght@0,400;0,700;1,400;1,700&family=Arvo:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">   
+
+  <title>AgroDirecto - Inicio</title>
 </head>
 <body>
-
-    <!-- NAV STICKY (position: sticky; top: 0; z-index: 1000) -->
-    <nav id="navegacion-principal">
+ 
+    <!-- NAV: position sticky, z-index 1000 -->
+    <nav id="nav-principal">
         <a href="index.html"><strong>AGRODIRECTO</strong></a>
-        <div class="enlaces-nav">
-            <a href="index.html" class="nav-activo">Inicio</a>
+        <div class="links-nav">
+            <a href="index.html" class="link-activo">Inicio</a>
             <a href="nosotros.html">Nosotros</a>
             <a href="contacto.html">Contacto</a>
-            <a href="login.html">Acceso</a>
+            <a href="login.html" class="btn-verde" style="padding:7px 16px;font-size:0.85rem;">Acceso</a>
         </div>
     </nav>
-
-    <!-- HERO (position: relative) con elementos ::before y ::after (position: absolute) -->
-    <header id="seccion-hero">
-        <!-- Badge decorativo (position: absolute) -->
-        <span class="badge-hero">✦ Plataforma B2B</span>
+ 
+    <!-- HERO: position relative con ::before y ::after absolute decorativos -->
+    <header id="seccion-hero" class="hero-con-imagen hero-inicio-img">
+        <span class="badge-seccion">✦ AGRODIRECTO</span>
         <h1>Cosecha Anticipada para su Negocio</h1>
-        <p>Asegure precios estables comprando directamente al productor agricola. Sin intermediarios, con trazabilidad completa.</p>
-        <a href="registro.html" class="boton-accion">Crear Perfil</a>
+        <p>Asegure precios estables comprando directamente al productor agricola. Sin intermediarios, con trazabilidad completa desde la siembra hasta su negocio.</p>
+        <div class="hero-botones">
+            <a href="registro.html" class="btn-verde">Crear Perfil</a>
+            <a href="nosotros.html" class="btn-verde btn-borde">Conocer mas</a>
+        </div>
     </header>
-
-    <main class="contenedor-principal">
-
-        <div class="titulo-seccion">
-            <h2>¿Como funciona?</h2>
+ 
+    <main class="contenido-pagina">
+ 
+        <!-- ESTADISTICAS DINAMICAS -->
+        <div class="fila-stats fila-stats-landing">
+            <div class="stat-tarjeta" data-icono="🌱">
+                <div class="stat-numero" id="totalLotes">—</div>
+                <div class="stat-etiqueta">Lotes Activos</div>
+            </div>
+            <div class="stat-tarjeta stat-azul" data-icono="🏪">
+                <div class="stat-numero" id="totalCompradores">—</div>
+                <div class="stat-etiqueta">Compradores Registrados</div>
+            </div>
+            <div class="stat-tarjeta stat-marron" data-icono="📦">
+                <div class="stat-numero" id="totalCategorias">—</div>
+                <div class="stat-etiqueta">Categorias Disponibles</div>
+            </div>
+            <div class="stat-tarjeta stat-naranja" data-icono="🚚">
+                <div class="stat-numero" id="totalProveedores">—</div>
+                <div class="stat-etiqueta">Proveedores Logisticos</div>
+            </div>
+        </div>
+ 
+        <div class="titulo-seccion margen-top-32">
+            <h2>¿Como funciona AgroDirecto?</h2>
             <p>Un proceso simple para conectar el campo con su negocio</p>
         </div>
-
-        <div class="cuadricula-tarjetas">
-            <div class="tarjeta-info">
+ 
+        <div class="grid-tarjetas">
+            <div class="tarjeta">
                 <h3>1. Explore Lotes</h3>
-                <p>Filtre por categoria de cultivo y fecha estimada de cosecha. Encuentre el productor ideal para su negocio.</p>
+                <p>Filtre por categoria de cultivo y fecha estimada de cosecha. Encuentre el productor ideal para su negocio en todo el territorio nacional.</p>
             </div>
-            <div class="tarjeta-info">
+            <div class="tarjeta">
                 <h3>2. Reserve Cupos</h3>
-                <p>Aparte su producto antes de la recoleccion oficial con precio pactado y condiciones claras.</p>
+                <p>Aparte su producto antes de la recoleccion oficial con precio pactado y condiciones claras. Sin sorpresas.</p>
             </div>
-            <div class="tarjeta-info">
+            <div class="tarjeta">
                 <h3>3. Trazabilidad</h3>
-                <p>Siga el ciclo vital de su pedido: siembra, crecimiento y cosecha en tiempo real.</p>
+                <p>Siga el ciclo vital de su pedido: siembra, crecimiento y cosecha en tiempo real directamente desde la aplicacion.</p>
             </div>
-            <div class="tarjeta-info">
+            <div class="tarjeta">
                 <h3>4. Conexion Directa</h3>
-                <p>Sin intermediarios. El margen que antes se perdia ahora beneficia al productor y a su negocio.</p>
+                <p>Sin intermediarios. El margen que antes se perdia ahora beneficia al productor y a su negocio por igual.</p>
             </div>
         </div>
-
-        <div class="titulo-seccion mt-32">
+ 
+        <div class="titulo-seccion margen-top-32">
             <h2>¿Para quien es AgroDirecto?</h2>
+            <p>Dos perfiles, una sola plataforma</p>
         </div>
-
-        <div class="cuadricula-tarjetas">
-            <div class="tarjeta-info tarjeta-borde-marron tarjeta-flex-300">
-                <h3>Para Productores</h3>
-                <p>Venda su cosecha antes de cosecharla. Planifique sus finanzas y obtenga el precio justo por su trabajo.</p>
-                <div class="mt-16">
-                    <a href="registro.html" class="boton-accion boton-secundario">Registrarse como productor</a>
+ 
+        <div class="grid-tarjetas">
+            <div class="tarjeta tarjeta-marron tarjeta-md">
+                <img src="https://images.unsplash.com/photo-1592982537447-7440770cbfc9?auto=format&fit=crop&w=600&q=80" alt="Productor agricola trabajando en su cultivo" class="miniatura-tarjeta">
+                <h3>🌾 Para Productores</h3>
+                <p>Venda su cosecha antes de cosecharla. Planifique sus finanzas, obtenga el precio justo y lleve trazabilidad completa de sus lotes.</p>
+                <ul class="lista-tarjeta">
+                    <li>Registro de lotes y cultivos</li>
+                    <li>Actualizacion de estados de cosecha</li>
+                    <li>Ventas anticipadas con precio fijo</li>
+                    <li>Reportes de ingresos proyectados</li>
+                </ul>
+                <div class="margen-top-16">
+                    <a href="registro.html" class="btn-verde btn-borde">Registrarse como productor</a>
                 </div>
             </div>
-            <div class="tarjeta-info tarjeta-flex-300">
-                <h3>Para Compradores</h3>
-                <p>Restaurantes, hoteles y distribuidores: acceda a producto fresco con origen certificado.</p>
-                <div class="mt-16">
-                    <a href="registro.html" class="boton-accion">Registrarse como comprador</a>
+            <div class="tarjeta tarjeta-md">
+                <img src="https://images.unsplash.com/photo-1610348725531-843dff563e2c?auto=format&fit=crop&w=600&q=80" alt="Canasta de frutas y verduras frescas" class="miniatura-tarjeta">
+                <h3>🏪 Para Compradores</h3>
+                <p>Restaurantes, hoteles y distribuidores: acceda a producto fresco con origen certificado, directo del campo.</p>
+                <ul class="lista-tarjeta">
+                    <li>Exploracion de lotes disponibles</li>
+                    <li>Reservas con precio garantizado</li>
+                    <li>Seguimiento de entregas en tiempo real</li>
+                    <li>Historial de compras y facturas</li>
+                </ul>
+                <div class="margen-top-16">
+                    <a href="registro.html" class="btn-verde">Registrarse como comprador</a>
                 </div>
             </div>
         </div>
-
+ 
+        <div class="titulo-seccion margen-top-32">
+            <h2>El Problema que Resolvemos</h2>
+        </div>
+        <div class="grid-tarjetas">
+            <div class="tarjeta tarjeta-rojo">
+                <h3>🔴 Sin AgroDirecto</h3>
+                <p>La intermediacion reduce el margen del productor hasta un <strong>70%</strong>. El agricultor recibe una fraccion del precio final.</p>
+            </div>
+            <div class="tarjeta">
+                <h3>🟢 Con AgroDirecto</h3>
+                <p>Conexion directa B2B. El productor fija su precio, el comprador paga justo. La plataforma garantiza transparencia.</p>
+            </div>
+        </div>
+ 
     </main>
-
-    <!-- BOTÓN VOLVER ARRIBA (position: fixed) -->
-    <a href="#" id="boton-top" title="Volver arriba">▲</a>
-
-    <footer id="pie-pagina-principal">
-        <p><strong>AgroDirecto</strong> - Del campo a su negocio, sin rodeos. 2025</p>
+ 
+    <!-- BOTON VOLVER ARRIBA: position fixed -->
+    <a href="#" id="btn-volver-arriba" title="Volver arriba">▲</a>
+ 
+    <footer id="pie-pagina">
+        <p><strong>AgroDirecto</strong> — Del campo a su negocio, sin rodeos. 2025</p>
     </footer>
+ 
+    <script src="datos.js"></script>
 
-<!-- =====================================================
-     SCRIPT PARA: index.html
-     Página principal / landing.
-     Muestra estadísticas generales del mercado:
-     total de lotes, categorías y compradores.
-     Rutas usadas:
-       GET /lotes
-       GET /categorias
-       GET /compradores
-     ===================================================== -->
 <script>
-    const BASE = "http://127.0.0.1:8000";
+    window.addEventListener('scroll', () => {
+        document.getElementById('btn-volver-arriba')
+            .classList.toggle('visible', window.scrollY > 200);
+    });
 
-    // ── Mostrar conteos en tarjetas de estadísticas ──────────
-    // Elementos opcionales: "totalLotes", "totalCategorias", "totalCompradores"
-    async function cargarEstadisticas() {
-        try {
-            const [resLotes, resCat, resComp] = await Promise.all([
-                fetch(`${BASE}/lotes`),
-                fetch(`${BASE}/categorias`),
-                fetch(`${BASE}/compradores`)
-            ]);
-
-            const lotes      = await resLotes.json();
-            const categorias = await resCat.json();
-            const compradores = await resComp.json();
-
-            const elLotes = document.getElementById("totalLotes");
-            const elCat   = document.getElementById("totalCategorias");
-            const elComp  = document.getElementById("totalCompradores");
-
-            if (elLotes) elLotes.textContent = lotes.length;
-            if (elCat)   elCat.textContent   = categorias.length;
-            if (elComp)  elComp.textContent  = compradores.length;
-
-        } catch (err) {
-            console.error("Error cargando estadísticas:", err);
-        }
+    function cargarStats() {
+        document.getElementById('totalLotes').textContent =
+            DB.lotes.filter(l => l.estado === 'Activo').length;
+        document.getElementById('totalCompradores').textContent =
+            DB.usuarios.filter(u => u.rol === 'Comprador').length;
+        document.getElementById('totalCategorias').textContent =
+            DB.categorias.length;
+        document.getElementById('totalProveedores').textContent =
+            DB.proveedores.filter(p => p.estado === 'Activo').length;
     }
-
-    // ── Redirigir al panel según sesión activa ───────────────
-    function verificarSesion() {
-        const rol = sessionStorage.getItem("usuario_rol");
-        const btnPanel = document.getElementById("btnIrPanel");
-        if (!btnPanel) return;
-
-        if (rol === "Administrador" || rol === "Productor") {
-            btnPanel.href = "panel.html";
-            btnPanel.textContent = "Ir al Panel";
-        } else if (rol === "Comprador") {
-            btnPanel.href = "panel_cliente.html";
-            btnPanel.textContent = "Ir a Mi Panel";
-        } else {
-            btnPanel.href = "login.html";
-            btnPanel.textContent = "Iniciar Sesión";
-        }
-    }
-
-    cargarEstadisticas();
-    verificarSesion();
+    cargarStats();
 </script>
-
-
+ 
 </body>
 </html>

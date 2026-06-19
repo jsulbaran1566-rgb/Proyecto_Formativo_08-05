@@ -1,321 +1,306 @@
 <!DOCTYPE html>
 <html lang="es">
-<head> 
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="estilo.css">
-    <title>Usuarios - AgroDirecto</title> 
+    <link rel="stylesheet" href="imagenes.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Arvo:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
-</head>
-<body> 
 
-    <!-- NAV STICKY (position: sticky; top: 0; z-index: 1000) -->
-    <nav id="navegacion-principal">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amaranth:ital,wght@0,400;0,700;1,400;1,700&family=Arvo:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+
+    <title>Usuarios - AgroDirecto</title>
+</head>
+<body class="pagina-admin">
+
+    <nav id="nav-principal">
         <a href="index.html"><strong>AGRODIRECTO</strong></a>
-        <div class="enlaces-nav">
-            <span class="rol-nav">Administracion</span>
-            <div class="campana-wrapper con-tooltip">
-                <span style="font-size:1.2rem; color:white; cursor:pointer;">🔔</span>
-                <span class="campana-badge">1</span>
-                <span class="tooltip-texto">1 notificacion nueva</span>
+        <div class="links-nav">
+            <span class="texto-rol-nav">Administracion</span>
+            <div class="icono-campana tiene-tooltip">
+                <span>🔔</span>
+                <span class="badge-campana">1</span>
+                <span class="texto-tooltip">1 notificacion</span>
             </div>
-            <a href="index.html" class="boton-accion boton-salir">Cerrar Sesion</a>
+            <a href="index.html" class="btn-verde btn-salir">Cerrar Sesion</a>
         </div>
     </nav>
 
-    <div class="diseno-panel">
-
-        <!-- BARRA LATERAL STICKY (position: sticky; top: var(--nav-height)) -->
-        <aside class="barra-lateral">
-            <div class="perfil-barra">
-                <!-- Avatar con indicador online (::after = position: absolute) -->
-                <div class="avatar-barra">🛡️</div>
-                <h4>Administrador</h4>
-                <span>Admin</span>
+    <div class="layout-panel">
+        <aside class="sidebar">
+            <div class="perfil-sidebar">
+                <div class="avatar-usuario">🛡️</div>
+                <h4 id="nombre-admin">Administrador</h4>
+                <span><span class="badge-rol badge-admin">Admin</span></span>
             </div>
-            <nav class="nav-barra">
-                <a href="panel.html">📊 Resumen</a>
+            <nav class="nav-sidebar">
+                <a href="panel_admin.html">📊 Resumen</a>
                 <a href="usuarios.html" class="activo">👥 Usuarios</a>
                 <a href="roles.html">🔐 Roles</a>
-                <a href="proveedores.html">🚚 Proveedores</a> 
-                <a href="#">🌱 Cultivos</a>
-                <a href="#">📈 Reportes</a>
-                <a href="#">⚙️ Configuracion</a>
+                <a href="proveedores.html">🚚 Proveedores</a>
+                <a href="lotes.html">🌱 Lotes</a>
+                <a href="historial.html">📋 Historial</a>
+                <a href="registro.html">📝 Nuevo Registro</a>
                 <a href="contacto.html">💬 Soporte</a>
             </nav>
         </aside>
 
-        <div class="contenido-panel">
+        <div class="zona-contenido">
+            <div class="banner-panel banner-usuarios">
+                <span>👥 Comunidad AgroDirecto — productores y compradores</span>
+            </div>
 
-            <div class="encabezado-panel">
+            <div class="cabecera-panel">
                 <div>
-                    <h2>Gestion de Usuarios</h2>
-                    <p>Administre los usuarios registrados en la plataforma</p>
+                    <h2>Gestion de Usuarios <span class="badge-rol badge-admin">ADMIN</span></h2>
+                    <p>Crear, modificar y eliminar cuentas del sistema</p>
                 </div>
-                <a href="#" class="boton-accion">+ Nuevo Usuario</a>
+                <button class="btn-verde" onclick="abrirModal()">+ Nuevo Usuario</button>
             </div>
 
-            <!-- Estadísticas con ícono decorativo (position: absolute en ::before) -->
-            <div class="fila-estadisticas">
-                <div class="tarjeta-estadistica" data-icono="👥">
-                    <div class="valor-estadistica">128</div>
-                    <div class="etiqueta-estadistica">Usuarios Totales</div> 
+            <div class="fila-stats">
+                <div class="stat-tarjeta" data-icono="👥">
+                    <div class="stat-numero" id="stat-total">—</div>
+                    <div class="stat-etiqueta">Total Usuarios</div>
                 </div>
-                <div class="tarjeta-estadistica estadistica-verde" data-icono="✅">
-                    <div class="valor-estadistica">112</div>
-                    <div class="etiqueta-estadistica">Activos</div>
+                <div class="stat-tarjeta stat-azul" data-icono="🛡️">
+                    <div class="stat-numero" id="stat-admins">—</div>
+                    <div class="stat-etiqueta">Administradores</div>
                 </div>
-                <div class="tarjeta-estadistica estadistica-marron" data-icono="🌿">
-                    <div class="valor-estadistica">74</div>
-                    <div class="etiqueta-estadistica">Productores</div>
+                <div class="stat-tarjeta stat-marron" data-icono="🌱">
+                    <div class="stat-numero" id="stat-productores">—</div>
+                    <div class="stat-etiqueta">Productores</div>
                 </div>
-                <div class="tarjeta-estadistica estadistica-azul" data-icono="🏪">
-                    <div class="valor-estadistica">54</div>
-                    <div class="etiqueta-estadistica">Compradores</div>
-                </div>
-                <div class="tarjeta-estadistica estadistica-rojo" data-icono="⛔">
-                    <div class="valor-estadistica">16</div>
-                    <div class="etiqueta-estadistica">Inactivos</div>
+                <div class="stat-tarjeta stat-naranja" data-icono="🏪">
+                    <div class="stat-numero" id="stat-compradores">—</div>
+                    <div class="stat-etiqueta">Compradores</div>
                 </div>
             </div>
 
-            <!-- Barra de búsqueda y filtro -->
-            <div class="barra-busqueda">
-                <input type="text" class="campo-formulario" placeholder="🔍 Buscar por nombre o correo...">
-                <select class="campo-formulario" style="max-width:180px;">
+            <div class="barra-filtro margen-top-32">
+                <input type="text" id="filtro-usuario" class="campo-input" placeholder="Buscar por nombre o correo...">
+                <select id="filtro-rol-usuario" class="campo-input" style="max-width:180px;">
                     <option value="">Todos los roles</option>
-                    <option value="productor">Productor</option>
-                    <option value="comprador">Comprador</option>
-                    <option value="admin">Administrador</option>
+                    <option>Administrador</option>
+                    <option>Productor</option>
+                    <option>Comprador</option>
                 </select>
-                <select class="campo-formulario" style="max-width:160px;">
-                    <option value="">Todos los estados</option>
-                    <option value="activo">Activo</option>
-                    <option value="inactivo">Inactivo</option>
-                </select>
-                <button class="boton-accion">Filtrar</button>
+                <button class="btn-verde btn-borde" onclick="filtrar()">Filtrar</button>
+                <button class="btn-verde btn-borde" onclick="limpiarFiltro()">Limpiar</button>
             </div>
 
-            <!-- Tabla de usuarios -->
-            <table class="tabla-panel">
+            <div id="alerta-usuario" class="alerta"></div>
+
+            <table class="tabla-datos">
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Nombre / Razon Social</th>
+                        <th>Nombre</th>
                         <th>Correo</th>
                         <th>Rol</th>
+                        <th>Telefono</th>
                         <th>Estado</th>
-                        <th>Registro</th>
                         <th>Acciones</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr>
-                        <td>#001</td>
-                        <td>Finca El Paraiso</td>
-                        <td>paraiso@finca.com</td>
-                        <td><span class="chip chip-productor">🌿 Productor</span></td>
-                        <td><span class="etiqueta etiqueta-verde">Activo</span></td>
-                        <td>12 Ene 2025</td>
-                        <td>
-                            <div style="display:flex;gap:6px;flex-wrap:wrap;">
-                                <a href="#" class="boton-accion" style="padding:4px 10px;font-size:0.78rem;">Editar</a>
-                                <a href="#" class="boton-accion boton-secundario" style="padding:4px 10px;font-size:0.78rem;">Ver</a>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>#002</td>
-                        <td>Restaurante La Mesa</td>
-                        <td>lamesa@rest.com</td>
-                        <td><span class="chip chip-comprador">🏪 Comprador</span></td>
-                        <td><span class="etiqueta etiqueta-verde">Activo</span></td>
-                        <td>18 Ene 2025</td>
-                        <td>
-                            <div style="display:flex;gap:6px;flex-wrap:wrap;">
-                                <a href="#" class="boton-accion" style="padding:4px 10px;font-size:0.78rem;">Editar</a>
-                                <a href="#" class="boton-accion boton-secundario" style="padding:4px 10px;font-size:0.78rem;">Ver</a>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>#003</td>
-                        <td>Agro Santa Marta</td>
-                        <td>agro@santamarta.com</td>
-                        <td><span class="chip chip-productor">🌿 Productor</span></td>
-                        <td><span class="etiqueta etiqueta-verde">Activo</span></td>
-                        <td>3 Feb 2025</td>
-                        <td>
-                            <div style="display:flex;gap:6px;flex-wrap:wrap;">
-                                <a href="#" class="boton-accion" style="padding:4px 10px;font-size:0.78rem;">Editar</a>
-                                <a href="#" class="boton-accion boton-secundario" style="padding:4px 10px;font-size:0.78rem;">Ver</a>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>#004</td>
-                        <td>Hotel Campestre Villa Real</td>
-                        <td>compras@villareal.com</td>
-                        <td><span class="chip chip-comprador">🏪 Comprador</span></td> 
-                        <td><span class="etiqueta etiqueta-amarillo">Pendiente</span></td>
-                        <td>15 Mar 2025</td>
-                        <td>
-                            <div style="display:flex;gap:6px;flex-wrap:wrap;">
-                                <a href="#" class="boton-accion" style="padding:4px 10px;font-size:0.78rem;">Editar</a>
-                                <a href="#" class="boton-accion boton-secundario" style="padding:4px 10px;font-size:0.78rem;">Ver</a>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>#005</td>
-                        <td>Finca Los Andes</td>
-                        <td>losandes@finca.com</td>
-                        <td><span class="chip chip-productor">🌿 Productor</span></td>
-                        <td><span class="etiqueta etiqueta-rojo">Inactivo</span></td>
-                        <td>20 Mar 2025</td>
-                        <td>
-                            <div style="display:flex;gap:6px;flex-wrap:wrap;">
-                                <a href="#" class="boton-accion" style="padding:4px 10px;font-size:0.78rem;">Editar</a>
-                                <a href="#" class="boton-accion boton-secundario" style="padding:4px 10px;font-size:0.78rem;">Ver</a>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>#006</td>
-                        <td>Admin Sistema</td>
-                        <td>admin@agrodirecto.com</td>
-                        <td><span class="chip chip-admin">🛡️ Admin</span></td>
-                        <td><span class="etiqueta etiqueta-verde">Activo</span></td>
-                        <td>1 Ene 2025</td>
-                        <td>
-                            <div style="display:flex;gap:6px;flex-wrap:wrap;">
-                                <a href="#" class="boton-accion" style="padding:4px 10px;font-size:0.78rem;">Editar</a>
-                                <a href="#" class="boton-accion boton-secundario" style="padding:4px 10px;font-size:0.78rem;">Ver</a>
-                            </div>
-                        </td>
-                    </tr>
+                <tbody id="tabla-usuarios">
+                    <tr><td colspan="7" style="text-align:center;color:#aaa;padding:20px;">Cargando...</td></tr>
                 </tbody>
             </table>
-
-            <!-- Paginacion -->
-            <div style="display:flex;justify-content:center;gap:8px;margin-top:20px;flex-wrap:wrap;">
-                <a href="#" class="boton-accion boton-secundario" style="padding:6px 14px;font-size:0.82rem;">← Anterior</a>
-                <a href="#" class="boton-accion" style="padding:6px 14px;font-size:0.82rem;">1</a>
-                <a href="#" class="boton-accion boton-secundario" style="padding:6px 14px;font-size:0.82rem;">2</a>
-                <a href="#" class="boton-accion boton-secundario" style="padding:6px 14px;font-size:0.82rem;">3</a>
-                <a href="#" class="boton-accion boton-secundario" style="padding:6px 14px;font-size:0.82rem;">Siguiente →</a>
-            </div>
-
         </div>
     </div>
 
-    <!-- BOTÓN VOLVER ARRIBA (position: fixed) -->
-    <a href="#" id="boton-top" title="Volver arriba">▲</a>
+    <a href="#" id="btn-volver-arriba" title="Volver arriba">▲</a>
 
-<!-- =====================================================
-     SCRIPT PARA: usuarios.html
-     Rutas usadas:
-       GET /usuarios
-       POST /usuarios?id=&nombre=&rol=
-       PUT  /usuarios/{id}/rol/{nuevo_rol}?nombre=&activo=
-     Inputs crear:  "uid", "uNombre", "uRol"
-     Inputs editar: "editUid", "editUNombre", "editURol"
-     ===================================================== -->
+    <!-- MODAL CREAR / EDITAR USUARIO -->
+    <div class="fondo-modal" id="modal-usuario">
+        <div class="caja-modal">
+            <button class="btn-cerrar-modal" onclick="cerrarModal()">✕</button>
+            <p class="titulo-modal" id="titulo-modal-usuario">Nuevo Usuario</p>
+            <input type="hidden" id="usuario-id">
+            <div class="fila-campos">
+                <div class="campo-grupo">
+                    <label>Nombre / Razon Social</label>
+                    <input type="text" id="usu-nombre" class="campo-input" placeholder="Ej: Finca El Paraiso">
+                </div>
+                <div class="campo-grupo">
+                    <label>Correo Electronico</label>
+                    <input type="email" id="usu-correo" class="campo-input" placeholder="correo@empresa.com">
+                </div>
+            </div>
+            <div class="fila-campos">
+                <div class="campo-grupo">
+                    <label>Telefono</label>
+                    <input type="tel" id="usu-telefono" class="campo-input" placeholder="+57 300 000 0000">
+                </div>
+                <div class="campo-grupo">
+                    <label>Rol</label>
+                    <select id="usu-rol" class="campo-input">
+                        <option value="">— Seleccionar —</option>
+                        <option>Administrador</option>
+                        <option>Productor</option>
+                        <option>Comprador</option>
+                    </select>
+                </div>
+            </div>
+            <div class="campo-grupo">
+                <label>Contrasena (dejar vacio para no cambiar)</label>
+                <input type="password" id="usu-clave" class="campo-input" placeholder="Nueva contrasena">
+            </div>
+            <div class="campo-grupo">
+                <label>Estado</label>
+                <select id="usu-estado" class="campo-input">
+                    <option value="Activo">Activo</option>
+                    <option value="Inactivo">Inactivo</option>
+                </select>
+            </div>
+            <div class="fila-botones">
+                <button class="btn-verde" onclick="guardarUsuario()">Guardar</button>
+                <button class="btn-verde btn-borde" onclick="cerrarModal()">Cancelar</button>
+            </div>
+            <div id="alerta-modal-usuario" class="alerta"></div>
+        </div>
+    </div>
+
+    <script src="datos.js"></script>
+
 <script>
-    const API_USUARIOS  = "http://127.0.0.1:8000/usuarios";
-    const ROLES_VALIDOS = ["Productor", "Comprador", "Administrador"];
+    let todosUsuarios = [...DB.usuarios];
 
-    // ── LISTAR ──────────────────────────────────────────────
-    async function cargarUsuarios() {
-        try {
-            const res      = await fetch(API_USUARIOS);
-            const usuarios = await res.json();
-            const tabla    = document.getElementById("tablaUsuarios");
-            tabla.innerHTML = "";
+    document.getElementById('nombre-admin').textContent =
+        sessionStorage.getItem('usuario_nombre') || 'Administrador';
 
-            usuarios.forEach(u => {
-                tabla.innerHTML += `
-                    <tr>
-                        <td>${u.id}</td>
-                        <td>${u.nombre}</td>
-                        <td>${u.rol}</td>
-                        <td>
-                            <button onclick="prepararEdicion(${u.id}, '${u.nombre}', '${u.rol}')">
-                                Editar
-                            </button>
-                        </td>
-                    </tr>`;
-            });
-        } catch (err) { console.error("Error cargando usuarios:", err); }
+    window.addEventListener('scroll', () => {
+        document.getElementById('btn-volver-arriba')
+            .classList.toggle('visible', window.scrollY > 200);
+    });
+
+    function cargarUsuarios() {
+        todosUsuarios = [...DB.usuarios];
+        actualizarStats(todosUsuarios);
+        renderTabla(todosUsuarios);
     }
 
-    // ── CREAR ───────────────────────────────────────────────
-    document.getElementById("usuarioForm").addEventListener("submit", async (e) => {
-        e.preventDefault();
+    function actualizarStats(lista) {
+        document.getElementById('stat-total').textContent       = lista.length;
+        document.getElementById('stat-admins').textContent      = lista.filter(u => u.rol === 'Administrador').length;
+        document.getElementById('stat-productores').textContent = lista.filter(u => u.rol === 'Productor').length;
+        document.getElementById('stat-compradores').textContent = lista.filter(u => u.rol === 'Comprador').length;
+    }
 
-        const id     = document.getElementById("uid").value;
-        const nombre = document.getElementById("uNombre").value.trim();
-        const rol    = document.getElementById("uRol").value;
+    function renderTabla(lista) {
+        const tb = document.getElementById('tabla-usuarios');
+        tb.innerHTML = lista.length ? lista.map(u => `
+            <tr>
+                <td>${u.id}</td>
+                <td>${u.nombre}</td>
+                <td>${u.correo || '—'}</td>
+                <td><span class="chip-rol chip-${u.rol.toLowerCase()}">${u.rol}</span></td>
+                <td>${u.telefono || '—'}</td>
+                <td><span class="etiqueta ${u.estado === 'Activo' ? 'etiqueta-verde' : 'etiqueta-gris'}">${u.estado}</span></td>
+                <td><div class="acciones-tabla">
+                    <button class="btn-tabla btn-editar"   onclick="editarUsuario(${u.id})">Editar</button>
+                    <button class="btn-tabla btn-eliminar" onclick="eliminarUsuario(${u.id})">Eliminar</button>
+                </div></td>
+            </tr>`).join('') :
+            '<tr><td colspan="7" style="text-align:center;color:#aaa;padding:20px;">Sin usuarios registrados</td></tr>';
+    }
 
-        if (!ROLES_VALIDOS.includes(rol)) {
-            alert("Rol inválido. Usa: Productor, Comprador o Administrador.");
+    function filtrar() {
+        const q   = document.getElementById('filtro-usuario').value.toLowerCase();
+        const rol = document.getElementById('filtro-rol-usuario').value;
+        renderTabla(DB.usuarios.filter(u =>
+            (!q || u.nombre.toLowerCase().includes(q) || (u.correo||'').toLowerCase().includes(q)) &&
+            (!rol || u.rol === rol)
+        ));
+    }
+
+    function limpiarFiltro() {
+        document.getElementById('filtro-usuario').value = '';
+        document.getElementById('filtro-rol-usuario').value = '';
+        renderTabla(DB.usuarios);
+    }
+
+    function abrirModal(id = null) {
+        document.getElementById('usuario-id').value = id || '';
+        document.getElementById('titulo-modal-usuario').textContent = id ? 'Editar Usuario' : 'Nuevo Usuario';
+        if (!id) {
+            ['usu-nombre','usu-correo','usu-telefono','usu-clave'].forEach(i => document.getElementById(i).value = '');
+            document.getElementById('usu-rol').value    = '';
+            document.getElementById('usu-estado').value = 'Activo';
+        }
+        document.getElementById('alerta-modal-usuario').className = 'alerta';
+        document.getElementById('modal-usuario').classList.add('abierto');
+    }
+
+    function cerrarModal() {
+        document.getElementById('modal-usuario').classList.remove('abierto');
+    }
+
+    function editarUsuario(id) {
+        const u = DB.usuarios.find(x => x.id === id);
+        if (!u) return;
+        document.getElementById('usu-nombre').value   = u.nombre;
+        document.getElementById('usu-correo').value   = u.correo || '';
+        document.getElementById('usu-telefono').value = u.telefono || '';
+        document.getElementById('usu-rol').value      = u.rol;
+        document.getElementById('usu-estado').value   = u.estado;
+        document.getElementById('usu-clave').value    = '';
+        abrirModal(id);
+    }
+
+    function guardarUsuario() {
+        const alerta = document.getElementById('alerta-modal-usuario');
+        const id     = parseInt(document.getElementById('usuario-id').value);
+        const datos  = {
+            nombre:   document.getElementById('usu-nombre').value.trim(),
+            correo:   document.getElementById('usu-correo').value.trim(),
+            telefono: document.getElementById('usu-telefono').value.trim(),
+            rol:      document.getElementById('usu-rol').value,
+            estado:   document.getElementById('usu-estado').value
+        };
+        const clave = document.getElementById('usu-clave').value;
+        if (clave) datos.clave = clave;
+
+        if (!datos.nombre || !datos.rol) {
+            alerta.textContent = 'Complete nombre y rol.';
+            alerta.className = 'alerta alerta-error visible';
             return;
         }
 
-        try {
-            const res = await fetch(
-                `${API_USUARIOS}?id=${id}&nombre=${encodeURIComponent(nombre)}&rol=${encodeURIComponent(rol)}`,
-                { method: "POST" }
-            );
-            if (res.ok) {
-                document.getElementById("usuarioForm").reset();
-                cargarUsuarios();
-            } else {
-                const err = await res.json();
-                alert("Error: " + (err.detail || err.error));
-            }
-        } catch (err) { console.error("Error creando usuario:", err); }
-    });
-
-    // ── EDITAR ──────────────────────────────────────────────
-    function prepararEdicion(id, nombre, rol) {
-        document.getElementById("editUid").value    = id;
-        document.getElementById("editUNombre").value = nombre;
-        document.getElementById("editURol").value   = rol;
-    }
-
-    document.getElementById("editUsuarioForm").addEventListener("submit", async (e) => {
-        e.preventDefault();
-
-        const id        = document.getElementById("editUid").value;
-        const nombre    = document.getElementById("editUNombre").value.trim();
-        const nuevoRol  = document.getElementById("editURol").value;
-
-        if (!ROLES_VALIDOS.includes(nuevoRol)) {
-            alert("Rol inválido.");
-            return;
+        if (id) {
+            // Editar
+            const idx = DB.usuarios.findIndex(u => u.id === id);
+            DB.usuarios[idx] = { ...DB.usuarios[idx], ...datos };
+        } else {
+            // Crear
+            datos.id    = DB.siguienteId('usuarios');
+            datos.clave = datos.clave || '12345678';
+            DB.usuarios.push(datos);
         }
 
-        try {
-            const res = await fetch(
-                `${API_USUARIOS}/${id}/rol/${encodeURIComponent(nuevoRol)}?nombre=${encodeURIComponent(nombre)}&activo=true`,
-                { method: "PUT" }
-            );
-            if (res.ok) {
-                document.getElementById("editUsuarioForm").reset();
-                cargarUsuarios();
-            } else {
-                const err = await res.json();
-                alert("Error: " + (err.detail || err.error));
-            }
-        } catch (err) { console.error("Error editando usuario:", err); }
-    });
+        alerta.textContent = id ? 'Usuario actualizado.' : 'Usuario creado.';
+        alerta.className = 'alerta alerta-ok visible';
+        setTimeout(() => { cerrarModal(); cargarUsuarios(); }, 900);
+    }
+
+    function eliminarUsuario(id) {
+        const alerta = document.getElementById('alerta-usuario');
+        if (!confirm('¿Eliminar este usuario?')) return;
+        const idx = DB.usuarios.findIndex(u => u.id === id);
+        if (idx !== -1) DB.usuarios.splice(idx, 1);
+        alerta.textContent = 'Usuario eliminado.';
+        alerta.className = 'alerta alerta-ok visible';
+        cargarUsuarios();
+        setTimeout(() => alerta.className = 'alerta', 3000);
+    }
 
     cargarUsuarios();
 </script>
-
 
 </body>
 </html>

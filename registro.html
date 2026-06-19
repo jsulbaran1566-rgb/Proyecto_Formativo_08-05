@@ -4,105 +4,140 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="estilo.css">
-    <title>Registro - AgroDirecto</title>
+    <link rel="stylesheet" href="imagenes.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Arvo:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amaranth:ital,wght@0,400;0,700;1,400;1,700&family=Arvo:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+
+    <title>Registro - AgroDirecto</title>
 </head>
 <body>
 
-    <!-- NAV STICKY (position: sticky; top: 0; z-index: 1000) -->
-    <nav id="navegacion-principal">
+    <!-- NAV: position sticky -->
+    <nav id="nav-principal">
         <a href="index.html"><strong>AGRODIRECTO</strong></a>
-        <div class="enlaces-nav">
-            <a href="index.html">Volver al Inicio</a>
+        <div class="links-nav">
+            <a href="index.html">← Volver al Inicio</a>
         </div>
     </nav>
 
-    <!-- .contenedor-formulario: position: relative con ::before (position: absolute) como barra superior -->
-    <main class="contenedor-formulario contenedor-formulario-md">
-        <h2>Crear Cuenta</h2>
-        <p>Unase a la plataforma de comercio agricola directo.</p>
+    <!-- caja-formulario: position relative con ::before barra superior de color -->
+    <main class="pantalla-login">
+        <div class="caja-formulario caja-formulario-grande con-foto-superior">
+            <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=700&q=80" alt="Campo de cultivo al amanecer" class="foto-formulario">
+            <h2>Crear Cuenta</h2>
+            <p>Unase a la plataforma de comercio agricola directo en Colombia.</p>
 
-        <form action="panel.html">
-            <div class="grupo-formulario">
-                <label for="nombre">Nombre Completo / Razon Social</label>
-                <input type="text" id="nombre" class="campo-formulario" placeholder="Ej: Finca El Paraiso">
-            </div>
-            <div class="grupo-formulario">
-                <label for="correo">Correo Electronico</label>
-                <input type="email" id="correo" class="campo-formulario" placeholder="correo@empresa.com">
-            </div>
-            <div class="grupo-formulario">
-                <label for="telefono">Telefono / WhatsApp</label>
-                <input type="tel" id="telefono" class="campo-formulario" placeholder="+57 300 000 0000">
-            </div>
-            <div class="grupo-formulario">
-                <label for="rol">Seleccione su rol</label>
-                <select id="rol" class="campo-formulario">
-                    <option value="">-- Seleccione --</option>
-                    <option value="productor">Productor (Gestionar fincas y lotes)</option>
-                    <option value="comprador">Comprador (Restaurante / Hotel / Distribuidor)</option>
-                </select>
-            </div>
-            <div class="grupo-formulario">
-                <label for="clave">Contrasena</label>
-                <input type="password" id="clave" class="campo-formulario" placeholder="Minimo 8 caracteres">
-            </div>
-            <div class="accion-formulario">
-                <button type="submit" class="boton-accion">Crear mi Cuenta</button>
-            </div>
-        </form>
 
-        <div class="pie-formulario">
-            Ya tiene cuenta? <a href="login.html">Inicie sesion aqui</a>
+            <form id="form-registro">
+                <div class="campo-grupo">
+                    <label for="reg-id">Numero de Identificacion</label>
+                    <input type="text" id="reg-id" class="campo-input"
+                           placeholder="Ej: 1234567890" required>
+                </div>
+                <div class="campo-grupo">
+                    <label for="reg-nombre">Nombre Completo / Razon Social</label>
+                    <input type="text" id="reg-nombre" class="campo-input"
+                           placeholder="Ej: Finca El Paraiso SAS" required>
+                </div>
+                <div class="campo-grupo">
+                    <label for="reg-correo">Correo Electronico</label>
+                    <input type="email" id="reg-correo" class="campo-input"
+                           placeholder="correo@empresa.com" required>
+                </div>
+                <div class="campo-grupo">
+                    <label for="reg-telefono">Telefono / WhatsApp</label>
+                    <input type="tel" id="reg-telefono" class="campo-input"
+                           placeholder="+57 300 000 0000">
+                </div>
+                <div class="campo-grupo">
+                    <label for="reg-rol">Seleccione su Rol</label>
+                    <select id="reg-rol" class="campo-input" required>
+                        <option value="">— Seleccione —</option>
+                        <option value="Productor">Productor — Gestionar fincas y lotes</option>
+                        <option value="Comprador">Comprador — Restaurante / Hotel / Distribuidor</option>
+                    </select>
+                </div>
+                <div class="campo-grupo">
+                    <label for="reg-clave">Contrasena</label>
+                    <input type="password" id="reg-clave" class="campo-input"
+                           placeholder="Minimo 8 caracteres" minlength="8" required>
+                </div>
+                <div class="accion-formulario">
+                    <button type="submit" id="btn-registrar" class="btn-verde">Crear mi Cuenta</button>
+                </div>
+            </form>
+
+            <div class="pie-form">
+                Ya tiene cuenta? <a href="login.html">Inicie sesion aqui</a>
+            </div>
         </div>
     </main>
 
-    <footer id="pie-pagina-principal">
-        <p><strong>AgroDirecto</strong> - Del campo a su negocio, sin rodeos. 2025</p>
+    <footer id="pie-pagina">
+        <p><strong>AgroDirecto</strong> — Del campo a su negocio, sin rodeos. 2025</p>
     </footer>
 
-<!-- =====================================================
-     SCRIPT PARA: registro.html
-     Ruta usada:
-       POST /usuarios?id=&nombre=&rol=
-     Inputs requeridos: "regId", "regNombre", "regRol"
-     ===================================================== -->
-<script>
-    const API_USUARIOS   = "http://127.0.0.1:8000/usuarios";
-    const ROLES_VALIDOS  = ["Productor", "Comprador", "Administrador"];
+    <script src="datos.js"></script>
 
-    document.getElementById("registroForm").addEventListener("submit", async (e) => {
+    <script>
+    document.getElementById('form-registro').addEventListener('submit', (e) => {
         e.preventDefault();
+        const btn = document.getElementById('btn-registrar');
+        btn.textContent = 'Creando cuenta...';
+        btn.disabled = true;
 
-        const id     = document.getElementById("regId").value;
-        const nombre = document.getElementById("regNombre").value.trim();
-        const rol    = document.getElementById("regRol").value;
+        const correo = document.getElementById('reg-correo').value.trim();
+        const rol    = document.getElementById('reg-rol').value;
 
-        if (!ROLES_VALIDOS.includes(rol)) {
-            alert("Rol inválido. Elige: Productor, Comprador o Administrador.");
+        // Validaciones
+        if (!rol) {
+            mostrarAlerta('alerta-registro', 'Por favor seleccione un rol.', 'error');
+            btn.textContent = 'Crear mi Cuenta'; btn.disabled = false;
+            return;
+        }
+        if (DB.usuarios.find(u => u.correo === correo)) {
+            mostrarAlerta('alerta-registro', 'Ya existe una cuenta con ese correo.', 'error');
+            btn.textContent = 'Crear mi Cuenta'; btn.disabled = false;
             return;
         }
 
-        try {
-            const respuesta = await fetch(
-                `${API_USUARIOS}?id=${id}&nombre=${encodeURIComponent(nombre)}&rol=${encodeURIComponent(rol)}`,
-                { method: "POST" }
-            );
+        const nuevo = {
+            id:       DB.siguienteId('usuarios'),
+            nombre:   document.getElementById('reg-nombre').value.trim(),
+            correo,
+            telefono: document.getElementById('reg-telefono').value.trim(),
+            rol,
+            clave:    document.getElementById('reg-clave').value,
+            estado:   'Activo'
+        };
+        DB.usuarios.push(nuevo);
 
-            if (respuesta.ok) {
-                alert("Usuario registrado correctamente. Ahora puedes iniciar sesión.");
-                window.location.href = "login.html";
-            } else {
-                const err = await respuesta.json();
-                alert("Error: " + (err.detail || err.error));
-            }
-        } catch (error) {
-            console.error("Error en registro:", error);
-            alert("No se pudo conectar con el servidor.");
+        // Si es comprador, tambien lo agrega a compradores
+        if (rol === 'Comprador') {
+            DB.compradores.push({ id: nuevo.id, nombre: nuevo.nombre, ciudad: '—' });
         }
+
+        mostrarAlerta('exito-registro', '¡Cuenta creada con exito! Redirigiendo al login...', 'ok');
+        document.getElementById('form-registro').reset();
+        setTimeout(() => location.href = 'login.html', 2000);
+        btn.textContent = 'Crear mi Cuenta'; btn.disabled = false;
     });
+
+    function mostrarAlerta(id, texto, tipo) {
+        let el = document.getElementById(id);
+        if (!el) {
+            el = document.createElement('div');
+            el.id = id;
+            document.querySelector('.caja-formulario').appendChild(el);
+        }
+        el.className = `alerta alerta-${tipo} visible`;
+        el.textContent = texto;
+    }
 </script>
 
 </body>

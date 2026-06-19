@@ -46,7 +46,7 @@ body {
     position: relative;
 }
 
-h1, h2{
+h1, h2, h3, h4{
     font-family: 'Amaranth';
 }
 
@@ -54,7 +54,7 @@ h1, h2{
    NAVEGACION — STICKY + POSICIONAMIENTO FIXED
    POSICIONAMIENTO 1: position sticky para el nav
    ================================================ */
-#navegacion-principal {
+#nav-principal {
     box-sizing: border-box;
     background-color: var(--verde-oscuro);
     padding: 0 28px;
@@ -77,18 +77,18 @@ h1, h2{
     width: 100%;
 }
 
-#navegacion-principal a {
+#nav-principal a {
     color: white;
     text-decoration: none;
     font-size: 0.95rem;
     transition: color 0.2s;
 }
 
-#navegacion-principal a:hover {
+#nav-principal a:hover {
     color: var(--verde-claro);
 }
 
-.enlaces-nav {
+.links-nav {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -96,13 +96,13 @@ h1, h2{
     flex-wrap: wrap;
 }
 
-.rol-nav {
+.texto-rol-nav {
     color: rgba(255, 255, 255, 0.6);
     font-size: 0.85rem;
 }
 
 /* Indicador de página activa en nav */
-.nav-activo {
+.link-activo {
     color: var(--verde-claro) !important;
     font-weight: bold;
     border-bottom: 2px solid var(--verde-claro);
@@ -113,7 +113,7 @@ h1, h2{
    BOTÓN "VOLVER ARRIBA" — POSICIONAMIENTO FIXED
    POSICIONAMIENTO 2: position fixed para botón flotante
    ================================================ */
-#boton-top {
+#btn-volver-arriba {
     /* POSICIONAMIENTO 2 — FIXED: permanece en pantalla independiente del scroll */
     position: fixed;
     bottom: 32px;
@@ -138,12 +138,12 @@ h1, h2{
     transition: opacity 0.3s, transform 0.2s;
 }
 
-#boton-top.visible {
+#btn-volver-arriba.visible {
     opacity: 1;
     pointer-events: all;
 }
 
-#boton-top:hover {
+#btn-volver-arriba:hover {
     transform: translateY(-3px);
     background-color: var(--verde-medio);
 }
@@ -169,18 +169,7 @@ h1, h2{
 }
 
 /* POSICIONAMIENTO 4 — ABSOLUTE: elemento decorativo dentro del hero */
-#seccion-hero::before {
-    content: '';
-    position: absolute;
-    top: -60px;
-    right: -60px;
-    width: 260px;
-    height: 260px;
-    background: radial-gradient(circle, rgba(76,175,80,0.18) 0%, transparent 70%);
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 0;
-}
+
 
 #seccion-hero::after {
     content: '';
@@ -200,6 +189,51 @@ h1, h2{
 #seccion-hero a {
     position: relative;
     z-index: 1;
+}
+
+/* ================================================
+   HERO CON IMAGEN DE FONDO — estructura base
+   La imagen especifica de cada pagina se define en
+   imagenes.css mediante una clase modificadora
+   (ej: .hero-contacto-img, .hero-nosotros-img)
+   ================================================ */
+#seccion-hero.hero-con-imagen {
+    background-color: var(--verde-oscuro);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: white;
+    min-height: 280px;
+}
+
+/* POSICIONAMIENTO — ABSOLUTE: velo oscuro para legibilidad del texto sobre la foto */
+#seccion-hero.hero-con-imagen::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(27,94,32,0.78) 0%, rgba(27,94,32,0.55) 100%);
+    z-index: 0;
+}
+
+#seccion-hero.hero-con-imagen::after {
+    display: none;
+}
+
+#seccion-hero.hero-con-imagen .badge-hero,
+#seccion-hero.hero-con-imagen .badge-seccion {
+    z-index: 2;
+}
+
+#seccion-hero.hero-con-imagen h1 {
+    color: white;
+}
+
+#seccion-hero.hero-con-imagen p {
+    color: rgba(255,255,255,0.92);
+}
+
+#seccion-hero.hero-con-imagen strong {
+    color: white;
 }
 
 #seccion-hero h1 {
@@ -237,7 +271,8 @@ h1, h2{
 /* ================================================
    BOTONES
    ================================================ */
-.boton-accion {
+.boton-accion,
+.btn-verde {
     display: inline-block;
     box-sizing: border-box;
     background-color: var(--verde-medio);
@@ -253,30 +288,35 @@ h1, h2{
     box-shadow: 0 2px 6px rgba(76,175,80,0.25);
 }
 
-.boton-accion:hover {
+.boton-accion:hover,
+.btn-verde:hover {
     background-color: var(--verde-oscuro);
     transform: translateY(-1px);
     box-shadow: 0 4px 12px rgba(46,125,50,0.3);
 }
 
-.boton-salir {
+.boton-salir,
+.btn-salir {
     background-color: var(--rojo);
     padding: 7px 14px;
     font-size: 0.85rem;
 }
 
-.boton-salir:hover {
+.boton-salir:hover,
+.btn-salir:hover {
     background-color: #b71c1c;
 }
 
-.boton-secundario {
+.boton-secundario,
+.btn-borde {
     background-color: white;
     color: var(--verde-oscuro);
     border: 2px solid var(--verde-oscuro);
     box-shadow: none;
 }
 
-.boton-secundario:hover {
+.boton-secundario:hover,
+.btn-borde:hover {
     background-color: var(--verde-fondo);
 }
 
@@ -308,7 +348,7 @@ h1, h2{
 /* ================================================
    TARJETAS
    ================================================ */
-.tarjeta-info {
+.tarjeta {
     box-sizing: border-box;
     background-color: var(--blanco);
     border: 1px solid var(--gris-claro);
@@ -326,13 +366,13 @@ h1, h2{
     overflow: hidden;
 }
 
-.tarjeta-info:hover {
+.tarjeta:hover {
     box-shadow: 0 6px 20px rgba(0,0,0,0.1);
     transform: translateY(-2px);
 }
 
 /* POSICIONAMIENTO 8 — ABSOLUTE: línea decorativa dentro de cada tarjeta */
-.tarjeta-info::after {
+.tarjeta::after {
     content: '';
     position: absolute;
     bottom: 0;
@@ -343,10 +383,10 @@ h1, h2{
     pointer-events: none;
 }
 
-.tarjeta-info h3 { color: var(--verde-oscuro); font-size: 1.05rem; }
-.tarjeta-info p  { color: #555; font-size: 0.92rem; }
+.tarjeta h3 { color: var(--verde-oscuro); font-size: 1.05rem; }
+.tarjeta p  { color: #555; font-size: 0.92rem; }
 
-.cuadricula-tarjetas {
+.grid-tarjetas {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -354,14 +394,14 @@ h1, h2{
     margin-top: 24px;
 }
 
-.cuadricula-tarjetas > .tarjeta-info {
+.grid-tarjetas > .tarjeta {
     flex: 1 1 240px;
 }
 
-.tarjeta-borde-marron  { border-top-color: var(--marron); }
-.tarjeta-borde-rojo    { border-top-color: var(--rojo-problema); }
-.tarjeta-borde-naranja { border-top-color: var(--naranja); }
-.tarjeta-borde-azul    { border-top-color: var(--azul); }
+.tarjeta-marron  { border-top-color: var(--marron); }
+.tarjeta-rojo    { border-top-color: var(--rojo-problema); }
+.tarjeta-naranja { border-top-color: var(--naranja); }
+.tarjeta-azul    { border-top-color: var(--azul); }
 
 .tarjeta-flex-300 { flex: 1 1 300px; }
 .tarjeta-flex-200 { flex: 1 1 200px; }
@@ -377,11 +417,11 @@ h1, h2{
    TOOLTIP — POSICIONAMIENTO ABSOLUTE sobre elemento padre
    POSICIONAMIENTO 9: tooltips en tarjetas de roles/proveedores
    ================================================ */
-.con-tooltip {
+.tiene-tooltip {
     position: relative;
 }
 
-.con-tooltip .tooltip-texto {
+.tiene-tooltip .texto-tooltip {
     /* POSICIONAMIENTO 9 — ABSOLUTE: el tooltip flota sobre el elemento padre */
     position: absolute;
     bottom: calc(100% + 8px);
@@ -399,14 +439,27 @@ h1, h2{
     z-index: 50;
 }
 
-.con-tooltip:hover .tooltip-texto {
+.tiene-tooltip:hover .texto-tooltip {
     opacity: 1;
+}
+
+/* ================================================
+   PANTALLA LOGIN
+   ================================================ */
+.pantalla-login {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    padding: 40px 16px;
+    background-color: #f4f6f2;
 }
 
 /* ================================================
    FORMULARIOS
    ================================================ */
-.contenedor-formulario {
+.contenedor-formulario,
+.caja-formulario {
     box-sizing: border-box;
     width: 100%;
     max-width: 420px;
@@ -425,7 +478,8 @@ h1, h2{
 }
 
 /* POSICIONAMIENTO 11 — ABSOLUTE: acento verde en esquina del formulario */
-.contenedor-formulario::before {
+.contenedor-formulario::before,
+.caja-formulario::before {
     content: '';
     position: absolute;
     top: 0;
@@ -440,12 +494,18 @@ h1, h2{
     max-width: 480px;
 }
 
-.contenedor-formulario h2 { color: var(--verde-oscuro); margin-bottom: 2px; }
-.contenedor-formulario p  { color: #777; font-size: 0.88rem; margin-bottom: 12px; }
+.caja-formulario-grande {
+    max-width: 560px;
+}
 
-.grupo-formulario { margin-bottom: 16px; }
+.contenedor-formulario h2,
+.caja-formulario h2 { color: var(--verde-oscuro); margin-bottom: 2px; }
+.contenedor-formulario p,
+.caja-formulario p  { color: #777; font-size: 0.88rem; margin-bottom: 12px; }
 
-.grupo-formulario label {
+.campo-grupo { margin-bottom: 16px; }
+
+.campo-grupo label {
     display: block;
     font-weight: 600;
     font-size: 0.88rem;
@@ -453,7 +513,7 @@ h1, h2{
     color: var(--verde-oscuro);
 }
 
-.campo-formulario {
+.campo-input {
     box-sizing: border-box;
     width: 100%;
     padding: 10px 13px;
@@ -465,14 +525,14 @@ h1, h2{
     transition: border-color 0.2s, box-shadow 0.2s;
 }
 
-.campo-formulario:focus {
+.campo-input:focus {
     outline: none;
     border-color: var(--verde-medio);
     box-shadow: 0 0 0 3px rgba(76,175,80,0.15);
     background: var(--blanco);
 }
 
-.textarea-formulario {
+.campo-textarea {
     resize: vertical;
     font-family: inherit;
 }
@@ -493,7 +553,7 @@ h1, h2{
     gap: 16px;
 }
 
-.fila-formulario .grupo-formulario {
+.fila-formulario .campo-grupo {
     flex: 1 1 200px;
 }
 
@@ -506,14 +566,14 @@ h1, h2{
     margin-top: 4px;
 }
 
-.pie-formulario {
+.pie-form {
     text-align: center;
     margin-top: 18px;
     font-size: 0.85rem;
     color: #888;
 }
 
-.pie-formulario a {
+.pie-form a {
     color: var(--verde-oscuro);
     font-weight: bold;
     text-decoration: none;
@@ -609,7 +669,7 @@ h1, h2{
    ================================================ */
 
 /* POSICIONAMIENTO 15 — RELATIVE: contexto del layout de panel */
-.diseno-panel {
+.layout-panel {
     display: flex;
     flex-direction: row;
     flex: 1;
@@ -618,7 +678,7 @@ h1, h2{
 }
 
 /* POSICIONAMIENTO 16 — STICKY: la barra lateral queda fija al hacer scroll */
-.barra-lateral {
+.sidebar {
     box-sizing: border-box;
     width: 230px;
     flex-shrink: 0;
@@ -635,7 +695,7 @@ h1, h2{
     overflow-y: auto;
 }
 
-.perfil-barra {
+.perfil-sidebar {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -646,7 +706,7 @@ h1, h2{
 }
 
 /* POSICIONAMIENTO 17 — RELATIVE: para el indicador de estado online del avatar */
-.avatar-barra {
+.avatar-usuario {
     width: 58px;
     height: 58px;
     border-radius: 50%;
@@ -661,7 +721,7 @@ h1, h2{
 }
 
 /* POSICIONAMIENTO 18 — ABSOLUTE: punto verde de "en línea" sobre el avatar */
-.avatar-barra::after {
+.avatar-usuario::after {
     content: '';
     position: absolute;
     bottom: 2px;
@@ -673,8 +733,8 @@ h1, h2{
     border: 2px solid var(--verde-oscuro);
 }
 
-.perfil-barra h4  { color: white; font-size: 0.9rem; font-weight: 600; }
-.perfil-barra span {
+.perfil-sidebar h4  { color: white; font-size: 0.9rem; font-weight: 600; }
+.perfil-sidebar span {
     font-size: 0.75rem;
     color: rgba(255, 255, 255, 0.65);
     background: rgba(255,255,255,0.1);
@@ -682,12 +742,12 @@ h1, h2{
     border-radius: 20px;
 }
 
-.nav-barra {
+.nav-sidebar {
     display: flex;
     flex-direction: column;
 }
 
-.nav-barra a {
+.nav-sidebar a {
     display: block;
     padding: 11px 20px;
     color: rgba(255, 255, 255, 0.8);
@@ -697,14 +757,14 @@ h1, h2{
     transition: background 0.15s, color 0.15s, border-color 0.15s;
 }
 
-.nav-barra a.activo,
-.nav-barra a:hover {
+.nav-sidebar a.activo,
+.nav-sidebar a:hover {
     background: rgba(255, 255, 255, 0.1);
     color: white;
     border-left-color: var(--verde-claro);
 }
 
-.contenido-panel {
+.zona-contenido {
     flex: 1;
     padding: 36px 32px;
     background-color: #f4f6f2;
@@ -713,7 +773,7 @@ h1, h2{
     overflow-y: auto;
 }
 
-.encabezado-panel {
+.cabecera-panel {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -723,13 +783,13 @@ h1, h2{
     gap: 12px;
 }
 
-.encabezado-panel h2 { font-size: 1.45rem; color: var(--verde-oscuro); font-weight: 700; }
-.encabezado-panel p  { color: #888; font-size: 0.85rem; margin-top: 3px; }
+.cabecera-panel h2 { font-size: 1.45rem; color: var(--verde-oscuro); font-weight: 700; }
+.cabecera-panel p  { color: #888; font-size: 0.85rem; margin-top: 3px; }
 
 /* ================================================
    ESTADISTICAS — POSICIONAMIENTO RELATIVO CON NÚMERO GRANDE
    ================================================ */
-.fila-estadisticas {
+.fila-stats {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -738,7 +798,7 @@ h1, h2{
 }
 
 /* POSICIONAMIENTO 19 — RELATIVE: para el ícono decorativo de fondo en tarjeta estadística */
-.tarjeta-estadistica {
+.stat-tarjeta {
     box-sizing: border-box;
     background: var(--blanco);
     border: 1px solid var(--gris-claro);
@@ -755,13 +815,13 @@ h1, h2{
     transition: box-shadow 0.2s, transform 0.2s;
 }
 
-.tarjeta-estadistica:hover {
+.stat-tarjeta:hover {
     box-shadow: 0 4px 16px rgba(0,0,0,0.1);
     transform: translateY(-2px);
 }
 
 /* POSICIONAMIENTO 20 — ABSOLUTE: número gigante decorativo de fondo */
-.tarjeta-estadistica::before {
+.stat-tarjeta::before {
     content: attr(data-icono);
     position: absolute;
     right: 10px;
@@ -772,20 +832,20 @@ h1, h2{
     pointer-events: none;
 }
 
-.estadistica-marron  { border-left-color: var(--marron); }
-.estadistica-naranja { border-left-color: var(--naranja); }
-.estadistica-azul    { border-left-color: var(--azul); }
-.estadistica-verde   { border-left-color: var(--azul-oscuro); }
-.estadistica-rojo    { border-left-color: var(--rojo); }
+.stat-marron  { border-left-color: var(--marron); }
+.stat-naranja { border-left-color: var(--naranja); }
+.stat-azul    { border-left-color: var(--azul); }
+.stat-verde   { border-left-color: var(--azul-oscuro); }
+.stat-rojo    { border-left-color: var(--rojo); }
 
-.tarjeta-estadistica .valor-estadistica {
+.stat-tarjeta .stat-numero {
     font-size: 1.8rem;
     font-weight: 700;
     color: var(--verde-oscuro);
     margin-bottom: 4px;
 }
 
-.tarjeta-estadistica .etiqueta-estadistica {
+.stat-tarjeta .stat-etiqueta {
     font-size: 0.78rem;
     color: #888;
     text-transform: uppercase;
@@ -795,7 +855,7 @@ h1, h2{
 /* ================================================
    TABLA
    ================================================ */
-.tabla-panel {
+.tabla-datos {
     width: 100%;
     border-collapse: collapse;
     font-size: 0.88rem;
@@ -807,24 +867,24 @@ h1, h2{
     margin-top: 16px;
 }
 
-.tabla-panel thead tr {
+.tabla-datos thead tr {
     background-color: var(--verde-oscuro);
     color: white;
 }
 
-.tabla-panel th,
-.tabla-panel td {
+.tabla-datos th,
+.tabla-datos td {
     padding: 11px 16px;
     text-align: left;
     border-bottom: 1px solid var(--gris-claro);
 }
 
-.tabla-panel tbody tr {
+.tabla-datos tbody tr {
     transition: background 0.15s;
 }
 
-.tabla-panel tbody tr:nth-child(even) { background-color: #f9f9f9; }
-.tabla-panel tbody tr:hover { background-color: var(--verde-fondo); }
+.tabla-datos tbody tr:nth-child(even) { background-color: #f9f9f9; }
+.tabla-datos tbody tr:hover { background-color: var(--verde-fondo); }
 
 .etiqueta {
     display: inline-block;
@@ -841,14 +901,14 @@ h1, h2{
 .etiqueta-gris     { background: #f0f0f0; color: #555; }
 .etiqueta-naranja  { background: #fff3e0; color: #b45309; }
 
-.titulo-seccion-panel {
+.titulo-panel {
     color: var(--verde-oscuro);
     margin-bottom: 4px;
     font-size: 1.05rem;
     font-weight: 700;
 }
 
-.titulo-seccion-panel-grande {
+.titulo-panel-grande {
     color: var(--verde-oscuro);
     margin-bottom: 12px;
     font-size: 1.15rem;
@@ -865,12 +925,12 @@ h1, h2{
    SECCIÓN DE ALERTAS / NOTIFICACIONES
    POSICIONAMIENTO 21 — RELATIVE + ABSOLUTE para indicador de notificación
    ================================================ */
-.campana-wrapper {
+.icono-campana {
     position: relative;
     display: inline-block;
 }
 
-.campana-badge {
+.badge-campana {
     /* POSICIONAMIENTO 21 — ABSOLUTE: burbuja de notificación sobre ícono */
     position: absolute;
     top: -6px;
@@ -891,7 +951,7 @@ h1, h2{
 /* ================================================
    PIE DE PAGINA
    ================================================ */
-#pie-pagina-principal {
+#pie-pagina {
     box-sizing: border-box;
     background-color: #2a2a2a;
     color: rgba(255, 255, 255, 0.7);
@@ -905,7 +965,7 @@ h1, h2{
     margin-top: auto;
 }
 
-#pie-pagina-principal strong { color: white; }
+#pie-pagina strong { color: white; }
 
 /* ================================================
    UTILIDADES
@@ -919,7 +979,7 @@ h1, h2{
 /* ================================================
    BUSCADOR / FILTRO EN PANEL
    ================================================ */
-.barra-busqueda {
+.barra-filtro {
     display: flex;
     flex-direction: row;
     gap: 10px;
@@ -928,7 +988,7 @@ h1, h2{
     align-items: center;
 }
 
-.barra-busqueda .campo-formulario {
+.barra-filtro .campo-input {
     max-width: 280px;
     flex: 1 1 200px;
 }
@@ -936,7 +996,7 @@ h1, h2{
 /* ================================================
    CHIP / PILL PARA ROLES
    ================================================ */
-.chip {
+.chip-rol {
     display: inline-flex;
     align-items: center;
     gap: 5px;
@@ -959,9 +1019,692 @@ h1, h2{
    ================================================ */
 @media (max-width: 768px) {
     #seccion-hero h1 { font-size: 1.6rem; }
-    .barra-lateral { width: 100%; height: auto; position: static; }
-    .diseno-panel  { flex-direction: column; }
-    .contenido-panel { padding: 20px 14px; }
-    .encabezado-panel { flex-direction: column; }
-    #boton-top { bottom: 16px; right: 16px; }
+    .sidebar { width: 100%; height: auto; position: static; }
+    .layout-panel  { flex-direction: column; }
+    .zona-contenido { padding: 20px 14px; }
+    .cabecera-panel { flex-direction: column; }
+    #btn-volver-arriba { bottom: 16px; right: 16px; }
+}
+
+/* ================================================
+   NOTA: Los estilos de imagenes (hero con foto de
+   fondo, galeria de fotos, miniaturas, avatares
+   con foto) viven ahora en el archivo separado
+   imagenes.css, que se carga DESPUES de este
+   archivo en el <head> de cada pagina.
+   ================================================ */
+
+/* ================================================
+   CLASES ADICIONALES DEL HTML
+   ================================================ */
+
+/* Página de contenido (nosotros, index) */
+.contenido-pagina {
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 44px 24px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    position: relative;
+}
+
+/* Hero botones */
+.hero-botones {
+    display: flex;
+    flex-direction: row;
+    gap: 14px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 8px;
+}
+
+/* Badge en hero de nosotros/panels */
+.badge-seccion {
+    position: absolute;
+    top: 18px;
+    left: 24px;
+    background: var(--verde-medio);
+    color: white;
+    font-size: 0.72rem;
+    font-weight: bold;
+    padding: 3px 10px;
+    border-radius: 20px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    z-index: 2;
+}
+
+/* Listas dentro de tarjetas */
+.lista-tarjeta {
+    list-style: none;
+    padding: 0;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.lista-tarjeta li {
+    font-size: 0.88rem;
+    color: #555;
+    padding-left: 16px;
+    position: relative;
+}
+
+.lista-tarjeta li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--verde-medio);
+    font-weight: bold;
+}
+
+/* Icono equipo (nosotros) */
+.icono-equipo {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+/* Tamaños de tarjetas */
+.tarjeta-sm { flex: 1 1 180px; }
+.tarjeta-md { flex: 1 1 300px; }
+.tarjeta-xs { flex: 1 1 160px; }
+
+/* Texto centrado */
+.texto-centrado { text-align: center; }
+
+/* Utilidades margen */
+.margen-top-16 { margin-top: 16px; }
+.margen-top-24 { margin-top: 24px; }
+
+/* Formulario fila de campos (modal) */
+.fila-campos {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.fila-campos .campo-grupo { flex: 1 1 200px; }
+
+/* Accion formulario con btn-verde */
+.accion-formulario .btn-verde {
+    width: 100%;
+    text-align: center;
+    padding: 12px;
+    font-size: 0.95rem;
+}
+
+/* Pie del formulario */
+.pie-form {
+    text-align: center;
+    margin-top: 18px;
+    font-size: 0.85rem;
+    color: #888;
+}
+
+.pie-form a {
+    color: var(--verde-oscuro);
+    font-weight: bold;
+    text-decoration: none;
+}
+
+/* ================================================
+   MODAL
+   ================================================ */
+.fondo-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.45);
+    z-index: 2000;
+    align-items: center;
+    justify-content: center;
+}
+
+.fondo-modal.abierto {
+    display: flex;
+}
+
+.caja-modal {
+    background: var(--blanco);
+    border-radius: var(--radio);
+    padding: 32px 28px;
+    width: 100%;
+    max-width: 520px;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.2);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.btn-cerrar-modal {
+    position: absolute;
+    top: 12px;
+    right: 14px;
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    color: #888;
+    transition: color 0.2s;
+}
+
+.btn-cerrar-modal:hover { color: var(--rojo); }
+
+.titulo-modal {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--verde-oscuro);
+    margin-bottom: 4px;
+}
+
+.fila-botones {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    margin-top: 8px;
+}
+
+/* ================================================
+   TABLA — ACCIONES
+   ================================================ */
+.acciones-tabla {
+    display: flex;
+    flex-direction: row;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+
+.btn-tabla {
+    padding: 5px 12px;
+    border: none;
+    border-radius: var(--radio);
+    font-size: 0.78rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+}
+
+.btn-editar {
+    background: #e3f2fd;
+    color: #1565c0;
+}
+
+.btn-editar:hover { background: #bbdefb; }
+
+.btn-eliminar {
+    background: #fde8e8;
+    color: var(--rojo);
+}
+
+.btn-eliminar:hover { background: #fbb; }
+
+/* ================================================
+   BADGES DE ROL
+   ================================================ */
+.badge-rol {
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 20px;
+    font-size: 0.7rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.badge-admin     { background: #e8eaf6; color: #3949ab; }
+.badge-productor { background: #f1f8e9; color: #33691e; }
+.badge-comprador { background: #e3f2fd; color: #1565c0; }
+
+/* ================================================
+   ALERTAS
+   ================================================ */
+.alerta {
+    display: none;
+    padding: 10px 14px;
+    border-radius: var(--radio);
+    font-size: 0.88rem;
+    font-weight: 500;
+    margin-bottom: 8px;
+}
+
+.alerta.visible {
+    display: block;
+}
+
+.alerta-ok    { background: #d8f3dc; color: #2d6a4f; border: 1px solid #b7e4c7; display: block; }
+.alerta-error { background: #fde8e8; color: #9b1c1c; border: 1px solid #fbb; display: block; }
+
+/* ================================================
+   FILA TITULO PANEL
+   ================================================ */
+.fila-titulo-panel {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+/* ================================================
+   TABS DE HISTORIAL
+   ================================================ */
+.tabs-historial {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+.btn-tab {
+    padding: 7px 18px;
+    border: 2px solid var(--verde-medio);
+    background: white;
+    color: var(--verde-oscuro);
+    border-radius: var(--radio);
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+}
+
+.btn-tab.activo,
+.btn-tab:hover {
+    background: var(--verde-medio);
+    color: white;
+}
+
+/* Páginas de panel */
+.pagina-admin    { background: #f0f2f0; }
+.pagina-comprador { background: #f0f4f8; }
+.pagina-productor { background: #f0f4ee; }
+
+/* Fila stats en landing */
+.fila-stats-landing {
+    margin: 0 auto;
+    max-width: 1100px;
+    padding: 0 24px;
+}
+
+/* Stat verde (variante) */
+.stat-verde { border-left-color: var(--verde-oscuro); }
+
+/* Campana/notificaciones */
+.icono-campana {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    font-size: 1.2rem;
+}
+
+.badge-campana {
+    position: absolute;
+    top: -6px;
+    right: -8px;
+    background: var(--rojo);
+    color: white;
+    font-size: 0.65rem;
+    font-weight: bold;
+    min-width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid var(--verde-oscuro);
+}
+
+.tiene-tooltip {
+    position: relative;
+}
+
+.tiene-tooltip .texto-tooltip {
+    position: absolute;
+    bottom: calc(100% + 8px);
+    left: 50%;
+    transform: translateX(-50%);
+    background: #222;
+    color: #fff;
+    font-size: 0.75rem;
+    padding: 5px 10px;
+    border-radius: 4px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s;
+    z-index: 50;
+}
+
+.tiene-tooltip:hover .texto-tooltip {
+    opacity: 1;
+}
+
+
+/* ================================================================
+   IMAGENES.CSS
+   Hoja de estilos separada, dedicada EXCLUSIVAMENTE a las imagenes
+   del sitio AgroDirecto (heroes con foto de fondo, galeria de
+   fotos, miniaturas de tarjetas, avatares e iconos ilustrados).
+
+   No contiene logica de layout general: toda esa estructura
+   sigue viviendo en estilo.css. Este archivo solo agrega fondos,
+   imagenes y pequenos ajustes visuales relacionados a ellas.
+
+   Se debe cargar SIEMPRE despues de estilo.css en el <head>:
+   <link rel="stylesheet" href="estilo.css">
+   <link rel="stylesheet" href="imagenes.css">
+   ================================================================ */
+
+
+/* ================================================================
+   1. HEROES CON IMAGEN DE FONDO
+   Cada pagina tiene su propia foto, relacionada con su contenido.
+   Todas usan fotografias libres de derechos (Unsplash) con
+   tematica de campo, cultivos, frutas y verduras.
+   ================================================================ */
+
+/* INICIO (index.html) — campo de cultivo al amanecer */
+#seccion-hero.hero-inicio-img {
+    background-image: url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1600&q=80');
+}
+
+/* NOSOTROS — manos de agricultor con plantula, simboliza el equipo y su mision */
+#seccion-hero.hero-nosotros-img {
+    background-image: url('https://tecscience.tec.mx/es/wp-content/uploads/sites/8/2021/05/AdobeStock_288676847.jpeg');
+}
+
+/* CONTACTO — invernadero / cultivo de hortalizas en hileras */
+.hero-contacto-img {
+    background-image: url('https://images.unsplash.com/photo-1416879595882-3373a0480b5b?auto=format&fit=crop&w=1600&q=80');
+}
+
+/* PANEL ADMINISTRADOR — vista aerea de cultivos organizados */
+#seccion-hero.hero-admin-img {
+    background-image: url('https://images.unsplash.com/photo-1625246333195-78d9c38ad449?auto=format&fit=crop&w=1600&q=80');
+}
+
+/* PANEL PRODUCTOR — agricultor trabajando la tierra */
+#seccion-hero.hero-productor-img {
+    background-image: url('https://images.unsplash.com/photo-1592982537447-7440770cbfc9?auto=format&fit=crop&w=1600&q=80');
+}
+
+/* PANEL COMPRADOR — canasta de frutas y verduras frescas */
+#seccion-hero.hero-comprador-img {
+    background-image: url('https://images.unsplash.com/photo-1610348725531-843dff563e2c?auto=format&fit=crop&w=1600&q=80');
+}
+
+/* LOTES — filas de cultivos de hortalizas */
+#seccion-hero.hero-lotes-img {
+    background-image: url('https://images.unsplash.com/photo-1464226184884-fa280b87c399?auto=format&fit=crop&w=1600&q=80');
+}
+
+/* HISTORIAL — trazabilidad / cuaderno de campo y cosecha */
+#seccion-hero.hero-historial-img {
+    background-image: url('https://images.unsplash.com/photo-1500651230702-0e2d8a49d4ad?auto=format&fit=crop&w=1600&q=80');
+}
+
+/* PROVEEDORES — camion / logistica de carga agricola */
+#seccion-hero.hero-proveedores-img {
+    background-image: url('https://images.unsplash.com/photo-1601584115197-04ecc0da31ad?auto=format&fit=crop&w=1600&q=80');
+}
+
+/* USUARIOS — mercado de productores */
+#seccion-hero.hero-usuarios-img {
+    background-image: url('https://images.unsplash.com/photo-1488459716781-31db52582fe9?auto=format&fit=crop&w=1600&q=80');
+}
+
+/* ROLES — trabajo en equipo en el campo */
+#seccion-hero.hero-roles-img {
+    background-image: url('https://images.unsplash.com/photo-1591857177580-dc82b9ac4e1e?auto=format&fit=crop&w=1600&q=80');
+}
+
+/* LOGIN / REGISTRO — surcos de tierra fertil */
+.hero-acceso-img {
+    background-image: url('https://images.unsplash.com/photo-1464226184884-fa280b87c399?auto=format&fit=crop&w=1600&q=80');
+}
+
+
+/* ================================================================
+   2. GALERIA DE FOTOS (pagina Contacto)
+   Flexbox row con wrap; cada tarjeta es una foto con su pie
+   ================================================================ */
+.galeria-contacto {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 18px;
+    margin-top: 24px;
+}
+
+.foto-contacto {
+    box-sizing: border-box;
+    flex: 1 1 220px;
+    background: var(--blanco);
+    border: 1px solid var(--gris-claro);
+    border-radius: var(--radio);
+    overflow: hidden;
+    box-shadow: var(--sombra-card);
+    position: relative;
+    transition: box-shadow 0.2s, transform 0.2s;
+}
+
+.foto-contacto:hover {
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+    transform: translateY(-3px);
+}
+
+.foto-contacto img {
+    width: 100%;
+    height: 170px;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.foto-contacto:hover img {
+    transform: scale(1.05);
+}
+
+.foto-contacto figcaption {
+    padding: 10px 14px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--verde-oscuro);
+    text-align: center;
+    background: var(--verde-fondo);
+    border-top: 3px solid var(--verde-medio);
+}
+
+
+/* ================================================================
+   3. MINIATURAS ILUSTRADAS EN TARJETAS DE INICIO
+   Pequenas fotos cuadradas que acompanan las tarjetas
+   "Para Productores" / "Para Compradores" en index.html
+   ================================================================ */
+.miniatura-tarjeta {
+    width: 100%;
+    height: 140px;
+    object-fit: cover;
+    border-radius: var(--radio);
+    display: block;
+    margin-bottom: 10px;
+    box-shadow: var(--sombra-card);
+}
+
+
+/* ================================================================
+   4. AVATARES CON FOTO REAL EN LUGAR DE EMOJI
+   Usado en sidebars de paneles y tarjetas del equipo (nosotros.html)
+   ================================================================ */
+.avatar-foto {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.icono-equipo-foto {
+    width: 84px;
+    height: 84px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 0 auto 10px;
+    display: block;
+    border: 3px solid var(--verde-claro);
+    box-shadow: var(--sombra-card);
+}
+
+
+/* ================================================================
+   5. BANNER DECORATIVO PEQUENO (franja de imagen sobre tarjetas
+   destacadas de "El Problema que Resolvemos" en index.html y
+   nosotros.html, y sobre tarjetas de tipo de cultivo en lotes)
+   ================================================================ */
+.tarjeta-con-foto {
+    position: relative;
+    padding-top: 0;
+    overflow: hidden;
+}
+
+.tarjeta-con-foto .foto-tarjeta {
+    width: calc(100% + 44px);
+    margin: -22px -22px 14px -22px;
+    height: 130px;
+    object-fit: cover;
+    display: block;
+}
+
+
+/* ================================================================
+   7. FOTO SUPERIOR EN FORMULARIOS DE LOGIN / REGISTRO
+   Franja de imagen de campo sobre la caja de formulario,
+   reemplaza la barra de color que ya trae estilo.css
+   ================================================================ */
+.caja-formulario.con-foto-superior {
+    padding-top: 0;
+    overflow: hidden;
+}
+
+.caja-formulario.con-foto-superior::before {
+    display: none;
+}
+
+.caja-formulario .foto-formulario {
+    width: calc(100% + 64px);
+    margin: 0 -32px 22px -32px;
+    height: 150px;
+    object-fit: cover;
+    display: block;
+}
+
+
+/* ================================================================
+   8. BANNER DECORATIVO EN PANELES (admin, productor, comprador)
+   Franja angosta con foto de campo arriba de la cabecera del panel,
+   con velo de color para mantener la identidad de cada rol
+   ================================================================ */
+.banner-panel {
+    position: relative;
+    height: 110px;
+    border-radius: var(--radio);
+    overflow: hidden;
+    margin-bottom: 24px;
+    background-size: cover;
+    background-position: center;
+    box-shadow: var(--sombra-card);
+}
+
+.banner-panel::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, rgba(27,94,32,0.82) 0%, rgba(27,94,32,0.35) 70%, rgba(27,94,32,0.1) 100%);
+}
+
+.banner-panel span {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    padding: 0 24px;
+    color: white;
+    font-weight: 700;
+    font-size: 1.05rem;
+    letter-spacing: 0.02em;
+}
+
+/* Estilos de las pestanas — dentro de historial.html */
+.tabs-historial {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.btn-tab {
+    padding: 9px 20px;
+    border: 2px solid var(--color-verde-oscuro);
+    border-radius: var(--borde-radio);
+    background: white;
+    color: var(--color-verde-oscuro);
+    font-size: 0.88rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-tab.activo, .btn-tab:hover {
+    background: var(--color-verde-oscuro);
+    color: white;
+}
+
+.banner-admin      { background-image: url('https://images.unsplash.com/photo-1625246333195-78d9c38ad449?auto=format&fit=crop&w=1400&q=70'); }
+.banner-productor  { background-image: url('https://images.unsplash.com/photo-1592982537447-7440770cbfc9?auto=format&fit=crop&w=1400&q=70'); }
+.banner-comprador  { background-image: url('https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=1400&q=70'); }
+.banner-lotes      { background-image: url('https://images.unsplash.com/photo-1464226184884-fa280b87c399?auto=format&fit=crop&w=1400&q=70'); }
+.banner-historial  { background-image: url('https://images.unsplash.com/photo-1500651230702-0e2d8a49d4ad?auto=format&fit=crop&w=1400&q=70'); }
+.banner-proveedores{ background-image: url('https://www.redeia.com/sites/default/files/styles/crop_style_scale_768_x_428/public/2026-02/proveedores-codigo-conducta.jpg.webp?h=ef1f3445&itok=Ta6dhrVr=70'); }
+.banner-usuarios   { background-image: url('https://images.unsplash.com/photo-1488459716781-31db52582fe9?auto=format&fit=crop&w=1400&q=70'); }
+.banner-roles      { background-image: url('https://images.unsplash.com/photo-1591857177580-dc82b9ac4e1e?auto=format&fit=crop&w=1400&q=70'); }
+
+
+/* ================================================================
+   6. RESPONSIVO PARA IMAGENES
+   ================================================================ */
+@media (max-width: 768px) {
+    #seccion-hero.hero-con-imagen,
+    .hero-contacto-img,
+    .hero-acceso-img {
+        min-height: 220px;
+        background-attachment: scroll;
+    }
+
+    .banner-panel {
+        height: 80px;
+    }
+}
+
+@media (max-width: 600px) {
+    .foto-contacto img {
+        height: 140px;
+    }
+
+    .galeria-contacto {
+        gap: 12px;
+    }
+
+    .miniatura-tarjeta {
+        height: 110px;
+    }
+
+    .caja-formulario .foto-formulario {
+        height: 110px;
+    }
 }

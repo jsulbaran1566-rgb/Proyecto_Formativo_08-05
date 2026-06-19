@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="estilo.css">
+    <title>Historial - AgroDirecto</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Arvo:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amaranth:ital,wght@0,400;0,700;1,400;1,700&family=Arvo:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+</head>
+<body class="pagina-admin">
+
+    <nav id="nav-principal">
+        <a href="index.html"><strong>AGRODIRECTO</strong></a>
+        <div class="links-nav">
+            <span class="texto-rol-nav">Administracion</span>
+            <a href="index.html" class="btn-verde btn-salir">Cerrar Sesion</a>
+        </div>
+    </nav>
+
+    <div class="layout-panel">
+        <aside class="sidebar">
+            <div class="perfil-sidebar">
+                <div class="avatar-usuario">🛡️</div>
+                <h4 id="nombre-admin">Administrador</h4>
+                <span><span class="badge-rol badge-admin">Admin</span></span>
+            </div>
+            <nav class="nav-sidebar">
+                <a href="panel_admin.html">📊 Resumen</a>
+                <a href="usuarios.html">👥 Usuarios</a>
+                <a href="roles.html">🔐 Roles</a>
+                <a href="proveedores.html">🚚 Proveedores</a>
+                <a href="lotes.html">🌱 Lotes</a>
+                <a href="historial.html" class="activo">📋 Historial</a>
+                <a href="registro.html">📝 Nuevo Registro</a>
+                <a href="contacto.html">💬 Soporte</a>
+            </nav>
+        </aside>
+
+        <div class="zona-contenido">
+            <div class="cabecera-panel">
+                <div>
+                    <h2>Historial de Actividad <span class="badge-rol badge-admin">ADMIN</span></h2>
+                    <p>Seguimiento de cultivos y estados de reservas registrados en la plataforma</p>
+                </div>
+                <button class="btn-verde" onclick="abrirModal()">+ Nuevo Registro</button>
+            </div>
+
+            <div class="fila-stats">
+                <div class="stat-tarjeta" data-icono="📋">
+                    <div class="stat-numero" id="stat-total">—</div>
+                    <div class="stat-etiqueta">Registros Totales</div>
+                </div>
+                <div class="stat-tarjeta stat-azul" data-icono="🌱">
+                    <div class="stat-numero" id="stat-seguimiento">—</div>
+                    <div class="stat-etiqueta">Seguimiento Lotes</div>
+                </div>
+                <div class="stat-tarjeta stat-marron" data-icono="📦">
+                    <div class="stat-numero" id="stat-hist-reservas">—</div>
+                    <div class="stat-etiqueta">Estados Reservas</div>
+                </div>
+                <div class="stat-tarjeta stat-naranja" data-icono="📅">
+                    <div class="stat-numero" id="stat-hoy">—</div>
+                    <div class="stat-etiqueta">Registros Hoy</div>
+                </div>
+            </div>
+
+            <!-- Pestanas para cambiar entre historial de seguimiento y de reservas -->
+            <div class="tabs-historial margen-top-24">
+                <button class="btn-tab activo" id="tab-seguimiento" onclick="cambiarTab('seguimiento')">
+                    🌱 Seguimiento de Cultivos
+                </button>
+                <button class="btn-tab" id="tab-reservas-hist" onclick="cambiarTab('reservas')">
+                    📋 Estados de Reservas
+                </button>
+            </div>
+
+            <div id="alerta-historial" class="alerta"></div>
+
+            <!-- TABLA HISTORIAL DE SEGUIMIENTO -->
+            <div id="seccion-seguimiento">
+                <div class="barra-filtro margen-top-24">
+                    <input type="text" id="filtro-seguimiento" class="campo-input" placeholder="Buscar por producto o accion...">
+                    <button class="btn-verde btn-borde" onclick="filtrarSeguimiento()">Filtrar</button>
+                    <button class="btn-verde btn-borde" onclick="limpiarFiltroSeg()">Limpiar</button>
+                </div>
+                <table class="tabla-datos">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Accion Registrada</th>
+                            <th>Lote (ID)</th>
+                            <th>Producto</th>
+                            <th>Fecha</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabla-seguimiento">
+                        <tr><td colspan="6" style="text-align:center;color:#aaa;padding:20px;">Cargando...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- TABLA HISTORIAL DE RESERVAS -->
+            <div id="seccion-hist-reservas" style="display:none;">
+                <div class="barra-filtro margen-top-24">
+                    <input type="text" id="filtro-hist-reserva" class="campo-input" placeholder="Buscar por estado...">
+                    <button class="btn-verde btn-borde" onclick="filtrarHistReservas()">Filtrar</button>
+                </div>
+                <table class="tabla-datos">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Reserva ID</th>
+                            <th>Estado Registrado</th>
+                            <th>Fecha</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabla-hist-reservas">
+                        <tr><td colspan="5" style="text-align:center;color:#aaa;padding:20px;">Cargando...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+
+    <a href="#" id="btn-volver-arriba" title="Volver arriba">▲</a>
+
+<!-- MODAL HISTORIAL -->
+<div class="fondo-modal" id="modal-historial">
+    <div class="caja-modal">
+        <button class="btn-cerrar-modal" onclick="cerrarModal()">✕</button>
+        <p class="titulo-modal" id="titulo-modal-hist">Nuevo Registro</p>
+        <input type="hidden" id="hist-id">
+        <div class="campo-grupo">
+            <label>Accion / Descripcion</label>
+            <input type="text" id="hist-accion" class="campo-input" placeholder="Ej: Siembra registrada">
+        </div>
+        <div class="campo-grupo">
+            <label>Producto</label>
+            <input type="text" id="hist-producto" class="campo-input" placeholder="Ej: Tomate Chonto">
+        </div>
+        <div class="fila-campos">
+            <div class="campo-grupo">
+                <label>Lote (opcional)</label>
+                <select id="hist-lote" class="campo-input"></select>
+            </div>
+            <div class="campo-grupo">
+                <label>Fecha</label>
+                <input type="date" id="hist-fecha" class="campo-input">
+            </div>
+        </div>
+        <div class="fila-botones">
+            <button class="btn-verde" onclick="guardarRegistro()">Guardar</button>
+            <button class="btn-verde btn-borde" onclick="cerrarModal()">Cancelar</button>
+        </div>
+        <div id="alerta-modal-hist" class="alerta"></div>
+    </div>
+</div>
+<div id="alerta-historial" class="alerta" style="margin:16px 0;"></div>
+
+    <script src="datos.js"></script>
+
+<script>
+    document.getElementById('nombre-admin').textContent =
+        sessionStorage.getItem('usuario_nombre') || 'Administrador';
+
+    window.addEventListener('scroll', () => {
+        document.getElementById('btn-volver-arriba')
+            .classList.toggle('visible', window.scrollY > 200);
+    });
+
+    function cargarHistorial() {
+        const seg  = DB.historial_seguimiento;
+        const hres = DB.historial_reservas;
+        document.getElementById('stat-total').textContent         = seg.length + hres.length;
+        document.getElementById('stat-seguimiento').textContent   = seg.length;
+        document.getElementById('stat-hist-reservas').textContent = hres.length;
+        // 4to stat: registros de hoy
+        const hoy = new Date().toISOString().slice(0,10);
+        const statHoy = document.getElementById('stat-hoy');
+        if (statHoy) statHoy.textContent = seg.filter(s => s.fecha === hoy).length;
+
+        renderTabla(seg);
+    }
+
+    function renderTabla(lista) {
+        const tb = document.getElementById('tabla-historial');
+        if (!tb) return;
+        tb.innerHTML = lista.length ? lista.map(h => {
+            const lote = DB.lotes.find(l => l.id === h.lote);
+            return `<tr>
+                <td>${h.id}</td>
+                <td>${h.accion}</td>
+                <td>${h.lote ? `Lote #${h.lote}` : '—'}</td>
+                <td>${h.producto}</td>
+                <td>${h.fecha}</td>
+                <td><div class="acciones-tabla">
+                    <button class="btn-tabla btn-editar"   onclick="editarRegistro(${h.id})">Editar</button>
+                    <button class="btn-tabla btn-eliminar" onclick="eliminarRegistro(${h.id})">Eliminar</button>
+                </div></td>
+            </tr>`;
+        }).join('') :
+        '<tr><td colspan="6" style="text-align:center;color:#aaa;padding:20px;">Sin registros</td></tr>';
+    }
+
+    function abrirModal(id = null) {
+        document.getElementById('hist-id').value = id || '';
+        document.getElementById('titulo-modal-hist').textContent = id ? 'Editar Registro' : 'Nuevo Registro';
+        if (!id) {
+            document.getElementById('hist-accion').value  = '';
+            document.getElementById('hist-producto').value = '';
+            document.getElementById('hist-lote').value    = '';
+            document.getElementById('hist-fecha').value   = new Date().toISOString().slice(0,10);
+        }
+        // Poblar select lotes
+        const selLote = document.getElementById('hist-lote');
+        if (selLote) {
+            selLote.innerHTML = '<option value="">Sin lote</option>' +
+                DB.lotes.map(l => `<option value="${l.id}">#${l.id} — ${l.producto}</option>`).join('');
+        }
+        document.getElementById('alerta-modal-hist').className = 'alerta';
+        document.getElementById('modal-historial').classList.add('abierto');
+    }
+
+    function cerrarModal() {
+        document.getElementById('modal-historial').classList.remove('abierto');
+    }
+
+    function editarRegistro(id) {
+        const h = DB.historial_seguimiento.find(x => x.id === id);
+        if (!h) return;
+        document.getElementById('hist-accion').value   = h.accion;
+        document.getElementById('hist-producto').value = h.producto;
+        document.getElementById('hist-fecha').value    = h.fecha;
+        abrirModal(id);
+        if (document.getElementById('hist-lote')) document.getElementById('hist-lote').value = h.lote || '';
+    }
+
+    function guardarRegistro() {
+        const alerta = document.getElementById('alerta-modal-hist');
+        const id     = parseInt(document.getElementById('hist-id').value);
+        const datos  = {
+            accion:   document.getElementById('hist-accion').value.trim(),
+            producto: document.getElementById('hist-producto').value.trim(),
+            lote:     parseInt(document.getElementById('hist-lote').value) || null,
+            fecha:    document.getElementById('hist-fecha').value
+        };
+        if (!datos.accion || !datos.producto) {
+            alerta.textContent = 'Accion y producto son obligatorios.';
+            alerta.className = 'alerta alerta-error visible';
+            return;
+        }
+        if (id) {
+            const idx = DB.historial_seguimiento.findIndex(h => h.id === id);
+            DB.historial_seguimiento[idx] = { ...DB.historial_seguimiento[idx], ...datos };
+        } else {
+            datos.id = DB.siguienteId('historial_seguimiento');
+            DB.historial_seguimiento.push(datos);
+        }
+        alerta.textContent = id ? 'Registro actualizado.' : 'Registro creado.';
+        alerta.className = 'alerta alerta-ok visible';
+        setTimeout(() => { cerrarModal(); cargarHistorial(); }, 900);
+    }
+
+    function eliminarRegistro(id) {
+        const alerta = document.getElementById('alerta-historial');
+        if (!confirm('¿Eliminar este registro?')) return;
+        const idx = DB.historial_seguimiento.findIndex(h => h.id === id);
+        if (idx !== -1) DB.historial_seguimiento.splice(idx, 1);
+        if (alerta) { alerta.textContent = 'Registro eliminado.'; alerta.className = 'alerta alerta-ok visible'; }
+        cargarHistorial();
+        setTimeout(() => { if (alerta) alerta.className = 'alerta'; }, 3000);
+    }
+
+    cargarHistorial();
+</script>
+
+</body>
+</html>

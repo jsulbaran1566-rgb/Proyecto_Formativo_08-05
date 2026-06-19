@@ -4,310 +4,200 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="estilo.css">
-    <title>Roles - AgroDirecto</title>
+    <link rel="stylesheet" href="imagenes.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Arvo:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
-</head>
-<body>
 
-    <!-- NAV STICKY (position: sticky; top: 0; z-index: 1000) -->
-    <nav id="navegacion-principal">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amaranth:ital,wght@0,400;0,700;1,400;1,700&family=Arvo:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+
+    <title>Roles - AgroDirecto</title>
+</head>
+<body class="pagina-admin">
+
+    <nav id="nav-principal">
         <a href="index.html"><strong>AGRODIRECTO</strong></a>
-        <div class="enlaces-nav">
-            <span class="rol-nav">Administracion</span>
-            <a href="index.html" class="boton-accion boton-salir">Cerrar Sesion</a>
+        <div class="links-nav">
+            <span class="texto-rol-nav">Administracion</span>
+            <a href="index.html" class="btn-verde btn-salir">Cerrar Sesion</a>
         </div>
     </nav>
 
-    <div class="diseno-panel">
-
-        <!-- BARRA LATERAL STICKY (position: sticky; top: var(--nav-height)) -->
-        <aside class="barra-lateral">
-            <div class="perfil-barra">
-                <div class="avatar-barra">🛡️</div>
-                <h4>Administrador</h4>
-                <span>Admin</span>
+    <div class="layout-panel">
+        <aside class="sidebar">
+            <div class="perfil-sidebar">
+                <div class="avatar-usuario">🛡️</div>
+                <h4 id="nombre-admin">Administrador</h4>
+                <span><span class="badge-rol badge-admin">Admin</span></span>
             </div>
-            <nav class="nav-barra">
-                <a href="panel.html">📊 Resumen</a>
+            <nav class="nav-sidebar">
+                <a href="panel_admin.html">📊 Resumen</a>
                 <a href="usuarios.html">👥 Usuarios</a>
                 <a href="roles.html" class="activo">🔐 Roles</a>
                 <a href="proveedores.html">🚚 Proveedores</a>
-                <a href="#">🌱 Cultivos</a>
-                <a href="#">📈 Reportes</a>
-                <a href="#">⚙️ Configuracion</a>
+                <a href="lotes.html">🌱 Lotes</a>
+                <a href="historial.html">📋 Historial</a>
+                <a href="registro.html">📝 Nuevo Registro</a>
                 <a href="contacto.html">💬 Soporte</a>
             </nav>
         </aside>
 
-        <div class="contenido-panel">
+        <div class="zona-contenido">
+            <div class="banner-panel banner-roles">
+                <span>🔐 Roles y permisos del equipo AgroDirecto</span>
+            </div>
 
-            <div class="encabezado-panel">
+            <div class="cabecera-panel">
                 <div>
-                    <h2>Gestion de Roles</h2>
-                    <p>Defina permisos y niveles de acceso en la plataforma</p>
+                    <h2>Gestion de Roles <span class="badge-rol badge-admin">ADMIN</span></h2>
+                    <p>Define los roles y permisos del sistema</p>
                 </div>
-                <a href="#" class="boton-accion">+ Nuevo Rol</a> 
+                <button class="btn-verde" onclick="abrirModal()">+ Nuevo Rol</button>
             </div>
 
-            <!-- Estadísticas de roles (tarjetas con ícono decorativo position: absolute) -->
-            <div class="fila-estadisticas">
-                <div class="tarjeta-estadistica" data-icono="🔐">
-                    <div class="valor-estadistica">4</div>
-                    <div class="etiqueta-estadistica">Roles Definidos</div>
-                </div>
-                <div class="tarjeta-estadistica estadistica-rojo" data-icono="🛡️">
-                    <div class="valor-estadistica">2</div>
-                    <div class="etiqueta-estadistica">Administradores</div>
-                </div>
-                <div class="tarjeta-estadistica estadistica-marron" data-icono="🌿">
-                    <div class="valor-estadistica">74</div>
-                    <div class="etiqueta-estadistica">Productores</div>
-                </div>
-                <div class="tarjeta-estadistica estadistica-azul" data-icono="🏪">
-                    <div class="valor-estadistica">54</div>
-                    <div class="etiqueta-estadistica">Compradores</div>
-                </div>
-            </div>
+            <div id="alerta-roles" class="alerta"></div>
 
-            <!-- Tarjetas de roles (position: relative; con ::before/::after decorativos) -->
-            <div class="titulo-seccion-panel mb-8">Roles del Sistema</div>
-
-            <div class="cuadricula-tarjetas mt-16">
-
-                <!-- ROL ADMINISTRADOR -->
-                <div class="tarjeta-info tarjeta-borde-rojo tarjeta-flex-300">
-                    <div style="display:flex;justify-content:space-between;align-items:flex-start;">
-                        <h3>🛡️ Administrador</h3>
-                        <span class="chip chip-admin">Admin</span>
-                    </div>
-                    <p>Acceso total al sistema. Puede crear, editar y eliminar usuarios, roles, cultivos y proveedores. Gestiona configuraciones globales.</p>
-                    <div style="margin-top:12px;">
-                        <p style="font-weight:600;font-size:0.82rem;color:var(--verde-oscuro);margin-bottom:6px;">Permisos:</p>
-                        <div style="display:flex;flex-wrap:wrap;gap:5px;">
-                            <span class="etiqueta etiqueta-verde">Ver todo</span>
-                            <span class="etiqueta etiqueta-verde">Crear usuarios</span>
-                            <span class="etiqueta etiqueta-verde">Editar roles</span>
-                            <span class="etiqueta etiqueta-verde">Eliminar registros</span> 
-                            <span class="etiqueta etiqueta-verde">Configurar sistema</span>
-                        </div>
-                    </div>
-                    <div style="display:flex;gap:8px;margin-top:14px;flex-wrap:wrap;">
-                        <a href="#" class="boton-accion" style="padding:6px 14px;font-size:0.82rem;">Editar Rol</a>
-                        <span style="font-size:0.8rem;color:#888;align-self:center;">2 usuarios asignados</span>
-                    </div>
-                </div>
-
-                <!-- ROL PRODUCTOR -->
-                <div class="tarjeta-info tarjeta-borde-marron tarjeta-flex-300">
-                    <div style="display:flex;justify-content:space-between;align-items:flex-start;">
-                        <h3>🌿 Productor</h3>
-                        <span class="chip chip-productor">Productor</span>
-                    </div>
-                    <p>Gestiona sus fincas, cultivos y lotes. Puede actualizar el estado de trazabilidad y ver reportes de sus propios datos.</p>
-                    <div style="margin-top:12px;">
-                        <p style="font-weight:600;font-size:0.82rem;color:var(--verde-oscuro);margin-bottom:6px;">Permisos:</p>
-                        <div style="display:flex;flex-wrap:wrap;gap:5px;">
-                            <span class="etiqueta etiqueta-verde">Crear cultivos</span>
-                            <span class="etiqueta etiqueta-verde">Actualizar trazabilidad</span>
-                            <span class="etiqueta etiqueta-verde">Ver sus reservas</span>
-                            <span class="etiqueta etiqueta-verde">Ver sus pagos</span>
-                            <span class="etiqueta etiqueta-gris">Sin acceso admin</span>
-                        </div>
-                    </div>
-                    <div style="display:flex;gap:8px;margin-top:14px;flex-wrap:wrap;">
-                        <a href="#" class="boton-accion" style="padding:6px 14px;font-size:0.82rem;">Editar Rol</a>
-                        <span style="font-size:0.8rem;color:#888;align-self:center;">74 usuarios asignados</span> 
-                    </div>
-                </div>
-
-                <!-- ROL COMPRADOR -->
-                <div class="tarjeta-info tarjeta-borde-azul tarjeta-flex-300">
-                    <div style="display:flex;justify-content:space-between;align-items:flex-start;">
-                        <h3>🏪 Comprador</h3>
-                        <span class="chip chip-comprador">Comprador</span>
-                    </div>
-                    <p>Explora lotes disponibles, realiza reservas, consulta entregas y gestiona sus facturas y pagos.</p>
-                    <div style="margin-top:12px;">
-                        <p style="font-weight:600;font-size:0.82rem;color:var(--verde-oscuro);margin-bottom:6px;">Permisos:</p>
-                        <div style="display:flex;flex-wrap:wrap;gap:5px;">
-                            <span class="etiqueta etiqueta-azul">Explorar lotes</span>
-                            <span class="etiqueta etiqueta-azul">Crear reservas</span>
-                            <span class="etiqueta etiqueta-azul">Ver entregas</span>
-                            <span class="etiqueta etiqueta-azul">Descargar facturas</span>
-                            <span class="etiqueta etiqueta-gris">Sin acceso admin</span>
-                        </div>
-                    </div>
-                    <div style="display:flex;gap:8px;margin-top:14px;flex-wrap:wrap;">
-                        <a href="#" class="boton-accion" style="padding:6px 14px;font-size:0.82rem;">Editar Rol</a>
-                        <span style="font-size:0.8rem;color:#888;align-self:center;">54 usuarios asignados</span>
-                    </div>
-                </div>
-
-                <!-- ROL INVITADO -->
-                <div class="tarjeta-info tarjeta-flex-300">
-                    <div style="display:flex;justify-content:space-between;align-items:flex-start;">
-                        <h3>👁️ Invitado</h3>
-                        <span class="chip chip-inactivo">Invitado</span>
-                    </div>
-                    <p>Acceso de solo lectura al catalogo publico. No puede realizar reservas ni acceder a datos privados de productores.</p>
-                    <div style="margin-top:12px;">
-                        <p style="font-weight:600;font-size:0.82rem;color:var(--verde-oscuro);margin-bottom:6px;">Permisos:</p>
-                        <div style="display:flex;flex-wrap:wrap;gap:5px;">
-                            <span class="etiqueta etiqueta-gris">Ver catalogo publico</span>
-                            <span class="etiqueta etiqueta-rojo">Sin reservas</span>
-                            <span class="etiqueta etiqueta-rojo">Sin pagos</span>
-                            <span class="etiqueta etiqueta-rojo">Sin trazabilidad</span>
-                        </div>
-                    </div>
-                    <div style="display:flex;gap:8px;margin-top:14px;flex-wrap:wrap;">
-                        <a href="#" class="boton-accion" style="padding:6px 14px;font-size:0.82rem;">Editar Rol</a>
-                        <span style="font-size:0.8rem;color:#888;align-self:center;">0 usuarios asignados</span>
-                    </div>
-                </div>
-
-            </div>
-
-            <!-- Tabla resumen de permisos -->
-            <div class="mt-32">
-                <h3 class="titulo-seccion-panel">Matriz de Permisos</h3>
-                <table class="tabla-panel">
-                    <thead>
-                        <tr>
-                            <th>Modulo</th>
-                            <th>Administrador</th>
-                            <th>Productor</th>
-                            <th>Comprador</th>
-                            <th>Invitado</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Cultivos / Lotes</td>
-                            <td><span class="etiqueta etiqueta-verde">Total</span></td>
-                            <td><span class="etiqueta etiqueta-verde">Propios</span></td>
-                            <td><span class="etiqueta etiqueta-azul">Solo ver</span></td>
-                            <td><span class="etiqueta etiqueta-gris">Publico</span></td>
-                        </tr>
-                        <tr>
-                            <td>Reservas</td>
-                            <td><span class="etiqueta etiqueta-verde">Total</span></td>
-                            <td><span class="etiqueta etiqueta-azul">Solo ver</span></td>
-                            <td><span class="etiqueta etiqueta-verde">Crear/Ver</span></td>
-                            <td><span class="etiqueta etiqueta-rojo">Sin acceso</span></td>
-                        </tr>
-                        <tr>
-                            <td>Usuarios</td>
-                            <td><span class="etiqueta etiqueta-verde">Total</span></td>
-                            <td><span class="etiqueta etiqueta-azul">Propio perfil</span></td>
-                            <td><span class="etiqueta etiqueta-azul">Propio perfil</span></td>
-                            <td><span class="etiqueta etiqueta-rojo">Sin acceso</span></td>
-                        </tr>
-                        <tr>
-                            <td>Pagos / Facturas</td>
-                            <td><span class="etiqueta etiqueta-verde">Total</span></td>
-                            <td><span class="etiqueta etiqueta-azul">Propios</span></td>
-                            <td><span class="etiqueta etiqueta-azul">Propios</span></td>
-                            <td><span class="etiqueta etiqueta-rojo">Sin acceso</span></td>
-                        </tr>
-                        <tr>
-                            <td>Proveedores</td>
-                            <td><span class="etiqueta etiqueta-verde">Total</span></td>
-                            <td><span class="etiqueta etiqueta-rojo">Sin acceso</span></td>
-                            <td><span class="etiqueta etiqueta-rojo">Sin acceso</span></td>
-                            <td><span class="etiqueta etiqueta-rojo">Sin acceso</span></td>
-                        </tr>
-                        <tr>
-                            <td>Configuracion</td>
-                            <td><span class="etiqueta etiqueta-verde">Total</span></td>
-                            <td><span class="etiqueta etiqueta-rojo">Sin acceso</span></td>
-                            <td><span class="etiqueta etiqueta-rojo">Sin acceso</span></td>
-                            <td><span class="etiqueta etiqueta-rojo">Sin acceso</span></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
+            <table class="tabla-datos">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre del Rol</th>
+                        <th>Descripcion</th>
+                        <th>Permisos</th>
+                        <th>Usuarios Asignados</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="tabla-roles">
+                    <tr><td colspan="6" style="text-align:center;color:#aaa;padding:20px;">Cargando...</td></tr>
+                </tbody>
+            </table>
         </div>
     </div>
 
-    <!-- BOTÓN VOLVER ARRIBA (position: fixed) -->
-    <a href="#" id="boton-top" title="Volver arriba">▲</a>
+    <a href="#" id="btn-volver-arriba" title="Volver arriba">▲</a>
 
-<!-- =====================================================
-     SCRIPT PARA: roles.html
-     Muestra los usuarios agrupados por rol.
-     Permite filtrar por rol usando GET /usuarios
-     y buscar un usuario específico por id+rol con
-     GET /usuarios/{id}/rol/{rol}
-     ===================================================== -->
+    <!-- MODAL ROL -->
+    <div class="fondo-modal" id="modal-rol">
+        <div class="caja-modal">
+            <button class="btn-cerrar-modal" onclick="cerrarModal()">✕</button>
+            <p class="titulo-modal" id="titulo-modal-rol">Nuevo Rol</p>
+            <input type="hidden" id="rol-id">
+            <div class="campo-grupo">
+                <label>Nombre del Rol</label>
+                <input type="text" id="rol-nombre" class="campo-input" placeholder="Ej: Supervisor">
+            </div>
+            <div class="campo-grupo">
+                <label>Descripcion</label>
+                <textarea id="rol-descripcion" class="campo-input campo-textarea" rows="2"
+                          placeholder="Que puede hacer este rol..."></textarea>
+            </div>
+            <div class="campo-grupo">
+                <label>Permisos (separados por coma)</label>
+                <input type="text" id="rol-permisos" class="campo-input"
+                       placeholder="Ver, Crear, Editar, Eliminar">
+            </div>
+            <div class="fila-botones">
+                <button class="btn-verde" onclick="guardarRol()">Guardar</button>
+                <button class="btn-verde btn-borde" onclick="cerrarModal()">Cancelar</button>
+            </div>
+            <div id="alerta-modal-rol" class="alerta"></div>
+        </div>
+    </div>
+
+    <script src="datos.js"></script>
+
 <script>
-    const API_USUARIOS  = "http://127.0.0.1:8000/usuarios";
-    const ROLES_VALIDOS = ["Productor", "Comprador", "Administrador"];
+    document.getElementById('nombre-admin').textContent =
+        sessionStorage.getItem('usuario_nombre') || 'Administrador';
 
-    // ── LISTAR todos agrupados por rol ───────────────────────
-    async function cargarPorRol() {
-        try {
-            const res      = await fetch(API_USUARIOS);
-            const usuarios = await res.json();
-
-            ROLES_VALIDOS.forEach(rol => {
-                const tabla = document.getElementById(`tabla${rol}`);
-                if (!tabla) return;
-                tabla.innerHTML = "";
-                const filtrados = usuarios.filter(u => u.rol === rol);
-
-                if (filtrados.length === 0) {
-                    tabla.innerHTML = `<tr><td colspan="2">Sin usuarios en este rol.</td></tr>`;
-                    return;
-                }
-                filtrados.forEach(u => {
-                    tabla.innerHTML += `
-                        <tr>
-                            <td>${u.id}</td>
-                            <td>${u.nombre}</td>
-                        </tr>`;
-                });
-            });
-        } catch (err) { console.error("Error cargando usuarios por rol:", err); }
-    }
-
-    // ── BUSCAR usuario por ID y Rol ──────────────────────────
-    // Inputs requeridos: "buscarId", "buscarRol"
-    // Resultado se muestra en elemento con id "resultadoBusqueda"
-    document.getElementById("buscarRolForm").addEventListener("submit", async (e) => {
-        e.preventDefault();
-
-        const id  = document.getElementById("buscarId").value;
-        const rol = document.getElementById("buscarRol").value;
-
-        if (!ROLES_VALIDOS.includes(rol)) {
-            alert("Rol inválido.");
-            return;
-        }
-
-        try {
-            const res  = await fetch(`${API_USUARIOS}/${id}/rol/${encodeURIComponent(rol)}?activo=true`);
-            const data = await res.json();
-            const div  = document.getElementById("resultadoBusqueda");
-            if (!div) return;
-
-            if (res.ok && data.usuarios && data.usuarios.length > 0) {
-                div.innerHTML = data.usuarios.map(u => `
-                    <p><strong>ID:</strong> ${u.id} —
-                       <strong>Nombre:</strong> ${u.nombre} —
-                       <strong>Rol:</strong> ${u.rol}</p>
-                `).join("");
-            } else {
-                div.innerHTML = "<p>No se encontró ningún usuario con esos datos.</p>";
-            }
-        } catch (err) { console.error("Error buscando usuario:", err); }
+    window.addEventListener('scroll', () => {
+        document.getElementById('btn-volver-arriba')
+            .classList.toggle('visible', window.scrollY > 200);
     });
 
-    cargarPorRol();
-</script>
+    function cargarRoles() {
+        const tb = document.getElementById('tabla-roles');
+        tb.innerHTML = DB.roles.length ? DB.roles.map(r => {
+            const asignados = DB.usuarios.filter(u => u.rol === r.nombre).length;
+            return `<tr>
+                <td>${r.id}</td>
+                <td><strong>${r.nombre}</strong></td>
+                <td>${r.descripcion || '—'}</td>
+                <td>${r.permisos || 'Ver'}</td>
+                <td>${asignados}</td>
+                <td><div class="acciones-tabla">
+                    <button class="btn-tabla btn-editar"   onclick="editarRol(${r.id})">Editar</button>
+                    <button class="btn-tabla btn-eliminar" onclick="eliminarRol(${r.id})">Eliminar</button>
+                </div></td>
+            </tr>`;
+        }).join('') : '<tr><td colspan="6" style="text-align:center;color:#aaa;padding:20px;">Sin roles</td></tr>';
+    }
 
+    function abrirModal(id = null) {
+        document.getElementById('rol-id').value = id || '';
+        document.getElementById('titulo-modal-rol').textContent = id ? 'Editar Rol' : 'Nuevo Rol';
+        if (!id) {
+            ['rol-nombre','rol-descripcion','rol-permisos'].forEach(i =>
+                document.getElementById(i).value = '');
+        }
+        document.getElementById('alerta-modal-rol').className = 'alerta';
+        document.getElementById('modal-rol').classList.add('abierto');
+    }
+
+    function cerrarModal() {
+        document.getElementById('modal-rol').classList.remove('abierto');
+    }
+
+    function editarRol(id) {
+        const r = DB.roles.find(x => x.id === id);
+        if (!r) return;
+        document.getElementById('rol-nombre').value      = r.nombre;
+        document.getElementById('rol-descripcion').value = r.descripcion || '';
+        document.getElementById('rol-permisos').value    = r.permisos || '';
+        abrirModal(id);
+    }
+
+    function guardarRol() {
+        const alerta = document.getElementById('alerta-modal-rol');
+        const id     = parseInt(document.getElementById('rol-id').value);
+        const datos  = {
+            nombre:      document.getElementById('rol-nombre').value.trim(),
+            descripcion: document.getElementById('rol-descripcion').value.trim(),
+            permisos:    document.getElementById('rol-permisos').value.trim()
+        };
+        if (!datos.nombre) {
+            alerta.textContent = 'El nombre del rol es obligatorio.';
+            alerta.className = 'alerta alerta-error visible';
+            return;
+        }
+        if (id) {
+            const idx = DB.roles.findIndex(r => r.id === id);
+            DB.roles[idx] = { ...DB.roles[idx], ...datos };
+        } else {
+            datos.id = DB.siguienteId('roles');
+            DB.roles.push(datos);
+        }
+        alerta.textContent = id ? 'Rol actualizado.' : 'Rol creado.';
+        alerta.className = 'alerta alerta-ok visible';
+        setTimeout(() => { cerrarModal(); cargarRoles(); }, 900);
+    }
+
+    function eliminarRol(id) {
+        const alerta = document.getElementById('alerta-roles');
+        if (!confirm('¿Eliminar este rol?')) return;
+        const idx = DB.roles.findIndex(r => r.id === id);
+        if (idx !== -1) DB.roles.splice(idx, 1);
+        alerta.textContent = 'Rol eliminado.';
+        alerta.className = 'alerta alerta-ok visible';
+        cargarRoles();
+        setTimeout(() => alerta.className = 'alerta', 3000);
+    }
+
+    cargarRoles();
+</script>
 
 </body>
 </html>
