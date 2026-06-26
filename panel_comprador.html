@@ -46,7 +46,7 @@
                 <a href="#">💳 Pagos y Facturas</a>
                 <a href="#">⭐ Productores Favoritos</a>
                 <a href="#">⚙️ Mi Perfil</a>
-                <a href="contacto.html">💬 Soporte</a>
+                <a href="#" id="btn-soporte">💬 Soporte</a>
             </nav>
         </aside>
 
@@ -219,9 +219,47 @@
         </div>
     </div>
 
+    <div id="modal-soporte" class="modal-soporte">
+    <div class="contenido-modal">
+        <span id="cerrar-soporte">&times;</span>
+        <h2>Centro de Soporte</h2>
+        <p>¿En qué podemos ayudarte?</p>
+
+        <form>
+            <input type="text" placeholder="Tu nombre" required>
+            <input type="email" placeholder="Tu correo" required>
+            <textarea placeholder="Describe tu problema..." rows="5"></textarea>
+            <button type="submit">Enviar</button>
+        </form>
+    </div>
+</div>
+
+        <footer id="pie-pagina">
+        <p><strong>AgroDirecto</strong> — Del campo a su negocio, sin rodeos. 2026</p>
+    </footer>
+
     <script src="datos.js"></script>
 
 <script>
+    const btnSoporte = document.getElementById("btn-soporte");
+const modalSoporte = document.getElementById("modal-soporte");
+const cerrarSoporte = document.getElementById("cerrar-soporte");
+
+btnSoporte.addEventListener("click", function(e) {
+    e.preventDefault();
+    modalSoporte.style.display = "flex";
+});
+
+cerrarSoporte.addEventListener("click", function() {
+    modalSoporte.style.display = "none";
+});
+
+window.addEventListener("click", function(e) {
+    if (e.target === modalSoporte) {
+        modalSoporte.style.display = "none";
+    }
+});
+
     let todosLotesDisponibles = [];
     let misReservas = [];
     let loteSeleccionado = null;

@@ -4,105 +4,165 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="estilo.css">
+
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
     <link href="https://fonts.googleapis.com/css2?family=Arvo:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Amaranth:ital,wght@0,400;0,700;1,400;1,700&family=Arvo:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Amaranth:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+
+    <!-- Google Icons -->
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
 
     <title>Acceso - AgroDirecto</title>
 </head>
 <body>
- 
-    <!-- NAV: position sticky -->
+
     <nav id="nav-principal">
         <a href="index.html"><strong>AGRODIRECTO</strong></a>
         <div class="links-nav">
             <a href="index.html">← Volver al Inicio</a>
         </div>
     </nav>
- 
-    <!-- Pantalla de login: flex centrado vertical y horizontal -->
+
     <main class="pantalla-login">
         <div class="caja-formulario con-foto-superior">
-            <img src="https://images.unsplash.com/photo-1464226184884-fa280b87c399?auto=format&fit=crop&w=700&q=80" alt="Surcos de cultivo en el campo" class="foto-formulario">
+
+            <img
+                src="https://images.unsplash.com/photo-1464226184884-fa280b87c399?auto=format&fit=crop&w=700&q=80"
+                alt="Surcos de cultivo en el campo"
+                class="foto-formulario">
+
             <h2>Iniciar Sesion</h2>
             <p>Ingrese sus credenciales para gestionar sus cultivos o reservas.</p>
- 
- 
+
             <form id="form-login">
+
                 <div class="campo-grupo">
                     <label for="campo-correo">Correo Electronico</label>
-                    <input type="email" id="campo-correo" class="campo-input"
-                           placeholder="ejemplo@correo.com" required>
+                    <input
+                        type="email"
+                        id="campo-correo"
+                        class="campo-input"
+                        placeholder="ejemplo@correo.com"
+                        required>
                 </div>
+
                 <div class="campo-grupo">
-                    <label for="campo-clave">Contrasena</label>
-                    <input type="password" id="campo-clave" class="campo-input"
-                           placeholder="Minimo 6 caracteres" required>
+                    <label for="campo-clave">Contraseña</label>
+
+                    <div class="contenedor-password">
+                        <input
+                            type="password"
+                            id="campo-clave"
+                            class="campo-input"
+                            placeholder="Minimo 6 caracteres"
+                            required>
+
+                        <button
+                            type="button"
+                            id="btn-ver-clave"
+                            onclick="toggleClave()"
+                            title="Mostrar/ocultar contrasena">
+
+                            <span class="material-symbols-outlined">
+                                visibility
+                            </span>
+                        </button>
+                    </div>
                 </div>
+
                 <div class="accion-formulario">
-                    <button type="submit" id="btn-ingresar" class="btn-verde">Ingresar</button>
+                    <button type="submit" id="btn-ingresar" class="btn-verde">
+                        Ingresar
+                    </button>
                 </div>
             </form>
- 
+
             <div class="pie-form">
-                No tiene cuenta? <a href="registro.html">Registrese aqui</a>
+                No tiene cuenta?
+                <a href="registro.html">Registrese aqui</a>
             </div>
         </div>
     </main>
- 
+
     <footer id="pie-pagina">
-        <p><strong>AgroDirecto</strong> — Del campo a su negocio, sin rodeos. 2025</p>
+        <p><strong>AgroDirecto</strong> — Del campo a su negocio, sin rodeos. 2026</p>
     </footer>
- 
+
     <script src="datos.js"></script>
 
-<script>
-    document.getElementById('form-login').addEventListener('submit', (e) => {
-        e.preventDefault();
-        const alerta = document.getElementById('alerta-login');
-        const btn    = document.getElementById('btn-ingresar');
-        const correo = document.getElementById('campo-correo').value.trim();
-        const clave  = document.getElementById('campo-clave').value;
+    <script>
+        function toggleClave() {
+            const input = document.getElementById('campo-clave');
+            const btn = document.getElementById('btn-ver-clave');
 
-        // Busca el usuario en la DB local
-        const usuario = DB.usuarios.find(u =>
-            u.correo === correo && u.clave === clave && u.estado === 'Activo'
-        );
-
-        if (!usuario) {
-            // El div de alerta no existia en el HTML original, lo creamos si hace falta
-            if (!alerta) {
-                const div = document.createElement('div');
-                div.id = 'alerta-login';
-                div.className = 'alerta alerta-error visible';
-                div.textContent = 'Correo o contrasena incorrectos, o cuenta inactiva.';
-                document.getElementById('form-login').prepend(div);
+            if (input.type === 'password') {
+                input.type = 'text';
+                btn.innerHTML = `
+                    <span class="material-symbols-outlined">
+                        visibility_off
+                    </span>
+                `;
             } else {
-                alerta.textContent = 'Correo o contrasena incorrectos, o cuenta inactiva.';
-                alerta.className = 'alerta alerta-error visible';
+                input.type = 'password';
+                btn.innerHTML = `
+                    <span class="material-symbols-outlined">
+                        visibility
+                    </span>
+                `;
             }
-            return;
         }
 
-        // Guarda sesion minima
-        sessionStorage.setItem('usuario_id',     usuario.id);
-        sessionStorage.setItem('usuario_nombre', usuario.nombre);
-        sessionStorage.setItem('usuario_rol',    usuario.rol);
+        document.getElementById('form-login').addEventListener('submit', (e) => {
+            e.preventDefault();
 
-        // Redirige segun rol
-        if (usuario.rol === 'Administrador') location.href = 'panel_admin.html';
-        else if (usuario.rol === 'Productor')  location.href = 'panel_productor.html';
-        else                                   location.href = 'panel_comprador.html';
-    });
-</script>
- 
+            const alerta = document.getElementById('alerta-login');
+            const correo = document.getElementById('campo-correo').value.trim();
+            const clave = document.getElementById('campo-clave').value;
 
-<!--Admin: admin@agrodirecto.com / admin123
-Productor: finca.paraiso@campo.com / prod123
-Comprador: compras@laplaza.com / comp123-->
+            const usuario = DB.usuarios.find(u =>
+                u.correo === correo &&
+                u.clave === clave &&
+                u.estado === 'Activo'
+            );
+
+            if (!usuario) {
+                if (!alerta) {
+                    const div = document.createElement('div');
+                    div.id = 'alerta-login';
+                    div.className = 'alerta alerta-error visible';
+                    div.textContent = 'Correo o contrasena incorrectos, o cuenta inactiva.';
+                    document.getElementById('form-login').prepend(div);
+                } else {
+                    alerta.textContent = 'Correo o contrasena incorrectos, o cuenta inactiva.';
+                    alerta.className = 'alerta alerta-error visible';
+                }
+                return;
+            }
+
+            sessionStorage.setItem('usuario_id', usuario.id);
+            sessionStorage.setItem('usuario_nombre', usuario.nombre);
+            sessionStorage.setItem('usuario_rol', usuario.rol);
+
+            if (usuario.rol === 'Administrador') {
+                location.href = 'panel_admin.html';
+            } else if (usuario.rol === 'Productor') {
+                location.href = 'panel_productor.html';
+            } else {
+                location.href = 'panel_comprador.html';
+            }
+        });
+    </script>
+
+    <!--
+    Admin: admin@agrodirecto.com / admin123
+    Productor: finca.paraiso@campo.com / prod123
+    Comprador: compras@laplaza.com / comp123
+    -->
+
 </body>
-</html>
+</html> 

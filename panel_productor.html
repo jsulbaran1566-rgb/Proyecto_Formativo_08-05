@@ -40,12 +40,12 @@
             </div>
             <nav class="nav-sidebar">
                 <a href="panel_productor.html" class="activo">📊 Resumen</a>
-                <a href="">🌱 Mis Cultivos</a>
-                <a href="">📍 Trazabilidad</a>
-                <a href="#">💰 Ventas y Pagos</a>
-                <a href="#">📈 Reportes</a>
-                <a href="#">⚙️ Mi Perfil</a>
-                <a href="contacto.html">💬 Soporte</a>
+                <a href="#" onclick="mostrarSeccion('lotes'); return false;">🌱 Mis Cultivos</a>
+                <a href="#" onclick="mostrarSeccion('trazabilidad'); return false;">📍 Trazabilidad</a>
+                <a href="#" onclick="mostrarSeccion('ventas'); return false;">💰 Ventas y Pagos</a>
+                <a href="#" onclick="mostrarSeccion('reportes'); return false;">📈 Reportes</a>
+                <a href="#" onclick="mostrarSeccion('perfil'); return false;">⚙️ Mi Perfil</a>
+                <a href="#" id="btn-soporte">💬 Soporte</a>
             </nav>
         </aside>
 
@@ -83,24 +83,27 @@
                 <div class="tarjeta">
                     <h3>🌱 Mis Cultivos</h3>
                     <p>Registre nuevos lotes indicando cantidad (kg), variedad y fecha de siembra.</p>
-                    <div class="margen-top-16"><a href="" class="btn-verde btn-borde">Ver / Agregar cultivos</a></div>
+                    <div class="margen-top-16"><button class="btn-verde btn-borde" onclick="mostrarSeccion('lotes')">Ver / Agregar cultivos</button></div>
                 </div>
                 <div class="tarjeta">
                     <h3>📍 Trazabilidad</h3>
                     <p>Actualice el estado de su cosecha para notificar automaticamente al comprador.</p>
-                    <div class="margen-top-16"><a href="" class="btn-verde btn-borde">Actualizar estados</a></div>
+                    <div class="margen-top-16"><button class="btn-verde btn-borde" onclick="mostrarSeccion('trazabilidad')">Actualizar estados</button></div>
                 </div>
                 <div class="tarjeta">
                     <h3>📈 Reportes</h3>
                     <p>Visualice ingresos proyectados y total de kilogramos reservados por periodo.</p>
-                    <div class="margen-top-16"><a href="#" class="btn-verde btn-borde">Ver reportes</a></div>
+                    <div class="margen-top-16"><button class="btn-verde btn-borde" onclick="mostrarSeccion('reportes')">Ver reportes</button></div>
                 </div>
                 <div class="tarjeta">
                     <h3>💳 Pagos</h3>
                     <p>Consulte pagos pendientes e historial de transferencias por cosecha entregada.</p>
-                    <div class="margen-top-16"><a href="#" class="btn-verde btn-borde">Ver pagos</a></div>
+                    <div class="margen-top-16"><button class="btn-verde btn-borde" onclick="mostrarSeccion('ventas')">Ver pagos</button></div>
                 </div>
             </div>
+
+
+            <br>
 
             <!-- TABLA MIS LOTES -->
             <div class="margen-top-32">
@@ -252,9 +255,48 @@
 
 <tbody id="tabla-mis-lotes"></tbody>
 
+    <div id="modal-soporte" class="modal-soporte">
+    <div class="contenido-modal">
+        <span id="cerrar-soporte">&times;</span>
+        <h2>Centro de Soporte</h2>
+        <p>¿En qué podemos ayudarte?</p>
+
+        <form>
+            <input type="text" placeholder="Tu nombre" required>
+            <input type="email" placeholder="Tu correo" required>
+            <textarea placeholder="Describe tu problema..." rows="5"></textarea>
+            <button type="submit">Enviar</button>
+        </form>
+    </div>
+    </div>
+
+    <footer id="pie-pagina">
+        <p><strong>AgroDirecto</strong> — Del campo a su negocio, sin rodeos. 2026</p>
+    </footer>
+
     <script src="datos.js"></script>
 
 <script>
+    const btnSoporte = document.getElementById("btn-soporte");
+    const modalSoporte = document.getElementById("modal-soporte");
+    const cerrarSoporte = document.getElementById("cerrar-soporte");
+
+    btnSoporte.addEventListener("click", function(e) {
+    e.preventDefault();
+    modalSoporte.style.display = "flex";
+    });
+
+    cerrarSoporte.addEventListener("click", function() {
+    modalSoporte.style.display = "none";
+    });
+
+    window.addEventListener("click", function(e) {
+    if (e.target === modalSoporte) {
+        modalSoporte.style.display = "none";
+    }
+    });
+
+
     let misLotes = [];
     const idProductor = parseInt(sessionStorage.getItem('usuario_id')) || 2;
 

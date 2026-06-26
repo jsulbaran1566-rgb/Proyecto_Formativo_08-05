@@ -77,6 +77,7 @@ h1, h2, h3, h4{
     width: 100%;
 }
 
+
 #nav-principal a {
     color: white;
     text-decoration: none;
@@ -178,7 +179,7 @@ h1, h2, h3, h4{
     left: -40px;
     width: 200px;
     height: 200px;
-    background: radial-gradient(circle, rgba(46,125,50,0.12) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(46,125,50,0.12) 0%, transparent 100%);
     border-radius: 50%;
     pointer-events: none;
     z-index: 0;
@@ -203,17 +204,11 @@ h1, h2, h3, h4{
     background-position: center;
     background-repeat: no-repeat;
     color: white;
-    min-height: 280px;
+    min-height: 600px;
 }
 
 /* POSICIONAMIENTO — ABSOLUTE: velo oscuro para legibilidad del texto sobre la foto */
-#seccion-hero.hero-con-imagen::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(180deg, rgba(27,94,32,0.78) 0%, rgba(27,94,32,0.55) 100%);
-    z-index: 0;
-}
+
 
 #seccion-hero.hero-con-imagen::after {
     display: none;
@@ -309,15 +304,15 @@ h1, h2, h3, h4{
 
 .boton-secundario,
 .btn-borde {
-    background-color: white;
-    color: var(--verde-oscuro);
-    border: 2px solid var(--verde-oscuro);
+    background-color: var(--verde-medio);
+    color: white;
+    border: 2px solid var(--radio);
     box-shadow: none;
 }
 
 .boton-secundario:hover,
 .btn-borde:hover {
-    background-color: var(--verde-fondo);
+    background-color: var(--verde-oscuro);
 }
 
 .boton-whatsapp {
@@ -828,7 +823,7 @@ h1, h2, h3, h4{
     top: 50%;
     transform: translateY(-50%);
     font-size: 3rem;
-    opacity: 0.07;
+    opacity: 0.6;
     pointer-events: none;
 }
 
@@ -1412,7 +1407,7 @@ h1, h2, h3, h4{
 
 /* INICIO (index.html) — campo de cultivo al amanecer */
 #seccion-hero.hero-inicio-img {
-    background-image: url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1600&q=80');
+        background-image: url('https://images.unsplash.com/photo-1625246333195-78d9c38ad449?fm=jpg&q=60&w=3000&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8YWdyaWN1bHR1cmF8ZW58MHx8MHx8fDA%3D');
 }
 
 /* NOSOTROS — manos de agricultor con plantula, simboliza el equipo y su mision */
@@ -1576,7 +1571,7 @@ h1, h2, h3, h4{
 .tarjeta-con-foto .foto-tarjeta {
     width: calc(100% + 44px);
     margin: -22px -22px 14px -22px;
-    height: 130px;
+    height: 220px;
     object-fit: cover;
     display: block;
 }
@@ -1612,7 +1607,7 @@ h1, h2, h3, h4{
    ================================================================ */
 .banner-panel {
     position: relative;
-    height: 110px;
+    height: 180px;
     border-radius: var(--radio);
     overflow: hidden;
     margin-bottom: 24px;
@@ -1665,6 +1660,133 @@ h1, h2, h3, h4{
     color: white;
 }
 
+/* ================================================
+   GOOGLE ICONS / PASSWORD BUTTONS
+   ================================================ */
+
+.material-symbols-outlined {
+    font-size: 22px;
+    vertical-align: middle;
+}
+
+.contenedor-password {
+    position: relative;
+}
+
+.contenedor-password .campo-input {
+    padding-right: 50px;
+}
+
+/* Botones de mostrar contraseña */
+#btn-ver-clave,
+#btn-ver-reg,
+#btn-ver-reg2 {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #666;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px;
+    transition: 0.2s ease;
+}
+
+#btn-ver-clave:hover,
+#btn-ver-reg:hover,
+#btn-ver-reg2:hover {
+    color: #2f6b3d; /* o usa tu variable CSS del verde */
+    transform: translateY(-50%) scale(1.1);
+}
+
+.btn-verde{
+    padding:7px 16px;
+    font-size:0.85rem;
+}
+
+#seccion-hero h1{
+    font-size: 70px;
+}
+
+#seccion-hero p{
+    font-size: 20px;
+}
+
+.modal-soporte {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 9999;
+    justify-content: center;
+    align-items: center;
+}
+
+.contenido-modal {
+    background: var(--blanco);
+    padding: 30px;
+    width: 450px;
+    max-width: 90%;
+    border-radius: 15px;
+    position: relative;
+    box-shadow: var(--sombra-card);
+}
+
+#cerrar-soporte {
+    position: absolute;
+    right: 15px;
+    top: 10px;
+    font-size: 28px;
+    cursor: pointer;
+    color: var(--gris-texto);
+}
+
+.contenido-modal h2 {
+    color: var(--verde-oscuro);
+}
+
+.contenido-modal p {
+    color: var(--gris-texto);
+}
+
+.contenido-modal form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.contenido-modal input,
+.contenido-modal textarea {
+    padding: 12px;
+    border: 1px solid var(--gris-claro);
+    border-radius: 8px;
+    resize: none;
+}
+
+.contenido-modal input:focus,
+.contenido-modal textarea:focus {
+    border-color: var(--verde-medio);
+}
+
+.contenido-modal button {
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    background: var(--verde-medio);
+    color: var(--blanco);
+    font-weight: bold;
+}
+
+.contenido-modal button:hover {
+    background: var(--verde-oscuro);
+}
+
+
 .banner-admin      { background-image: url('https://images.unsplash.com/photo-1625246333195-78d9c38ad449?auto=format&fit=crop&w=1400&q=70'); }
 .banner-productor  { background-image: url('https://images.unsplash.com/photo-1592982537447-7440770cbfc9?auto=format&fit=crop&w=1400&q=70'); }
 .banner-comprador  { background-image: url('https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=1400&q=70'); }
@@ -1673,6 +1795,305 @@ h1, h2, h3, h4{
 .banner-proveedores{ background-image: url('https://www.redeia.com/sites/default/files/styles/crop_style_scale_768_x_428/public/2026-02/proveedores-codigo-conducta.jpg.webp?h=ef1f3445&itok=Ta6dhrVr=70'); }
 .banner-usuarios   { background-image: url('https://images.unsplash.com/photo-1488459716781-31db52582fe9?auto=format&fit=crop&w=1400&q=70'); }
 .banner-roles      { background-image: url('https://images.unsplash.com/photo-1591857177580-dc82b9ac4e1e?auto=format&fit=crop&w=1400&q=70'); }
+
+
+/* ================================================
+   BOX-MODEL — NOTIFICACIÓN / ALERTA FLOTANTE
+   Uso: mensajes de éxito, error o info dentro de paneles
+   ================================================ */
+.notificacion {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 14px 18px;
+    margin-bottom: 20px;
+    border-radius: var(--radio);
+    border-left: 5px solid var(--verde-medio);
+    background-color: var(--verde-fondo);
+    box-shadow: var(--sombra-card);
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.notificacion::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--verde-medio), transparent);
+}
+
+.notificacion-icono {
+    font-size: 1.3rem;
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.notificacion-cuerpo {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.notificacion-cuerpo strong { color: var(--verde-oscuro); font-size: 0.92rem; }
+.notificacion-cuerpo p      { color: #555; font-size: 0.87rem; margin: 0; }
+
+.notificacion-error   { border-left-color: var(--rojo);    background-color: #fff5f5; }
+.notificacion-alerta  { border-left-color: var(--naranja); background-color: #fff8f0; }
+.notificacion-info    { border-left-color: var(--azul);    background-color: #f0f6ff; }
+
+
+/* ================================================
+   BOX-MODEL — CHIP / ETIQUETA INTERACTIVA
+   Uso: filtros, categorías, selección múltiple
+   ================================================ */
+.chip {
+    box-sizing: border-box;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 14px;
+    border-radius: 999px;
+    border: 1.5px solid var(--verde-claro);
+    background-color: var(--verde-fondo);
+    color: var(--verde-oscuro);
+    font-size: 0.82rem;
+    font-weight: 600;
+    cursor: pointer;
+    user-select: none;
+    transition: background-color 0.18s, border-color 0.18s, box-shadow 0.18s;
+    white-space: nowrap;
+}
+
+.chip:hover {
+    background-color: var(--verde-claro);
+    border-color: var(--verde-medio);
+    box-shadow: 0 2px 6px rgba(76,175,80,0.18);
+}
+
+.chip.activo {
+    background-color: var(--verde-medio);
+    border-color: var(--verde-oscuro);
+    color: white;
+}
+
+.chip-rojo    { border-color: #ef9a9a; background: #fff5f5; color: var(--rojo); }
+.chip-naranja { border-color: #ffcc80; background: #fff8f0; color: var(--naranja); }
+.chip-azul    { border-color: #90caf9; background: #f0f6ff; color: var(--azul); }
+
+.fila-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 16px;
+}
+
+
+/* ================================================
+   BOX-MODEL — TARJETA DE PROGRESO
+   Uso: avance de pedidos, etapas de cultivo, flujos
+   ================================================ */
+.tarjeta-progreso {
+    box-sizing: border-box;
+    background: var(--blanco);
+    border: 1px solid var(--gris-claro);
+    border-radius: var(--radio);
+    padding: 20px 24px;
+    box-shadow: var(--sombra-card);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    position: relative;
+    overflow: hidden;
+}
+
+.tarjeta-progreso-titulo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--verde-oscuro);
+}
+
+.tarjeta-progreso-titulo span {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--verde-medio);
+}
+
+.barra-progreso-fondo {
+    box-sizing: border-box;
+    width: 100%;
+    height: 10px;
+    background-color: var(--gris-claro);
+    border-radius: 999px;
+    overflow: hidden;
+}
+
+.barra-progreso-relleno {
+    height: 100%;
+    border-radius: 999px;
+    background: linear-gradient(90deg, var(--verde-medio), var(--verde-oscuro));
+    transition: width 0.4s ease;
+    min-width: 4px;
+}
+
+.barra-progreso-relleno.progreso-naranja { background: linear-gradient(90deg, var(--naranja), #e65100); }
+.barra-progreso-relleno.progreso-rojo    { background: linear-gradient(90deg, var(--rojo), #7f0000); }
+.barra-progreso-relleno.progreso-azul    { background: linear-gradient(90deg, var(--azul), #003c8f); }
+
+.tarjeta-progreso p {
+    font-size: 0.82rem;
+    color: #888;
+    margin: 0;
+}
+
+
+/* ================================================
+   BOX-MODEL — SEPARADOR DE SECCIÓN CON ETIQUETA
+   Uso: dividir bloques de formulario o contenido largo
+   ================================================ */
+.separador-etiqueta {
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 24px 0 16px;
+    width: 100%;
+}
+
+.separador-etiqueta::before,
+.separador-etiqueta::after {
+    content: '';
+    flex: 1;
+    height: 1.5px;
+    background: var(--gris-claro);
+    border-radius: 2px;
+}
+
+.separador-etiqueta span {
+    box-sizing: border-box;
+    padding: 3px 14px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--verde-oscuro);
+    background: var(--verde-fondo);
+    border: 1px solid var(--verde-claro);
+    border-radius: 999px;
+    white-space: nowrap;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+
+/* ================================================
+   BOX-MODEL — TARJETA DE PRECIO / PLAN
+   Uso: comparar planes, paquetes de venta, cotizaciones
+   ================================================ */
+.tarjeta-precio {
+    box-sizing: border-box;
+    background: var(--blanco);
+    border: 2px solid var(--gris-claro);
+    border-radius: var(--radio);
+    padding: 28px 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    text-align: center;
+    box-shadow: var(--sombra-card);
+    transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+    position: relative;
+    overflow: hidden;
+    flex: 1 1 220px;
+}
+
+.tarjeta-precio:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+}
+
+.tarjeta-precio.destacado {
+    border-color: var(--verde-medio);
+    background: linear-gradient(160deg, #f1f8e9 0%, var(--blanco) 100%);
+}
+
+.tarjeta-precio.destacado::before {
+    content: '★ Popular';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    padding: 5px 0;
+    background: var(--verde-medio);
+    color: white;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.precio-nombre {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--verde-oscuro);
+    margin-top: 8px;
+}
+
+.precio-valor {
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: var(--verde-oscuro);
+    line-height: 1;
+}
+
+.precio-valor sup {
+    font-size: 1rem;
+    font-weight: 600;
+    vertical-align: super;
+}
+
+.precio-periodo {
+    font-size: 0.78rem;
+    color: #888;
+    margin-top: -8px;
+}
+
+.precio-lista {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    text-align: left;
+    width: 100%;
+}
+
+.precio-lista li {
+    font-size: 0.87rem;
+    color: #555;
+    padding-left: 22px;
+    position: relative;
+}
+
+.precio-lista li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--verde-medio);
+    font-weight: 700;
+}
+
+.precio-lista li.no-incluido {
+    color: #bbb;
+    text-decoration: line-through;
+}
+
+.precio-lista li.no-incluido::before { content: '✗'; color: #ddd; }
 
 
 /* ================================================================

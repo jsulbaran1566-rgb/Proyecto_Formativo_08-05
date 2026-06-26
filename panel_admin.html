@@ -21,12 +21,7 @@
     <nav id="nav-principal">
         <a href="index.html"><strong>AGRODIRECTO</strong></a>
         <div class="links-nav">
-            <span class="texto-rol-nav">Panel Administrador</span>
-            <div class="icono-campana tiene-tooltip">
-                <span id="icono-notif">🔔</span>
-                <span class="badge-campana" id="badge-notif">0</span>
-                <span class="texto-tooltip">Notificaciones</span>
-            </div>
+
             <a href="index.html" id="btn-logout" class="btn-verde btn-salir">Cerrar Sesion</a>
         </div>
     </nav>
@@ -38,7 +33,7 @@
             <div class="perfil-sidebar">
                 <!-- Avatar: position relative + ::after absolute (punto online) -->
                 <div class="avatar-usuario">🛡️</div>
-                <h4 id="nombre-admin">Administrador</h4>
+                <h4 id="nombre-admin"></h4>
                 <span><span class="badge-rol badge-admin">Admin</span></span>
             </div>
             <nav class="nav-sidebar">
@@ -48,8 +43,7 @@
                 <a href="proveedores.html">🚚 Proveedores</a>
                 <a href="lotes.html">🌱 Todos los Lotes</a>
                 <a href="historial.html">📋 Historial</a>
-                <a href="registro.html">📝 Nuevo Registro</a>
-                <a href="contacto.html">💬 Soporte</a>
+                <a href="#" id="btn-soporte">💬 Soporte</a>
             </nav>
         </aside>
 
@@ -64,7 +58,6 @@
                     <h2>Panel de Administracion <span class="badge-rol badge-admin">ADMIN</span></h2>
                     <p id="fecha-admin">Resumen del sistema</p>
                 </div>
-                <a href="registro.html" class="btn-verde">+ Nuevo Usuario</a>
             </div>
 
             <!-- ESTADISTICAS: position relative con ::before decorativo absolute -->
@@ -119,11 +112,13 @@
                 </div>
             </div>
 
+            <br>
+
             <!-- TABLA RESUMEN USUARIOS RECIENTES -->
             <div class="margen-top-32">
                 <div class="fila-titulo-panel">
                     <h3 class="titulo-panel">Usuarios Recientes</h3>
-                    <a href="usuarios.html" class="btn-verde btn-borde" style="font-size:0.8rem;padding:6px 14px;">Ver todos →</a>
+                    <a href="usuarios.html" class="btn-verde btn-borde">Ver todos →</a>
                 </div>
                 <table class="tabla-datos">
                     <thead>
@@ -136,16 +131,18 @@
                         </tr>
                     </thead>
                     <tbody id="tabla-usuarios-admin">
-                        <tr><td colspan="5" style="text-align:center;color:#aaa;padding:20px;">Cargando...</td></tr>
+                        <tr><td colspan="5">Cargando...</td></tr>
                     </tbody>
                 </table>
             </div>
+
+            <br>
 
             <!-- TABLA RESUMEN PROVEEDORES -->
             <div class="margen-top-32">
                 <div class="fila-titulo-panel">
                     <h3 class="titulo-panel">Proveedores Registrados</h3>
-                    <a href="proveedores.html" class="btn-verde btn-borde" style="font-size:0.8rem;padding:6px 14px;">Ver todos →</a>
+                    <a href="proveedores.html" class="btn-verde btn-borde">Ver todos →</a>
                 </div>
                 <table class="tabla-datos">
                     <thead>
@@ -157,7 +154,7 @@
                         </tr>
                     </thead>
                     <tbody id="tabla-proveedores-admin">
-                        <tr><td colspan="4" style="text-align:center;color:#aaa;padding:20px;">Cargando...</td></tr>
+                        <tr><td colspan="4">Cargando...</td></tr>
                     </tbody>
                 </table>
             </div>
@@ -165,11 +162,49 @@
         </div>
     </div>
 
+    <div id="modal-soporte" class="modal-soporte">
+    <div class="contenido-modal">
+        <span id="cerrar-soporte">&times;</span>
+        <h2>Centro de Soporte</h2>
+        <p>¿En qué podemos ayudarte?</p>
+
+        <form>
+            <input type="text" placeholder="Tu nombre" required>
+            <input type="email" placeholder="Tu correo" required>
+            <textarea placeholder="Describe tu problema..." rows="5"></textarea>
+            <button type="submit">Enviar</button>
+        </form>
+    </div>
+</div>
+
     <a href="#" id="btn-volver-arriba" title="Volver arriba">▲</a>
+
+        <footer id="pie-pagina">
+        <p><strong>AgroDirecto</strong> — Del campo a su negocio, sin rodeos. 2026</p>
+    </footer>
 
     <script src="datos.js"></script>
 
  <script>
+    const btnSoporte = document.getElementById("btn-soporte");
+    const modal = document.getElementById("modal-soporte");
+    const cerrar = document.getElementById("cerrar-soporte");
+
+    btnSoporte.addEventListener("click", function(e) {
+    e.preventDefault();
+    modal.style.display = "flex";
+    });
+
+    cerrar.addEventListener("click", function() {
+    modal.style.display = "none";
+        });
+
+    window.addEventListener("click", function(e) {
+    if (e.target === modal) {
+        modal.style.display = "none";
+    }
+    });
+
     document.getElementById('nombre-admin').textContent =
         sessionStorage.getItem('usuario_nombre') || 'Administrador';
     document.getElementById('fecha-admin').textContent =
@@ -187,7 +222,6 @@
         document.getElementById('stat-roles').textContent      = roles.length;
         document.getElementById('stat-proveedores').textContent= proveedores.length;
         document.getElementById('stat-lotes').textContent      = lotes.filter(l => l.estado === 'Activo').length;
-        document.getElementById('badge-notif').textContent     = usuarios.filter(u => u.estado === 'Activo').length;
 
         // Tabla usuarios (primeros 5)
         document.getElementById('tabla-usuarios-admin').innerHTML =
